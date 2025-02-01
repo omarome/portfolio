@@ -1,23 +1,51 @@
-import logo from './logo.svg';
+import React from 'react';
+import SplashScreen from './components/SplashScreen';
+import { Link } from 'react-scroll';
+import Home from './components/Home';
+import About from './components/About';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
+import Footer from  './components/Footer';
+import Button from '@mui/material/Button';
+
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <SplashScreen />
+      <header className="navbar">
+        <nav>
+          <ul>
+            <Button className="nav-button" variant="outlined"><Link to="home" smooth={true} duration={500}>Home</Link></Button>
+            <Button className="nav-button" variant="outlined"><Link to="about" smooth={true} duration={500}>About</Link></Button>
+            <Button className="nav-button" variant="outlined"><Link to="skills" smooth={true} duration={500}>Skills</Link></Button>
+            <Button className="nav-button" variant="outlined"><Link to="projects" smooth={true} duration={500}>Projects</Link></Button>
+            <Button className="nav-button" variant="outlined"><Link to="contact" smooth={true} duration={500}>Contact</Link></Button>
+          </ul>
+        </nav>
       </header>
+   
+      <section id="home">
+        <Home />
+      </section>
+      <section id="about">
+        <About />
+      </section>
+
+      <section id="skills">
+        <Skills />
+      </section>
+
+      <section id="projects">
+        <Projects />
+      </section>
+
+      <section id="contact">
+        <Contact />
+      </section>
+      <Footer />
     </div>
   );
 }

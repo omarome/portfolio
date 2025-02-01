@@ -1,0 +1,89 @@
+
+.section-continer {
+    display: flex;
+    flex-direction: column;
+    object-fit: cover;
+    background-size: cover; 
+    background-image: url('../assets/background/backgroundwall.jpg');
+    margin-bottom: -10;
+    padding: 0;
+    background-size: cover; /* Changed to cover to ensure full width */
+    background-position: center top; /* Center the image horizontally, keep it aligned to the top vertically */
+    background-repeat: no-repeat;
+    justify-content: space-between;
+    text-align: center;
+    width: 100vw; /* Ensure the section takes up the full viewport width */
+    overflow: hidden; 
+}
+
+.title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    font-size: xx-large;
+    color: #e07c24;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+    background-color: aliceblue;
+}
+
+.subtitle {
+    height: 40px;
+    color: #ce6712;
+    font-size: xx-large;
+    background-color: aliceblue;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+    width: 50%;
+    margin: 20px;
+}
+
+.list-continer {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    list-style: none;
+
+}
+
+.item-continer {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-continer:hover {
+    font-size: larger;
+    color: aliceblue;
+    border-radius: 20px;
+    animation-fill-mode: forwards;
+    animation: ease-in-out;
+    animation-duration: 3s;
+    background-color:  #ce6712;
+}
+
+.item-name {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: aliceblue;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;    
+    align-items: flex-start;
+    width: 8em;
+    height: 2em;
+    border-radius: 10px;
+
+}
+
+.item-logo {
+    background-color: antiquewhite;
+    object-fit: contain;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}

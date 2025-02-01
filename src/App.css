@@ -1,38 +1,95 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  padding-top: 0;
+  font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+
+  background-color: #333;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar ul button {
+  
+  margin: 0 15px;
+}
+
+.navbar ul button {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.container {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center; /* Center items horizontally */
+  justify-content: flex-end; /* Align items to the bottom */
+  max-width: 400px; /* Restrict maximum width */
+  margin: auto; /* Center container */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #eeecec; /* White background for the container */
+  overflow: hidden; /* Prevent overflow */
 }
 
-.App-link {
-  color: #61dafb;
+.header {
+  width: 100%;
+  background-color: #4CAF50; /* Green header */
+  color: white; /* White text color */
+  padding: 10px; /* Padding inside header */
+  text-align: center; /* Centered text */
+  font-size: 24px; /* Larger text size */
+  border-radius: 10px 10px 0 0; /* Rounded corners on top */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button {
+  background-color: #ffffff; /* Button color */
+  color: white; /* White text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 20px; /* Padding for the button */
+  margin: 10px 0; /* Margin above and below */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size for the button */
+}
+/* In your global CSS file */
+.nav-button {
+  background-color: #333;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.nav-button:active {
+  color: #f0faf0;
+  background-color: #333;
+}
+
+.nav-button:focus {
+  color: #333;
+  background-color: #f0faf0;
+}
+
+.nav-button:hover {
+  background-color: #545252;
+  transform: scale(1.2);
 }

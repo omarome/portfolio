@@ -1,0 +1,7 @@
+.typewrite > .wrap {
+    color: #ce6712;
+    font-size: 4em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    border-right: 0.08em solid #fff;
+  }

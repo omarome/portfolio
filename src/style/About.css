@@ -1,0 +1,25 @@
+.about-section {
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about-section>.title {
+    text-align: center;
+    width: 100%;
+    color: #e07c24;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+    background-color: aliceblue;
+    text-transform: uppercase;
+    font-size: xx-large;
+}
+
+.about-paragraph {
+    text-indent: 2%;
+    font-size: 1.5em;
+    line-height: 50px;
+}

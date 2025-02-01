@@ -1,0 +1,45 @@
+/* Footer styles */
+.contact-container {
+    background: #333;
+    padding: 20px;
+    color: #0000;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ 
+  .icon-container-style {
+    color: rgb(187, 187, 41);
+    display: flex;
+    gap: 15px;
+    margin-left: 20px;
+  }
+  
+  .icon-style {
+    color: #0000;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .icon-style:hover {
+    color: #ce6712;
+    transform: scale(1.2);
+  }
+  
+  .footer-text {
+    font-size: 14px;
+    text-align: center;
+    flex: 1;
+    
+  }
+
+  .footer-text:hover {
+    color: #ce6712;
+  }
+  a {
+    color: #ce6712;
+  }
+ 
