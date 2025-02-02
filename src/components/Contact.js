@@ -34,11 +34,6 @@ function Contact() {
           <input type='text' id='email' value='almashhadaniomar9@gmail.com' readOnly onClick={(e) => e.target.select()} />
           <FaCopy className='copy-icon' onClick={() => handleCopy('almashhadaniomar9@gmail.com')} />
         </div>
-        <label htmlFor='phone'>Mobile Phone:</label>
-        <div className='copy-container'>
-          <input type='text' id='phone' value='+358451328500' readOnly onClick={(e) => e.target.select()} />
-          <FaCopy className='copy-icon' onClick={() => handleCopy('+358451328500')} />
-        </div>
         </div>
         {copySuccess && <div className='copy-notification'>{copySuccess}</div>}
     </section>
