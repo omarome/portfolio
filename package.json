@@ -1,7 +1,10 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "description": "This is a private portfolio.",
   "private": true,
+  "author": "Omar Al-Mashhadani",
+  "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
