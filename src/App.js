@@ -18,7 +18,7 @@ const App = () => {
       <header className="navbar">
         <nav>
           <ul>
-            <Button className="nav-button" variant="outlined"><Link to="home" smooth={true} duration={500}>Home</Link></Button>
+            <Button className="nav-button" variant="outlined"><Link to="home" smooth={true} duration={500} >Home</Link></Button>
             <Button className="nav-button" variant="outlined"><Link to="about" smooth={true} duration={500}>About</Link></Button>
             <Button className="nav-button" variant="outlined"><Link to="skills" smooth={true} duration={500}>Skills</Link></Button>
             <Button className="nav-button" variant="outlined"><Link to="projects" smooth={true} duration={500}>Projects</Link></Button>

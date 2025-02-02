@@ -20,10 +20,9 @@ const Footer = () => {
           <FaGithub />
         </a>
       </div>
-      <p className='footer-text'>© 2024 Omar Al-Mashhadani. All rights reserved.</p>
+      <p className='footer-text'>© {new Date().getFullYear()} Omar Al-Mashhadani. All rights reserved.</p>
     </footer>
   );
 };
-
 
 export default Footer;

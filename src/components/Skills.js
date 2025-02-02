@@ -2,21 +2,20 @@ import React from 'react';
 import { frontendSkills, backendSkills, designSkills, otherSkills } from '../directories/SkillsUtilis';
 import '../style/Skills.css'
 
-
 const  Skills = () => {
 
   return (
     <section 
-      className = 'section-continer'
+      className = 'section-container'
     >
       <h2 className='title'>Skills</h2>
       <ul 
-        className='list-continer'
+        className='list-container'
       >
         <h className="subtitle">Frontend</h>
         {frontendSkills.map((skill, index) => 
         <li 
-          className = 'item-continer'
+          className = 'item-container'
           key = { index }
         >
           <div
@@ -35,7 +34,7 @@ const  Skills = () => {
           <h className="subtitle">Backend</h>
           {backendSkills.map((skill, index) => 
         <li 
-          className = 'item-continer'
+          className = 'item-container'
           key = { index }
         >
           <div
@@ -54,7 +53,7 @@ const  Skills = () => {
           <h className="subtitle">Design</h>
           {designSkills.map((skill, index) => 
         <li 
-          className = 'item-continer'
+          className = 'item-container'
           key = { index }
         >
           <div
@@ -73,7 +72,7 @@ const  Skills = () => {
           <h className="subtitle">Others</h>
           {otherSkills.map((skill, index) => 
         <li 
-          className = 'item-continer'
+          className = 'item-container'
           key = { index }
         >
           <div

@@ -2,16 +2,16 @@
     margin: 0;
     padding: 0;
     height: 50vh;
-    background-size: cover; /* Changed to cover to ensure full width */
-    background-position: center top; /* Center the image horizontally, keep it aligned to the top vertically */
+    background-size: cover;
+    background-position: center top;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     text-align: center;
-    width: 100vw; /* Ensure the section takes up the full viewport width */
-    overflow: hidden; /* In case the background extends slightly beyond the edges */
+    width: 100vw;
+    overflow: hidden;
 }
 
 .profile-container {
@@ -20,7 +20,7 @@
   
   .profile-image {
     position: absolute;
-    bottom: 35%; /* Adjust based on how much you want it to overlap */
+    bottom: 35%;
     left: 50%;
     transform: translateX(-50%);
     width: 210px;
@@ -33,15 +33,14 @@
   }
 
 .intro-section-header {
-    margin-left: 10px;
+    padding-left: 6rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 3em;
   }
 
 .intro-section-paragraph {
-    margin: 10px;
+    margin: 3rem;
     padding: 5px;
-    text-indent: 2%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.5em;
     line-height: 50px;

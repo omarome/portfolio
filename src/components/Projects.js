@@ -1,36 +1,43 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 import { FaGithub } from 'react-icons/fa'; // Import icons from react-icons
-import Florance from '../assets/florance.jpeg';
-import City from '../assets/city.jpeg';
-import SecondCity from '../assets/city3.jpeg';
-
+import MovieAppImage from '../assets/project-images/vidly.jpeg';
+import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
+import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
 import '../style/Projects.css';
 
 const Projects = () => {
   const projects = [
     {
-      image: Florance,
-      name: 'Project 1',
-      description: 'This is a description of Project 1.'
+      image: MovieAppImage,
+      name: 'Vidly',
+      description: 'Your Ultimate Movie Management. A Full-Stack Project Built With React and Node.js.',
+      url: 'https://github.com/omarome/vidly/blob/master/README.md'
     },
     {
-      image: City,
-      name: 'Project 2',
-      description: 'This is a description of Project 2.'
+      image: MyPetShopAppImage,
+      name: 'My Pet Store App',
+      description: 'This is PetStore app for people looking to buy or sell their pet. Built to look simple and easy to use with ReactNative.',
+      url: 'https://github.com/omarome/myOnlinePetShop/blob/frontEnd/README.md'
     },
     {
-      image: SecondCity,
-      name: 'Project 3',
-      description: 'This is a description of Project 3.'
+      image: FoodSpotLightAppImage,
+      name: 'Food Spotlight App',
+      description: 'This is an IOS app built with Swift. It helps you find the best restaurants in your area.',
+      url: 'https://github.com/omarome/FoodSpotlightApp'
     }
   ];
 
+  const handleCardClick = (url) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <div className='projects-container'>
+    <h2 className='title'>Projects</h2>
     <div className="projects-section">
       {projects.map((project, index) => (
-        <Card className="project-card" key={index}>
+        <Card className="project-card" key={index}  onClick={() => handleCardClick(project.url)}>
           <CardMedia
             component="img"
             image={project.image}

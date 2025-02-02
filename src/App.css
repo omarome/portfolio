@@ -5,8 +5,22 @@ body {
   scroll-behavior: smooth;
 }
 
-.navbar {
+.title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: uppercase;
+  font-size: xx-large;
+  color: #e07c24;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+  background-color: aliceblue;
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+}
 
+.navbar {
   background-color: #333;
   padding: 10px;
   position: fixed;
@@ -39,37 +53,36 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  justify-content: flex-end; /* Align items to the bottom */
-  max-width: 400px; /* Restrict maximum width */
-  margin: auto; /* Center container */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  background-color: #eeecec; /* White background for the container */
-  overflow: hidden; /* Prevent overflow */
+  align-items: center; 
+  justify-content: flex-end;
+  max-width: 400px;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: #eeecec;
+  overflow: hidden;
 }
 
 .header {
-  width: 100%;
-  background-color: #4CAF50; /* Green header */
-  color: white; /* White text color */
-  padding: 10px; /* Padding inside header */
-  text-align: center; /* Centered text */
-  font-size: 24px; /* Larger text size */
-  border-radius: 10px 10px 0 0; /* Rounded corners on top */
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 10px 10px 0 0;
 }
 
 .button {
-  background-color: #ffffff; /* Button color */
-  color: white; /* White text color */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px 20px; /* Padding for the button */
-  margin: 10px 0; /* Margin above and below */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size for the button */
+  background-color: #ffffff;
+  color: white;
+  border: none; 
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 10px 0;
+  cursor: pointer;
+  font-size: 16px;
 }
-/* In your global CSS file */
+
 .nav-button {
   background-color: #333;
   color: black;

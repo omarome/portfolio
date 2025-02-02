@@ -1,45 +1,89 @@
-/* Footer styles */
-.contact-container {
-    background: #333;
-    padding: 20px;
-    color: #0000;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
- 
-  .icon-container-style {
-    color: rgb(187, 187, 41);
-    display: flex;
-    gap: 15px;
-    margin-left: 20px;
-  }
-  
-  .icon-style {
-    color: #0000;
-    font-size: 24px;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .icon-style:hover {
-    color: #ce6712;
-    transform: scale(1.2);
-  }
-  
-  .footer-text {
-    font-size: 14px;
-    text-align: center;
-    flex: 1;
-    
-  }
+.contact-section {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #f9f9f9;
+  position: relative;
+}
 
-  .footer-text:hover {
-    color: #ce6712;
-  }
-  a {
-    color: #ce6712;
-  }
- 
+.title {
+  font-size: 2em;
+  text-align: center;
+}
+
+.contact-icon-container-style {
+  display: inline-flex;
+  justify-content: center;
+  flex-direction:row;
+  margin-bottom: 2rem;
+}
+
+.contact-icon-style {
+  padding: 2rem;
+  color: #7c7c7c;
+  font-size: 3rem; 
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-icon-style:hover {
+  color: #ce6712;
+  transform: scale(1.2);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  padding-left: 3rem;
+  gap: 20px;
+  margin: 2rem;
+}
+
+.contact-info label {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.copy-container {
+  display: flex;
+  align-items: center;
+}
+
+.contact-info input {
+  border: none;
+  background: none;
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+  width: 22rem;
+  padding: 10px;
+}
+
+.contact-info input:focus {
+  outline: none;
+  background-color: #e0e0e0;
+}
+
+.copy-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #333;
+}
+
+.copy-icon:hover {
+  color: #ce6712;
+}
+
+.copy-notification {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(121, 149, 79, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+}
