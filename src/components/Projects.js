@@ -4,6 +4,8 @@ import { FaGithub } from 'react-icons/fa'; // Import icons from react-icons
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
+import DopcAppImage from '../assets/project-images/dopc.jpg';
+
 import '../style/Projects.css';
 
 const Projects = () => {
@@ -25,6 +27,12 @@ const Projects = () => {
       name: 'Food Spotlight App',
       description: 'This is an IOS app built with Swift. It helps you find the best restaurants in your area.',
       url: 'https://github.com/omarome/FoodSpotlightApp'
+    }, 
+    {
+      image: DopcAppImage,
+      name: 'Delivery fee Calculator',
+      description: 'This is a delivery fee calculator app. Simple application build with React.js and TypeScript.',
+      url: 'https://github.com/omarome/delivery-fee-calculator'
     }
   ];
 

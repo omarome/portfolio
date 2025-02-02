@@ -15,6 +15,7 @@ function About() {
         <br/><br/>
         I am fluent in English, proficient in Finnish, and a native Arabic speaker. As a Finnish citizen, I am looking forward to future opportunities.
       </p>
+      <br/><br/>
     </section>
   );
 }

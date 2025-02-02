@@ -1,11 +1,13 @@
 .about-section {
-    margin: 10px;
+    background-color: rgb(46, 45, 45);
+    color: whitesmoke;
+    width: 100%;
+    margin: 0;
     padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .about-paragraph {

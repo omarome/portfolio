@@ -8,7 +8,7 @@ const  Skills = () => {
     <section 
       className = 'section-container'
     >
-      <h2 className='title'>Skills</h2>
+      <h2 className='title'>Skill Set</h2>
       <ul 
         className='list-container'
       >
