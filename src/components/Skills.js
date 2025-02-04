@@ -3,12 +3,11 @@ import { frontendSkills, backendSkills, designSkills, otherSkills } from '../dir
 import '../style/Skills.css'
 
 const  Skills = () => {
-
   return (
     <section 
       className = 'section-container'
     >
-      <h2 className='title'>Skill Set</h2>
+      <h2 className='title'>Skills</h2>
       <ul 
         className='list-container'
       >

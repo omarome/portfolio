@@ -11,3 +11,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --background-color: #2B2B2B;
+  --foreground-color: #A9B7C6;
+  --selection-background-color: #214283;
+  --selection-foreground-color: #FFFFFF;
+  --caret-color: #FFFFFF;
+  --line-number-color: #606366;
+  --gutter-background-color: #313335;
+  --keyword-color: #CC7832;
+  --string-color: #6A8759;
+  --comment-color: #808080;
+  --annotation-color: #BBB529;
+  --error-color: #FF6B68;
+  --warning-color: #FFC66D;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+}
+
+.selection {
+  background-color: var(--selection-background-color);
+  color: var(--selection-foreground-color);
+}
+
+.caret {
+  color: var(--caret-color);
+}
+
+.line-number {
+  color: var(--line-number-color);
+}
+
+.gutter {
+  background-color: var(--gutter-background-color);
+}
+
+.keyword {
+  color: var(--keyword-color);
+}
+
+.string {
+  color: var(--string-color);
+}
+
+.comment {
+  color: var(--comment-color);
+}
+
+.annotation {
+  color: var(--annotation-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.warning {
+  color: var(--warning-color);
+}

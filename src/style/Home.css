@@ -18,30 +18,58 @@
     text-align: center;
   }
   
-  .profile-image {
-    position: absolute;
-    bottom: 35%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 210px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: 60% 60% 20% 20%;
-    border: 5px solid white;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-  }
+.profile-image {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 210px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 60% 60% 20% 20%;
+  border: 5px solid white;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
 
 .intro-section-header {
-    padding-left: 6rem;
+    color: whitesmoke;
+    padding: 3rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 3em;
+    font-size: 2em;
   }
 
 .intro-section-paragraph {
+    color: #A9B7C6;
     margin: 3rem;
     padding: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.5em;
     line-height: 50px;
+  }
+
+/* Media query for phones */
+@media (max-width: 600px) {
+    .profile-image {
+      bottom: 43%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 180px;
+    }
+  
+    .intro-section-header {
+      margin: 1rem;
+      padding: 10px;
+      font-size: 1.5em;
+      line-height: 50px;
+    }
+  
+    .intro-section-paragraph {
+      margin: 1rem;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 2.5em;
+      line-height: 50px;
+    }
   }

@@ -5,4 +5,14 @@
     font-weight: bolder;
     border-right: 0.08em solid #fff;
   }
-  
+  /* Media query for phones */
+@media (max-width: 600px) {
+
+  .typewrite > .wrap {
+    color: #ce6712;
+    font-size: 2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    border-right: 0.08em solid #fff;
+  }
+  }

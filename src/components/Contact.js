@@ -1,32 +1,79 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaLinkedin, FaTwitter, FaGithub, FaCopy } from 'react-icons/fa'; // Import icons from react-icons
+import { motion, useAnimation } from 'motion/react';
+import { useInView } from 'react-intersection-observer';
 import '../style/Contact.css';
 
-function Contact() {
-  const [copySuccess, setCopySuccess] = useState('');
+const contactItems = [
+    {
+      href: "https://www.facebook.com", 
+      target: "_blank", 
+      rel: "noopener noreferrer", 
+      className: 'contact-icon-style',
+      icon: <FaFacebook />
+    },
+    {  
+      href:"https://www.linkedin.com/in/omar-al-mashhadani-4a9404199/",
+      target:"_blank",
+      rel:"noopener noreferrer", 
+      className:'contact-icon-style',
+      icon: <FaLinkedin />
+    },
+    {
+      href:"https://x.com/Almash46281Omar",
+      target:"_blank",
+      rel:"noopener noreferrer",
+      className:'contact-icon-style',
+      icon: <FaTwitter />
+    },
+    {
+      href: "https://github.com/omarome", 
+      target: "_blank",
+      rel: "noopener noreferrer", 
+      className: 'contact-icon-style',
+      icon: <FaGithub />
+    }
+   ];
 
-  const handleCopy = (text) => {
-    navigator.clipboard.writeText(text);
-    setCopySuccess('Copied Successfully!');
-    setTimeout(() => setCopySuccess(''), 2000);
-  };
+const Contact = () => {
+  const [copySuccess, setCopySuccess] = useState('');
+  const controls = useAnimation();
+    const [ref, inView] = useInView({
+      threshold: 0.1,
+    });
+  
+const contactVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+const handleCopy = (text) => {
+  navigator.clipboard.writeText(text);
+  setCopySuccess('Copied Successfully!');
+  setTimeout(() => setCopySuccess(''), 3000);
+};
 
   return (
     <section className='contact-section'>
       <h2 className='title'>Contact</h2>
       <div className='contact-icon-container-style'>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className='contact-icon-style'>
-          <FaFacebook />
-        </a>
-        <a href="https://www.linkedin.com/in/omar-al-mashhadani-4a9404199/" target="_blank" rel="noopener noreferrer" className='contact-icon-style'>
-          <FaLinkedin />
-        </a>
-        <a href="https://x.com/Almash46281Omar" target="_blank" rel="noopener noreferrer" className='contact-icon-style'>
-          <FaTwitter />
-        </a>
-        <a href="https://github.com/omarome" target="_blank" rel="noopener noreferrer" className='contact-icon-style'>
-          <FaGithub />
-        </a>
+        {contactItems.map((contact, index) => (
+          <motion.div
+            key={index}
+            className="contact-icon-style"
+            ref={ref}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            variants={contactVariants}>
+            <a 
+              href={contact.href} 
+              target={contact.target} 
+              rel={contact.rel} 
+              className={contact.className}>
+            {contact.icon}
+            </a>
+          </motion.div>
+        ))}
       </div>
       <div className='contact-info'>
         <label htmlFor='email'>Email:</label>

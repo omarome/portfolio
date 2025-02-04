@@ -1,50 +1,98 @@
 .projects-container {
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  padding: 20px;
   gap: 20px;
+}
 
 .projects-section {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    gap: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.project-card {
+  width: 90%;
+  background-color: var(--primary-color);
+  padding: var(--padding-small);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.project-image {
+  height: 150px;
+  object-fit: cover;
+}
+
+.more-projects {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.more-projects-text {
+  font-size: 22px;
+}
+
+.icon-style {
+  margin-left: 5px;
+  color: var(--primary-color);
+  font-size: 24px;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.icon-style:hover {
+  color: var(--secondary-color);
+  transform: scale(1.2);
+}
+
+.project-card p {
+  margin: 0.5rem 0 0;
+  color: var(--text-color);
+} 
+
+@media (max-width: 600px) {
+  .projects-container {
+    align-items: center;
+    gap: 2px;
   }
-  
-  .project-card {
-    width: 30%;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .project-card:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-  }
-  
-  .project-image {
-    height: 200px;
-    object-fit: cover;
-  }
-  .more-projects {
-    text-align: center;
-    display: flex;
+
+  .projects-section {
     justify-content: center;
+    flex-direction: column;
   }
-   .more-projects-text {
-    font-size:22px;
+
+  .project-card {
+    width: 95%;
+    transition: transform 0.1s ease-in-out;
+  }
+
+  .project-image {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .title {
+    font-size: 1.5em;
   }
 
   .icon-style {
-    margin-left: 5px;
-    color: #333;
-    font-size: 24px;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
+    font-size: 20px;
   }
-  
-  .icon-style:hover {
-    color: #ce6712;
-    transform: scale(1.5);
+
+  .more-projects-text {
+    margin-top: 20px;
+    font-size: 18px;
   }
 }

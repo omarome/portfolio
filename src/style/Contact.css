@@ -1,9 +1,7 @@
 .contact-section {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #f9f9f9;
-  position: relative;
 }
 
 .title {
@@ -14,20 +12,19 @@
 .contact-icon-container-style {
   display: inline-flex;
   justify-content: center;
-  flex-direction:row;
-  margin-bottom: 2rem;
+  margin: 5rem 0 5rem 0;
 }
 
 .contact-icon-style {
   padding: 2rem;
-  color: #7c7c7c;
+  color: #ce6712;
   font-size: 3rem; 
   text-decoration: none;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .contact-icon-style:hover {
-  color: #ce6712;
+  color: #A9B7C6;
   transform: scale(1.2);
 }
 
@@ -36,10 +33,10 @@
   flex-direction: column;
   padding-left: 3rem;
   gap: 20px;
-  margin: 2rem;
 }
 
 .contact-info label {
+  color: #e0e0e0;
   font-weight: bold;
   font-size: x-large;
 }
@@ -47,35 +44,40 @@
 .copy-container {
   display: flex;
   align-items: center;
+  padding-bottom: 5rem;
 }
 
 .contact-info input {
   border: none;
-  background: none;
-  color: #333;
+  background: rgb(46, 45, 45);
+  color: #e0e0e0;
   font-size: 20px;
   cursor: pointer;
-  width: 22rem;
+  width: 25rem;
   padding: 10px;
 }
 
 .contact-info input:focus {
   outline: none;
-  background-color: #e0e0e0;
+  background-color: rgb(46, 45, 45);
 }
-
+.contact-info input:hover {
+  color: #ce6712;
+  background-color: rgb(46, 45, 45);
+}
 .copy-icon {
   margin-left: 10px;
+  color: #ce6712;
   cursor: pointer;
-  color: #333;
+  font-size: x-large;
 }
 
 .copy-icon:hover {
-  color: #ce6712;
+  color: #A9B7C6;
 }
 
 .copy-notification {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -85,5 +87,50 @@
   border-radius: 5px;
   font-weight: bold;
   text-align: center;
-  z-index: 1000;
+  z-index: 2000;
+}
+
+@media (max-width: 600px) {
+  .contact-section {
+    margin-bottom: 10px;
+  }
+
+  .contact-icon-container-style {
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 2rem 0 2rem 0;
+    padding-bottom: 2rem;
+  }
+  .contact-icon-style {
+    padding: 10px;
+    color: #ce6712;
+    font-size: 2rem; 
+    padding-left: 40px;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .contact-icon-style:hover {
+    color: #A9B7C6;
+    transform: scale(1.1);
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    gap: 20px;
+    margin: 2rem;
+  }
+  .contact-info input {
+    background-color:  rgb(46, 45, 45);
+    width: 100%;
+  }
+  .copy-icon {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: large;
+    color: #ce6712;
+  }
 }

@@ -1,26 +1,30 @@
 import React from 'react';
-import { FaFacebook, FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa'; // Import icons from react-icons
+import { motion } from 'motion/react';
+import { useInView } from 'react-intersection-observer';
 import '../style/Footer.css';
 
 const Footer = () => {
+  const [ref, inView] = useInView({
+      threshold: 0.1, // Adjust the threshold value to trigger the animation earlier
+      triggerOnce: false, // Ensure the animation triggers every time the element comes into view
+    });
+  
+    const footerTextVariants = {
+      hidden: { opacity: 0, y: 50 },
+      visible: { opacity: 1, y: 0, transition: { duration: 2 } },
+    };
+  
   return (
     <footer>
-       
-      <div className='icon-container-style'>
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className='icon-style'>
-          <FaFacebook />
-        </a>
-        <a href="https://www.linkedin.com/in/omar-al-mashhadani-4a9404199/" target="_blank" rel="noopener noreferrer" className='icon-style'>
-          <FaLinkedin />
-        </a>
-        <a href="https://x.com/Almash46281Omar" target="_blank" rel="noopener noreferrer" className='icon-style'>
-          <FaTwitter />
-        </a>
-        <a href="https://github.com/omarome" target="_blank" rel="noopener noreferrer" className='icon-style'>
-          <FaGithub />
-        </a>
-      </div>
-      <p className='footer-text'>© {new Date().getFullYear()} Omar Al-Mashhadani. All rights reserved.</p>
+          <motion.div
+                  className="intro-section-text"
+                  ref={ref}
+                  initial="hidden"
+                  animate={inView ? 'visible' : 'hidden'}
+                  variants={footerTextVariants}
+                >
+      <p className='footer-text'>©{new Date().getFullYear()} Omar Al-Mashhadani. All rights reserved.</p>
+      </motion.div>
     </footer>
   );
 };

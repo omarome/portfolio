@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import logo  from '../assets/myNameIcon.png';
+import { motion } from "motion/react"
 import '../style/SplashScreen.css';
 
-function SplashScreen() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // Show logo for 3 seconds
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!loading) {
-    return null; // Don't render the component after it's done loading
-  }
+function SplashScreen({ onAnimationComplete }) {
 
   return (
     <div className="splash-screen">
+      <motion.ul  
+        className="splash-screen"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 2 }}
+        onAnimationComplete={onAnimationComplete} >
+      <h1>Welcome to My Portfolio</h1>
       <img src={logo} alt="Logo" className="splash-logo" />
+      </motion.ul>
     </div>
-  );
-}
+  )
+};
 
 export default SplashScreen;

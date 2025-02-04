@@ -3,7 +3,6 @@
     flex-direction: column;
     object-fit: cover;
     background-size: cover; 
-    background-image: url('../assets/background/backgroundwall.jpg');
     margin-bottom: -10;
     padding: 0;
     background-size: cover; 
@@ -19,7 +18,7 @@
     height: 40px;
     color: #ce6712;
     font-size: xx-large;
-    background-color: aliceblue;
+    background-color: #A9B7C6;
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
     width: 50%;
@@ -44,14 +43,13 @@
 }
 
 .item-container:hover {
-    color: aliceblue;
     border-radius: 20px;
     background-color:  #ce6712;
 }
 
 .item-name {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: aliceblue;
+    color: #FFFFFF;
     font-weight: bold;
     display: flex;
     justify-content: flex-start;    
@@ -62,10 +60,21 @@
 }
 
 .item-logo {
-    background-color: antiquewhite;
+    background-color: #A9B7C6;
     object-fit: contain;
     width: 3em;
     height: 3em;
     border-radius: 50%;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+    .section-container {
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .item-container {
+        width: 100%;
+    }
 }
