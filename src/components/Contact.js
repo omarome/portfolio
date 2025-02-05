@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaFacebook, FaLinkedin, FaTwitter, FaGithub, FaCopy } from 'react-icons/fa'; // Import icons from react-icons
+import { FaLinkedin, FaTwitter, FaGithub, FaCopy } from 'react-icons/fa'; // Import icons from react-icons
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/Contact.css';
