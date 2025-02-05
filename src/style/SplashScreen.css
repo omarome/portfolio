@@ -1,19 +1,33 @@
 .splash-screen {
-    position: fixed;
+    position: relative;
     background-color:  var(--background-color);
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    
     align-items: center;
     z-index: 9999;
     transition: opacity 0.5s ease;
   }
+.splash-title {
+  color: #FFFFFF;
+}
 
-  .splash-screen.fade-out {
-    opacity: 0;
+.splash-screen.fade-out {
+  opacity: 0;
+}
+.splash-logo{
+  top: 50%;
+  left: 50%;
+}
+
+@media (max-width: 600px) {
+  .splash-logo{
+    transform: translateX(-10%);
   }
+
+  .splash-title {
+    font-size: x-large;
+  }
+}

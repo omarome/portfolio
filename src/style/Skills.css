@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
     justify-content: space-between;
     text-align: center;
-    width: 100vw;
+    width: 100%;
     overflow: hidden; 
 }
 
@@ -76,5 +76,9 @@
 
     .item-container {
         width: 100%;
+    }
+
+    .item-logo {
+        margin-right: 20px;
     }
 }

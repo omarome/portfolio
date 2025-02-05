@@ -13,7 +13,7 @@ function SplashScreen({ onAnimationComplete }) {
         animate={{ opacity: 0 }}
         transition={{ duration: 2 }}
         onAnimationComplete={onAnimationComplete} >
-      <h1>Welcome to My Portfolio</h1>
+      <h1 className='splash-title'>Welcome to My Portfolio</h1>
       <img src={logo} alt="Logo" className="splash-logo" />
       </motion.ul>
     </div>

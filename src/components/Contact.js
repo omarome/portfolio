@@ -5,13 +5,6 @@ import { useInView } from 'react-intersection-observer';
 import '../style/Contact.css';
 
 const contactItems = [
-    {
-      href: "https://www.facebook.com", 
-      target: "_blank", 
-      rel: "noopener noreferrer", 
-      className: 'contact-icon-style',
-      icon: <FaFacebook />
-    },
     {  
       href:"https://www.linkedin.com/in/omar-al-mashhadani-4a9404199/",
       target:"_blank",

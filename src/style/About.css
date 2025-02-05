@@ -16,14 +16,6 @@
 }
 
 @media (max-width: 600px) {
-    .profile-image {
-      bottom: 43%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 160px;
-      height: 180px;
-    }
-  
     .intro-section-header {
       margin: 1rem;
       padding: 0.5rem;
@@ -35,7 +27,7 @@
       font-size: 1.2em;
       line-height: 30px;
     }
-    
+
     .about-section {
         color: #A9B7C6;
         width: 100%;

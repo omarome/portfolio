@@ -63,16 +63,20 @@
 @media (max-width: 600px) {
   .projects-container {
     align-items: center;
+
     gap: 2px;
   }
 
   .projects-section {
-    justify-content: center;
-    flex-direction: column;
+    justify-content:right;
+    flex-direction: column-reverse;
   }
 
   .project-card {
-    width: 95%;
+    background-color: var(--primary-color);
+    margin: 25px 0 25px 25px;
+ 
+    width: 80%;
     transition: transform 0.1s ease-in-out;
   }
 

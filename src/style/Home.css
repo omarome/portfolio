@@ -51,7 +51,7 @@
 /* Media query for phones */
 @media (max-width: 600px) {
     .profile-image {
-      bottom: 43%;
+      bottom: 47%;
       left: 50%;
       transform: translateX(-50%);
       width: 160px;
