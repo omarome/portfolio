@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 import { FaGithub } from 'react-icons/fa'; // Import icons from react-icons
 import MovieAppImage from '../assets/project-images/vidly.jpeg';

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaFacebook, FaLinkedin, FaTwitter, FaGithub, FaCopy } from 'react-icons/fa'; // Import icons from react-icons
-import { motion, useAnimation } from 'motion/react';
+import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/Contact.css';
 
@@ -37,7 +37,6 @@ const contactItems = [
 
 const Contact = () => {
   const [copySuccess, setCopySuccess] = useState('');
-  const controls = useAnimation();
     const [ref, inView] = useInView({
       threshold: 0.1,
     });
