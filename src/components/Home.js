@@ -25,9 +25,9 @@ const Home = () => {
   return (
     <>
         <section className="intro-section" style={{ backgroundImage: `url(${keyboardImage})` }}>
-        <span>
+        <div className="typing-effect-container">
         <TypingEffect textArray={textArray} typingSpeed={150} deletingSpeed={75} delay={2000} />
-        </span>
+        </div>
        
         </section>
         <section className="profile-container">
