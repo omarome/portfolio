@@ -5,11 +5,18 @@ import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
 import DopcAppImage from '../assets/project-images/dopc.jpg';
+import PaymentHubImage from '../assets/project-images/payment-hub.jpeg'; // Placeholder - replace with actual Payment Hub image
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/Projects.css';
 
 const projects = [
+  {
+    image: PaymentHubImage,
+    name: 'Payment Hub build with Micro-frontends',
+    description: 'A micro-frontends monorepo  using Module Federation to combine working with verious technologies from old legacy code built with AngularJS to React.js TS with Tailwind CSS architecture.',
+    url: 'https://github.com/omarome/micro-frontends-monorepo'
+  },
   {
     image: MovieAppImage,
     name: 'Vidly',
@@ -28,12 +35,7 @@ const projects = [
     description: 'This is an IOS app built with Swift. It helps you find the best restaurants in your area.',
     url: 'https://github.com/omarome/FoodSpotlightApp'
   }, 
-  {
-    image: DopcAppImage,
-    name: 'Delivery fee Calculator',
-    description: 'This is a delivery fee calculator app. Simple application build with React.js and TypeScript.',
-    url: 'https://github.com/omarome/delivery-fee-calculator'
-  }
+
 ];
 
 const Projects = () => {
