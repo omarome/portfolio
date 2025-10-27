@@ -25,14 +25,11 @@ const About = () => {
             variants={textVariants}
           >
         <p className='about-paragraph'>
-          I have three years of experience in web development, with a wide range of skills in frontend and backend technologies.
-          <br/>
-          I am familiar with Git, Agile methodologies, Scrum, and Kanban.
+          I'm a full-stack developer passionate about creating elegant, user-friendly applications. With four years of experience, I work across the entire technology stack—from frontend frameworks like React, Angular, and TypeScript to backend technologies including Node.js, Python, and Java. I'm proficient in cloud infrastructure with AWS, containerization with Docker, and modern development practices including Git workflows, Agile methodologies, and Scrum.
           <br/><br/>
-          I am a graduate student of Information and Communication Technologies with a passion for full-stack development. 
-          I hold a bachelor’s degree from Metropolia AMK, majoring in Mobile Solutions, and a diploma from Omnia.
+          I hold a bachelor's degree in Mobile Solutions from Metropolia AMK and a Master's in Information and Communication Technologies, where I deepened my expertise in both frontend and backend development.
           <br/><br/>
-          I am fluent in English, proficient in Finnish, and a native Arabic speaker. As a Finnish citizen, I am looking forward to future opportunities.
+          As a multilingual developer fluent in English, proficient in Finnish, and a native Arabic speaker, I bring a global perspective to my work. I'm excited to contribute to innovative projects that make a real difference.
         </p>
         <br/><br/>
       </motion.div>
