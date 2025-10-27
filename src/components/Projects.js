@@ -12,9 +12,9 @@ import '../style/Projects.css';
 const projects = [
   {
     image: PaymentHubImage,
-    name: 'Payment Hub built with Micro-frontends',
-    description: 'A micro-frontends monorepo using Module Federation to combine working with various technologies from old legacy code built with AngularJS to React.js, TypeScript, and Tailwind CSS architecture.',
-    url: 'https://github.com/omarome/micro-frontends-monorepo'
+    name: 'Payment Hub',
+    description: 'A micro-frontends monorepo from old legacy code built with AngularJS to React.js, TypeScript, and Tailwind CSS architecture.',
+    url: 'https://github.com/omarome/micro-frontends-monorepo/blob/master/README.md'
   },
   {
     image: MovieAppImage,
