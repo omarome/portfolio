@@ -4,8 +4,7 @@ import { FaGithub } from 'react-icons/fa'; // Import icons from react-icons
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
-import DopcAppImage from '../assets/project-images/dopc.jpg';
-import PaymentHubImage from '../assets/project-images/payment-hub.jpeg'; // Placeholder - replace with actual Payment Hub image
+import PaymentHubImage from '../assets/project-images/payment-hub.jpeg';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/Projects.css';
@@ -13,8 +12,8 @@ import '../style/Projects.css';
 const projects = [
   {
     image: PaymentHubImage,
-    name: 'Payment Hub build with Micro-frontends',
-    description: 'A micro-frontends monorepo  using Module Federation to combine working with verious technologies from old legacy code built with AngularJS to React.js TS with Tailwind CSS architecture.',
+    name: 'Payment Hub built with Micro-frontends',
+    description: 'A micro-frontends monorepo using Module Federation to combine working with various technologies from old legacy code built with AngularJS to React.js, TypeScript, and Tailwind CSS architecture.',
     url: 'https://github.com/omarome/micro-frontends-monorepo'
   },
   {
