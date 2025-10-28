@@ -77,7 +77,7 @@ const handleCopy = (text) => {
         {copySuccess && <div className='copy-notification'>{copySuccess}</div>}
         
         {/* Resume Download Section */}
-        <div className='resume-section'>
+        {/* <div className='resume-section'>
           <h3 className='resume-title'>Download Resume</h3>
           <p className='resume-description'>Get a copy of my resume in PDF format</p>
           <a 
@@ -90,7 +90,7 @@ const handleCopy = (text) => {
           >
             <FaFileDownload /> Download Resume (PDF)
           </a>
-        </div>
+        </div> */}
     </section>
   );
 }
