@@ -14,25 +14,33 @@ const projects = [
     image: PaymentHubImage,
     name: 'Payment Hub',
     description: 'A micro-frontends monorepo from old legacy code built with AngularJS to React.js, TypeScript, and Tailwind CSS architecture.',
-    url: 'https://github.com/omarome/micro-frontends-monorepo/blob/master/README.md'
+    githubUrl: 'https://github.com/omarome/micro-frontends-monorepo/blob/master/README.md',
+    demoUrl: null,
+    technologies: ['React.js', 'TypeScript', 'Tailwind CSS', 'AngularJS', 'Monorepo']
   },
   {
     image: MovieAppImage,
     name: 'Vidly',
     description: 'Your Ultimate Movie Management. A Full-Stack Project Built With React and Node.js.',
-    url: 'https://github.com/omarome/vidly/blob/master/README.md'
+    githubUrl: 'https://github.com/omarome/vidly/blob/master/README.md',
+    demoUrl: null,
+    technologies: ['React', 'Node.js', 'JavaScript', 'MongoDB']
   },
   {
     image: MyPetShopAppImage,
     name: 'My Pet Store App',
     description: 'This is PetStore app for people looking to buy or sell their pet. Built to look simple and easy to use with ReactNative.',
-    url: 'https://github.com/omarome/myOnlinePetShop/blob/frontEnd/README.md'
+    githubUrl: 'https://github.com/omarome/myOnlinePetShop/blob/frontEnd/README.md',
+    demoUrl: null,
+    technologies: ['React Native', 'Mobile', 'Cross-platform']
   },
   {
     image: FoodSpotLightAppImage,
     name: 'Food Spotlight App',
     description: 'This is an IOS app built with Swift. It helps you find the best restaurants in your area.',
-    url: 'https://github.com/omarome/FoodSpotlightApp'
+    githubUrl: 'https://github.com/omarome/FoodSpotlightApp',
+    demoUrl: null,
+    technologies: ['Swift', 'iOS', 'Mobile']
   }, 
 
 ];
@@ -43,8 +51,16 @@ const Projects = () => {
     triggerOnce: true,
   });
  
-  const handleCardClick = (url) => {
-    window.open(url, '_blank');
+  const handleGitHubClick = (e, url) => {
+    e.stopPropagation();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleDemoClick = (e, url) => {
+    e.stopPropagation();
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
   };
 
   const projectVariants = {
@@ -57,30 +73,58 @@ const Projects = () => {
     <h2 className="title">Projects</h2>
     <div className="projects-section">
       {projects.map((project, index) => (
-         <motion.div
-         key={index}
-         className="project-card"
-         ref={ref}
-         initial="hidden"
-         animate={inView ? 'visible' : 'hidden'}
-         variants={projectVariants}
-       >
-        <Card className="project-card" key={index}  onClick={() => handleCardClick(project.url)}>
-          <CardMedia
-            component="img"
-            image={project.image}
-            alt={project.name}
-            className="project-image"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {project.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {project.description}
-            </Typography>
-          </CardContent>
-        </Card>
+        <motion.div
+          key={index}
+          ref={ref}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          variants={projectVariants}
+        >
+          <Card className="project-card">
+            <CardMedia
+              component="img"
+              image={project.image}
+              alt={project.name}
+              className="project-image"
+            />
+            <CardContent className="project-content">
+              <Typography gutterBottom variant="h5" component="h3" className="project-title">
+                {project.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" className="project-description">
+                {project.description}
+              </Typography>
+              
+              {/* Tech Stack Tags */}
+              <div className="tech-stack">
+                {project.technologies.map((tech, techIndex) => (
+                  <span key={techIndex} className="tech-tag">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="project-actions">
+                {project.demoUrl && (
+                  <button 
+                    className="demo-button"
+                    onClick={(e) => handleDemoClick(e, project.demoUrl)}
+                    aria-label={`View live demo of ${project.name}`}
+                  >
+                    Live Demo
+                  </button>
+                )}
+                <button 
+                  className="github-button"
+                  onClick={(e) => handleGitHubClick(e, project.githubUrl)}
+                  aria-label={`View ${project.name} on GitHub`}
+                >
+                  <FaGithub /> View Code
+                </button>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       ))}
     </div>

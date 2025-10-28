@@ -8,6 +8,7 @@ import About from './About';
 import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
+import ScrollToTop from './ScrollToTop';
 
 const Router = ({ menuList }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -89,6 +90,7 @@ const Router = ({ menuList }) => {
       <section id="contact">
         <Contact />
       </section>
+      <ScrollToTop />
     </Box>
   );
 }

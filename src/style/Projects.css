@@ -18,18 +18,103 @@
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
-  cursor: pointer;
   transition: transform 0.3s ease-in-out;
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .project-image {
-  height: 150px;
+  height: 200px;
   object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.project-title {
+  color: #FF8C42 !important;
+  font-weight: bold !important;
+}
+
+.project-description {
+  color: #A9B7C6 !important;
+  min-height: 60px;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tech-tag {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #A9B7C6;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+  background-color: var(--highlight-color);
+  color: white;
+}
+
+.project-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.demo-button, .github-button {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.demo-button {
+  background-color: var(--highlight-color);
+  color: white;
+}
+
+.demo-button:hover {
+  background-color: #B8693D;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(204, 120, 50, 0.3);
+}
+
+.github-button {
+  background-color: #333333;
+  color: white;
+}
+
+.github-button:hover {
+  background-color: #555555;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .more-projects {
@@ -63,28 +148,34 @@
 @media (max-width: 600px) {
   .projects-container {
     align-items: center;
-
     gap: 2px;
   }
 
   .projects-section {
-    justify-content:right;
+    justify-content: right;
     flex-direction: column-reverse;
   }
 
   .project-card {
     background-color: var(--primary-color);
     margin: 25px 0 25px 25px;
- 
     width: 80%;
     transition: transform 0.1s ease-in-out;
   }
 
   .project-image {
-    height: auto;
+    height: 180px;
     width: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .project-actions {
+    flex-direction: column;
+  }
+
+  .demo-button, .github-button {
+    width: 100%;
   }
 
   .title {

@@ -36,7 +36,6 @@ body {
   background-color: var(--background-color);
   width: 100%;
   text-align: center;
-  padding: var(--padding-large);
   margin-bottom: var(--margin-large);
   margin-top: var(--margin-large);
 }
