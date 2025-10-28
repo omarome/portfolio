@@ -136,9 +136,6 @@ body {
 }
 
 @media (max-width: 700px) {
-  .title {
-    width: 90%;
-  }
   .nav-links {
     display: none;
   }
