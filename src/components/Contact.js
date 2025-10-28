@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaLinkedin, FaTwitter, FaGithub, FaCopy } from 'react-icons/fa'; // Import icons from react-icons
+import { FaLinkedin, FaTwitter, FaGithub, FaCopy, FaFileDownload } from 'react-icons/fa'; // Import icons from react-icons
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/Contact.css';
@@ -75,6 +75,22 @@ const handleCopy = (text) => {
         </div>
         </div>
         {copySuccess && <div className='copy-notification'>{copySuccess}</div>}
+        
+        {/* Resume Download Section */}
+        <div className='resume-section'>
+          <h3 className='resume-title'>Download Resume</h3>
+          <p className='resume-description'>Get a copy of my resume in PDF format</p>
+          <a 
+            href="https://drive.google.com/file/d/1GdCJHLq7vGhkH-7JBuXHKQ8R0cHvOOjM/view?usp=sharing" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className='resume-download-button'
+            download
+            aria-label="Download Omar Al-Mashhadani's resume"
+          >
+            <FaFileDownload /> Download Resume (PDF)
+          </a>
+        </div>
     </section>
   );
 }

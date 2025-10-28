@@ -34,9 +34,8 @@ body {
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   background-color: var(--background-color);
-  width: 100%;
+  width: 90%;
   text-align: center;
-  padding: var(--padding-large);
   margin-bottom: var(--margin-large);
   margin-top: var(--margin-large);
 }

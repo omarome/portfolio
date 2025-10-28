@@ -1,95 +1,80 @@
 import React from 'react';
 import { frontendSkills, backendSkills, designSkills, otherSkills } from '../directories/SkillsUtilis';
-import '../style/Skills.css'
+import { motion } from 'motion/react';
+import { useInView } from 'react-intersection-observer';
+import '../style/Skills.css';
 
-const  Skills = () => {
+const SkillCard = ({ skill, index, delay }) => {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
   return (
-    <section 
-      className = 'section-container'
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay } },
+      }}
+      className="skill-card"
+      whileHover={{ scale: 1.05, y: -5 }}
+      transition={{ duration: 0.3 }}
     >
-      <h2 className='title'>Skills</h2>
-      <ul 
-        className='list-container'
-      >
-        <h className="subtitle">Frontend</h>
-        {frontendSkills.map((skill, index) => 
-        <li 
-          className = 'item-container'
-          key = { index }
-        >
-          <div
-            className = 'item-name'
-          >
-            {skill.name}
-          </div>
-          <img
-            alt={ skill.name + 'logo' } 
-              className = "item-logo" 
-              src={ skill.logo }
-          >
-          </img>
-        </li>
-          )}
-          <h className="subtitle">Backend</h>
-          {backendSkills.map((skill, index) => 
-        <li 
-          className = 'item-container'
-          key = { index }
-        >
-          <div
-            className = 'item-name'
-          >
-            {skill.name}
-          </div>
-          <img
-            alt={ skill.name + 'logo' } 
-              className = "item-logo" 
-              src={ skill.logo }
-          >
-          </img>
-        </li>
-          )}
-          <h className="subtitle">Design</h>
-          {designSkills.map((skill, index) => 
-        <li 
-          className = 'item-container'
-          key = { index }
-        >
-          <div
-            className = 'item-name'
-          >
-            {skill.name}
-          </div>
-          <img
-            alt={ skill.name + 'logo' } 
-              className = "item-logo" 
-              src={ skill.logo }
-          >
-          </img>
-        </li>
-          )}
-          <h className="subtitle">Others</h>
-          {otherSkills.map((skill, index) => 
-        <li 
-          className = 'item-container'
-          key = { index }
-        >
-          <div
-            className = 'item-name'
-          >
-            {skill.name}
-          </div>
-          <img
-            alt={ skill.name + 'logo' } 
-              className = "item-logo" 
-              src={ skill.logo }
-          >
-          </img>
-        </li>
-          )}
-      </ul>
+      <img
+        alt={`${skill.name} logo`}
+        className="skill-logo"
+        src={skill.logo}
+        loading="lazy"
+      />
+      <div className="skill-name">{skill.name}</div>
+    </motion.div>
+  );
+};
+
+const SkillSection = ({ title, skills }) => {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.6 } },
+      }}
+      className="skill-category"
+    >
+      <h2 className="skill-category-title">{title}</h2>
+      <div className="skills-grid">
+        {skills.map((skill, index) => (
+          <SkillCard key={index} skill={skill} index={index} delay={index * 0.1} />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
+const Skills = () => {
+  // Combine Design and Others into one section
+  const combinedSkills = [...designSkills, ...otherSkills];
+  
+  return (
+    <section className="section-container">
+      <h2 className="title">Skills</h2>
+      <div className="skills-container">
+        <SkillSection title="Frontend" skills={frontendSkills} />
+        <SkillSection title="Backend" skills={backendSkills} />
+        <SkillSection title="Tools & Design" skills={combinedSkills} />
+      </div>
     </section>
   );
-}
+};
 
 export default Skills;

@@ -90,7 +90,60 @@
   z-index: 2000;
 }
 
+.resume-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0;
+  padding: 2rem;
+  background-color: rgba(224, 124, 36, 0.1);
+  border-radius: 12px;
+  border: 2px solid var(--primary-color);
+}
+
+.resume-title {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.resume-description {
+  color: #A9B7C6;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.resume-download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background-color: var(--highlight-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.resume-download-button:hover {
+  background-color: #B8693D;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(204, 120, 50, 0.4);
+}
+
+.resume-download-button:active {
+  transform: translateY(-1px);
+}
+
 @media (max-width: 600px) {
+  .title {
+    padding: 2px;
+  }
+
   .contact-section {
     margin-bottom: 10px;
   }
@@ -132,5 +185,19 @@
     cursor: pointer;
     font-size: large;
     color: #ce6712;
+  }
+
+  .resume-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+  }
+
+  .resume-title {
+    font-size: 1.25rem;
+  }
+
+  .resume-download-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
   }
 }
