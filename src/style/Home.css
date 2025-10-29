@@ -28,13 +28,14 @@
   bottom: 40%;
   left: 50%;
   transform: translateX(-50%);
-  width: 210px;
+  width: 250px;
   height: 250px;
   border-radius: 50%;
-  object-fit: cover;
+  background-color: white;
+  object-fit: contain;
   object-position: 60% 60% 20% 20%;
-  border: 5px solid var(--text-white);
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  border: 5px solid var(--primary-color);
+  box-shadow: 0px 0px 15px rgba(255, 183, 2, 0.8);
 }
 
 .intro-section-header {
