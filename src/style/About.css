@@ -1,8 +1,10 @@
+@import './design-system.css';
+
 .about-section {
-    color: #A9B7C6;
+    color: var(--text-primary);
     width: 100%;
     margin: 0;
-    padding: 5px;
+    padding: var(--space-1);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,59 +14,59 @@
 .about-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: var(--space-8);
     max-width: 1200px;
-    padding: 2rem;
+    padding: var(--space-8);
     margin: 0 auto;
 }
 
 .about-section-item {
-    background-color: rgba(46, 45, 45, 0.5);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
+    background-color: var(--background-card);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    border: 2px solid;
+    transition: var(--transition-normal);
 }
 
 .about-section-item:hover {
     border-color: var(--primary-color);
-    box-shadow: 0 8px 16px rgba(224, 124, 36, 0.2);
+    box-shadow: var(--shadow-glow);
     transform: translateY(-5px);
 }
 
 .about-section-header {
     color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--space-4);
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
+    padding-bottom: var(--space-2);
 }
 
 .about-paragraph {
     margin: 0;
-    font-size: 1.1em;
-    line-height: 1.8;
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
     text-align: left;
 }
 
 @media (max-width: 600px) {
     .intro-section-header {
-      margin: 1rem;
-      padding: 0.5rem;
-      font-size: 1.5em;
-      line-height: 50px;
+      margin: var(--space-4);
+      padding: var(--space-2);
+      font-size: var(--font-size-2xl);
+      line-height: var(--line-height-tight);
     }
   
     .intro-section-paragraph {
-      font-size: 1.2em;
-      line-height: 30px;
+      font-size: var(--font-size-lg);
+      line-height: var(--line-height-normal);
     }
 
     .about-section {
-        color: #A9B7C6;
+        color: var(--text-primary);
         width: 100%;
         margin: 0;
-        padding: 5px;
+        padding: var(--space-1);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -73,21 +75,21 @@
     
     .about-content {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 1rem;
+        gap: var(--space-6);
+        padding: var(--space-4);
     }
     
     .about-section-item {
-        padding: 1.5rem;
+        padding: var(--space-6);
     }
     
     .about-section-header {
-        font-size: 1.25rem;
+        font-size: var(--font-size-xl);
     }
     
     .about-paragraph {
         margin: 0;
-        font-size: 1em;
-        line-height: 1.6;
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
     }
   }

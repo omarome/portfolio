@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    padding: 2rem;
+    padding: var(--space-2);
     text-align: center;
     width: 100%;
     overflow: hidden;
