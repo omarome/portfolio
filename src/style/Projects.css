@@ -1,31 +1,47 @@
 .projects-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
 }
 
 .projects-section {
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
+  width: 100%;
+}
+
+.project-card.MuiCard-root {
+  background-color: var(--background-card);
+  color: var(--text-primary);
 }
 
 .project-card {
-  width: 90%;
-  background-color: var(--primary-color);
+  width: 100%;
+  max-width: 360px;
   padding: var(--padding-small);
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid;
+  border-color: var(--secondary-color);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
+  margin: 10px;
+  background-color: var(--background-card);
+  color: var(--text-primary);
 }
 
 .project-card:hover {
   transition: transform 0.3s ease-in-out;
   transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: var(--primary-color); /* Match About card hover border */
+  box-shadow: var(--shadow-glow);
+  background-color: var(--background-card-hover);
 }
 
 .project-image {
@@ -71,6 +87,17 @@
 .tech-tag:hover {
   background-color: var(--highlight-color);
   color: white;
+}
+
+/* Light theme: ensure text reads black-ish on light backgrounds */
+[data-theme="light"] .project-description {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .tech-tag {
+  color: var(--text-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .project-actions {
@@ -152,14 +179,15 @@
   }
 
   .projects-section {
-    justify-content: right;
-    flex-direction: column-reverse;
+    justify-content: center;
+    flex-direction: column;
   }
 
   .project-card {
-    background-color: var(--primary-color);
-    margin: 25px 0 25px 25px;
-    width: 80%;
+    background-color: var(--background-card);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 360px;
     transition: transform 0.1s ease-in-out;
   }
 
@@ -176,10 +204,6 @@
 
   .demo-button, .github-button {
     width: 100%;
-  }
-
-  .title {
-    font-size: 1.5em;
   }
 
   .icon-style {

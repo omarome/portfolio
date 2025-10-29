@@ -1,79 +1,91 @@
+@import './design-system.css';
+
 .contact-section {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.title {
-  font-size: 2em;
-  text-align: center;
-}
 
 .contact-icon-container-style {
   display: inline-flex;
   justify-content: center;
-  margin: 5rem 0 5rem 0;
+  margin: var(--space-20) 0 var(--space-20) 0;
 }
 
 .contact-icon-style {
-  padding: 2rem;
-  color: #ce6712;
-  font-size: 3rem; 
+  padding: var(--space-8);
+  color: var(--primary-color);
+  font-size: var(--font-size-5xl); 
   text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition: var(--transition-normal);
 }
 
 .contact-icon-style:hover {
-  color: #A9B7C6;
-  transform: scale(1.2);
+  color: var(--text-primary);
+  transform: scale(1.1);
 }
 
 .contact-info {
   display: flex;
   flex-direction: column;
-  padding-left: 3rem;
-  gap: 20px;
+  padding-left: var(--space-12);
+  gap: var(--space-5);
 }
 
 .contact-info label {
-  color: #e0e0e0;
-  font-weight: bold;
-  font-size: x-large;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xl);
+}
+
+/* Theme-specific minimal overrides (outside media queries) */
+[data-theme="dark"] .contact-info label {
+  color: var(--text-light);
+}
+
+[data-theme="light"] .contact-info input {
+  color: var(--text-primary);
+  background: var(--background-secondary);
 }
 
 .copy-container {
   display: flex;
   align-items: center;
-  padding-bottom: 5rem;
+  padding-bottom: var(--space-20);
 }
 
 .contact-info input {
   border: none;
-  background: rgb(46, 45, 45);
-  color: #e0e0e0;
-  font-size: 20px;
+  background: var(--background-tertiary);
+  color: var(--text-light);
+  font-size: var(--font-size-lg);
   cursor: pointer;
   width: 25rem;
-  padding: 10px;
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
 }
 
 .contact-info input:focus {
   outline: none;
-  background-color: rgb(46, 45, 45);
+  background-color: var(--background-tertiary);
+  border: 2px solid var(--primary-color);
 }
 .contact-info input:hover {
-  color: #ce6712;
-  background-color: rgb(46, 45, 45);
+  color: var(--primary-color);
+  background-color: var(--background-tertiary);
 }
 .copy-icon {
-  margin-left: 10px;
-  color: #ce6712;
+  margin-left: var(--space-3);
+  color: var(--primary-color);
   cursor: pointer;
-  font-size: x-large;
+  font-size: var(--font-size-xl);
+  transition: var(--transition-normal);
 }
 
 .copy-icon:hover {
-  color: #A9B7C6;
+  color: var(--text-primary);
+  transform: scale(1.1);
 }
 
 .copy-notification {
@@ -94,45 +106,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem 0;
-  padding: 2rem;
+  margin: var(--space-12) 0;
+  padding: var(--space-8);
   background-color: rgba(224, 124, 36, 0.1);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   border: 2px solid var(--primary-color);
 }
 
 .resume-title {
   color: var(--primary-color);
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-2);
 }
 
 .resume-description {
-  color: #A9B7C6;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-6);
   text-align: center;
 }
 
 .resume-download-button {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 2rem;
-  background-color: var(--highlight-color);
-  color: white;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-8);
+  background-color: var(--primary-dark);
+  color: var(--text-white);
   text-decoration: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-md);
 }
 
 .resume-download-button:hover {
-  background-color: #B8693D;
+  background-color: var(--primary-hover);
   transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(204, 120, 50, 0.4);
+  box-shadow: var(--shadow-glow-hover);
 }
 
 .resume-download-button:active {
@@ -141,63 +153,66 @@
 
 @media (max-width: 600px) {
   .title {
-    padding: 2px;
+    padding: var(--space-2) var(--space-4);
+    margin: var(--space-4) 0 var(--space-6) 0;
+    font-size: var(--font-size-2xl);
   }
 
+/* Light/Dark theme overrides moved outside media queries for best practices */
+
   .contact-section {
-    margin-bottom: 10px;
+    margin-bottom: var(--space-3);
   }
 
   .contact-icon-container-style {
     display: inline-flex;
     justify-content: center;
     flex-direction: row;
-    margin: 2rem 0 2rem 0;
-    padding-bottom: 2rem;
+    margin: var(--space-8) 0 var(--space-8) 0;
+    padding-bottom: var(--space-8);
   }
   .contact-icon-style {
-    padding: 10px;
-    color: #ce6712;
-    font-size: 2rem; 
-    padding-left: 40px;
+    padding: var(--space-3);
+    color: var(--primary-color);
+    font-size: var(--font-size-3xl); 
+    padding-left: var(--space-10);
     text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: var(--transition-normal);
   }
   
   .contact-icon-style:hover {
-    color: #A9B7C6;
-    transform: scale(1.1);
+    color: var(--text-primary);
+    transform: scale(1.05);
   }
 
   .contact-info {
     display: flex;
     flex-direction: column;
     padding-left: 0;
-    gap: 20px;
-    margin: 2rem;
+    gap: var(--space-5);
+    margin: var(--space-8);
   }
   .contact-info input {
-    background-color:  rgb(46, 45, 45);
     width: 100%;
   }
   .copy-icon {
-    margin-left: 10px;
+    margin-left: var(--space-3);
     cursor: pointer;
-    font-size: large;
-    color: #ce6712;
+    font-size: var(--font-size-lg);
+    color: var(--primary-color);
   }
 
-  /* .resume-section {
-    margin: 2rem 0;
-    padding: 1.5rem;
+  .resume-section {
+    margin: var(--space-8) 0;
+    padding: var(--space-6);
   }
 
   .resume-title {
-    font-size: 1.25rem;
+    font-size: var(--font-size-xl);
   }
 
   .resume-download-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  } */
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-size-base);
+  }
 }

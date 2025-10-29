@@ -1,47 +1,43 @@
-:root {
-  --primary-color: #e07c24;
-  --secondary-color: #ffffff;
-  --background-color: #000000;
-  --text-color: #333333;
-  --highlight-color: #CC7832;
-  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --font-size-large: xx-large;
-  --font-size-medium: x-large;
-  --font-size-small: large;
-  --border-radius: 10px;
-  --box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
-  --padding-large: 2rem;
-  --padding-medium: 1rem;
-  --padding-small: 0.5rem;
-  --margin-large: 5rem;
-  --margin-medium: 2rem;
-  --margin-small: 1rem;
-}
+@import './style/design-system.css';
 
 body {
-  font-family: var(--font-family);
-  font-weight: 500;
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
   scroll-behavior: smooth;
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
+/* Shared section title styling */
 .title {
-  font-family: var(--font-family);
+  font-family: var(--font-family-primary);
   text-transform: uppercase;
-  font-size: var(--font-size-large);
-  color: var(--primary-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  font-size: var(--font-size-4xl);
   background-color: var(--background-color);
   width: 100%;
   text-align: center;
-  margin-bottom: var(--margin-large);
-  margin-top: var(--margin-large);
+  margin-bottom: var(--space-16);
+  margin-top: var(--space-12);
+  padding: var(--space-6) var(--space-4);
+  letter-spacing: 2px;
+  line-height: var(--line-height-tight);
+  position: relative;
 }
 
+.title::after {
+  content: '';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 4px;
+  background: var(--primary-color);
+  margin: var(--space-3) auto 0;
+}
+
+
 .navbar {
-  padding: var(--padding-small);
+  padding: var(--space-2);
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
@@ -55,11 +51,11 @@ body {
 }
 
 .navbar ul button {
-  margin: 0 15px;
-  color: white;
+  margin: 0 var(--space-4);
+  color: var(--text-white);
   text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: var(--font-size-lg);
+  transition: var(--transition-normal);
 }
 
 .container {
@@ -71,17 +67,17 @@ body {
   max-width: 400px;
   margin: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  background-color: #eeecec;
+  box-shadow: var(--shadow-md);
+  background-color: var(--background-secondary);
   overflow: hidden;
 }
 
 .header {
-  color: white;
-  padding: var(--padding-small);
+  color: var(--text-white);
+  padding: var(--space-2);
   text-align: center;
-  font-size: 24px;
-  border-radius: 10px 10px 0 0;
+  font-size: var(--font-size-2xl);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 
 .css-cyqh1t-MuiPaper-root-MuiDrawer-paper {
@@ -95,28 +91,30 @@ body {
 .drawer-list button {
   color: var(--primary-color);
   text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  font-size: var(--font-size-lg);
+  transition: var(--transition-normal);
 }
 
 .button {
   background-color: var(--background-color);
-  color: white;
+  color: var(--text-white);
   border: none; 
-  border-radius: 5px;
-  padding: 10px 20px;
-  margin: 10px 0;
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-5);
+  margin: var(--space-3) 0;
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--font-size-base);
+  transition: var(--transition-normal);
 }
 
 .nav-button {
-  color: black;
+  color: var(--text-secondary);
   border: none;
-  padding: 10px;
+  padding: var(--space-3);
   width: 150px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
+  transition: var(--transition-normal);
 }
 
 .nav-button:active {
@@ -125,17 +123,24 @@ body {
 }
 
 .nav-button:focus {
-  color: #f0faf0;
+  color: var(--text-light);
   background-color: var(--primary-color);
 }
 
 .nav-button:hover {
-  color: #f0faf0;
-  background-color: #545252;
-  transform: scale(1.2);
+  color: var(--text-light);
+  background-color: var(--background-tertiary);
+  transform: scale(1.05);
+}
+
+/* Light theme: keep hover text visible (black/golden) */
+[data-theme="light"] .nav-button:hover {
+  color: var(--primary-color);
+  background-color: var(--background-secondary);
 }
 
 @media (max-width: 700px) {
+  
   .nav-links {
     display: none;
   }
@@ -152,5 +157,36 @@ body {
 
   .hamburger {
     display: none;
+  }
+}
+
+/* Responsive Title sizing */
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--font-size-3xl);
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-12);
+    padding: var(--space-5) var(--space-3);
+    letter-spacing: 1.5px;
+  }
+
+  .title::after {
+    width: 64px;
+    height: 3px;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: var(--font-size-2xl);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-10);
+    padding: var(--space-4) var(--space-2);
+    letter-spacing: 1px;
+  }
+
+  .title::after {
+    width: 48px;
+    height: 3px;
   }
 }

@@ -9,6 +9,7 @@ import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
 import ScrollToTop from './ScrollToTop';
+import ThemeToggle from './ThemeToggle';
 
 const Router = ({ menuList }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -20,7 +21,7 @@ const Router = ({ menuList }) => {
 
   return (
     <Box>
-      <AppBar sx={{ backgroundColor: ' #000000', color: '#CC7832', borderBottom: '1px solid #CC7832'}}>
+      <AppBar sx={{ backgroundColor: 'var(--background-color)', color: 'var(--primary-color)', borderBottom: '1px solid var(--primary-color)'}}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -48,6 +49,7 @@ const Router = ({ menuList }) => {
               </Link>
             ))}
           </div>
+          <ThemeToggle />
           <Drawer
             sx={{ width: 250 }}
             open={isDrawerOpen}
