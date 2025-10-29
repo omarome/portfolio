@@ -67,8 +67,8 @@ body {
   max-width: 400px;
   margin: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  background-color: #eeecec;
+  box-shadow: var(--shadow-md);
+  background-color: var(--background-secondary);
   overflow: hidden;
 }
 
@@ -131,6 +131,12 @@ body {
   color: var(--text-light);
   background-color: var(--background-tertiary);
   transform: scale(1.05);
+}
+
+/* Light theme: keep hover text visible (black/golden) */
+[data-theme="light"] .nav-button:hover {
+  color: var(--primary-color);
+  background-color: var(--background-secondary);
 }
 
 @media (max-width: 700px) {

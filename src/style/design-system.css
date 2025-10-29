@@ -112,8 +112,8 @@
   --background-color: #ffffff;
   --background-secondary: #f8f9fa;
   --background-tertiary: #e9ecef;
-  --background-card: rgba(255, 255, 255, 0.8);
-  --background-card-hover: rgba(248, 249, 250, 0.9);
+  --background-card: rgba(211, 211, 211, 0.6);
+  --background-card-hover: rgba(211, 211, 211, 0.7);
   
   --text-primary: #212529;
   --text-secondary: #6c757d;

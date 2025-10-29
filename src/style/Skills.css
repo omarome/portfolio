@@ -21,8 +21,12 @@
 .skill-category {
     margin: 10px;
     padding: 2rem;
-    background-color: rgba(46, 45, 45, 0.5);
+    background-color: var(--background-card);
     border-radius: 12px;
+}
+
+.skill-category:hover {
+    background-color: var(--background-card-hover);
 }
 
 .skill-category-title {

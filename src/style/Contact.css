@@ -34,9 +34,19 @@
 }
 
 .contact-info label {
-  color: var(--text-light);
+  color: var(--text-primary);
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-xl);
+}
+
+/* Theme-specific minimal overrides (outside media queries) */
+[data-theme="dark"] .contact-info label {
+  color: var(--text-light);
+}
+
+[data-theme="light"] .contact-info input {
+  color: var(--text-primary);
+  background: var(--background-secondary);
 }
 
 .copy-container {
@@ -148,6 +158,8 @@
     font-size: var(--font-size-2xl);
   }
 
+/* Light/Dark theme overrides moved outside media queries for best practices */
+
   .contact-section {
     margin-bottom: var(--space-3);
   }
@@ -181,7 +193,6 @@
     margin: var(--space-8);
   }
   .contact-info input {
-    background-color: var(--background-tertiary);
     width: 100%;
   }
   .copy-icon {

@@ -16,7 +16,7 @@
 }
 
 .project-card.MuiCard-root {
-  background-color: var(--background-color);
+  background-color: var(--background-card);
   color: var(--text-primary);
 }
 
@@ -27,11 +27,13 @@
   border-radius: var(--border-radius);
   border: 2px solid;
   border-color: var(--secondary-color);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--shadow-md);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
   margin: 10px;
+  background-color: var(--background-card);
+  color: var(--text-primary);
 }
 
 .project-card:hover {
@@ -39,6 +41,7 @@
   transform: translateY(-10px);
   border-color: var(--primary-color); /* Match About card hover border */
   box-shadow: var(--shadow-glow);
+  background-color: var(--background-card-hover);
 }
 
 .project-image {
@@ -84,6 +87,17 @@
 .tech-tag:hover {
   background-color: var(--highlight-color);
   color: white;
+}
+
+/* Light theme: ensure text reads black-ish on light backgrounds */
+[data-theme="light"] .project-description {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .tech-tag {
+  color: var(--text-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .project-actions {
@@ -170,7 +184,7 @@
   }
 
   .project-card {
-    background-color: var(--primary-color);
+    background-color: var(--background-card);
     margin: 20px auto;
     width: 90%;
     max-width: 360px;
