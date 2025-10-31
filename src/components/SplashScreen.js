@@ -11,7 +11,7 @@ function SplashScreen({ onAnimationComplete }) {
         className="splash-screen"
         initial={{ opacity: 1 }}
         animate={{ opacity: 0 }}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.5 }}
         onAnimationComplete={onAnimationComplete} >
       <h1 className='splash-title'>Welcome to My Portfolio</h1>
       <img src={logo} alt="Logo" className="splash-logo" />
