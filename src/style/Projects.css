@@ -58,7 +58,7 @@
 }
 
 .project-title {
-  color: #FF8C42 !important;
+  color: var(--primary-color) !important;
   font-weight: bold !important;
 }
 

@@ -33,7 +33,7 @@ const Router = ({ menuList }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }} className="menu-text">
             Menu
           </Typography>
           <div className="nav-links">
@@ -49,7 +49,9 @@ const Router = ({ menuList }) => {
               </Link>
             ))}
           </div>
-          <ThemeToggle />
+          <Box sx={{ marginLeft: 'auto' }}>
+            <ThemeToggle />
+          </Box>
           <Drawer
             sx={{ width: 250 }}
             open={isDrawerOpen}
