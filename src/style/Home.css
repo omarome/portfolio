@@ -74,6 +74,12 @@
 
 /* Media query for phones */
 @media (max-width: 600px) {
+    .intro-section {
+      background-attachment: scroll;
+      background-size: cover;
+      background-position: center center;
+    }
+
     .profile-image {
       bottom: 47%;
       left: 50%;
