@@ -1,13 +1,13 @@
 footer {
-    background: #000000;
+    background: var(--background-color);
     padding: 5px;
-    color: #ce6712;
+    color: var(--primary-color);
     bottom: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-top: 1px solid #ce6712;
+    border-top: 1px solid var(--primary-color);
   }
 
   .footer-text {
@@ -16,7 +16,18 @@ footer {
   }
 
   .footer-text:hover {
-    color: #A9B7C6;
+    color: var(--text-primary);
+  }
+
+  /* Light theme: purple background with white text */
+  [data-theme="light"] footer {
+    background: var(--primary-color);
+    color: var(--text-white);
+    border-top: 1px solid var(--primary-color);
+  }
+
+  [data-theme="light"] .footer-text:hover {
+    color: var(--text-light);
   }
 
   /* Media query for phones */
@@ -28,6 +39,5 @@ footer {
   }
   .footer-text {
     font-size: 12px;
-    color: #ce6712;
   }
 }

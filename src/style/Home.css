@@ -2,9 +2,11 @@
     margin: 0;
     padding: 0;
     height: 50vh;
+    background-image: url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=2070&auto=format&fit=crop');
     background-size: cover;
-    background-position: center top;
+    background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -12,6 +14,7 @@
     text-align: center;
     width: 100vw;
     overflow: hidden;
+    filter: brightness(0.80);
 }
 
 .typing-effect-container {
@@ -36,6 +39,12 @@
   object-position: 60% 60% 20% 20%;
   border: 5px solid var(--primary-color);
   box-shadow: 0px 0px 15px rgba(255, 183, 2, 0.8);
+}
+
+/* Light theme: purple border for profile image */
+[data-theme="light"] .profile-image {
+  border: 5px solid var(--accent-purple);
+  box-shadow: 0px 0px 15px rgba(119, 78, 144, 0.8);
 }
 
 .intro-section-header {

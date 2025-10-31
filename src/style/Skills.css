@@ -30,8 +30,8 @@
 }
 
 .skill-category-title {
-    font-size: 2rem;
-    color: var(--secondary-color);
+    font-size: 1.8rem;
+    color: var(--primary-color);
     margin-bottom: 2rem;
     text-transform: uppercase;
     letter-spacing: 2px;

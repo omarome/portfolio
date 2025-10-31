@@ -1,18 +1,24 @@
 .typewrite > .wrap {
-    color: #ce6712;
-    font-size: 4em;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bolder;
-    border-right: 0.08em solid #fff;
-  }
-  /* Media query for phones */
-@media (max-width: 600px) {
-
-  .typewrite > .wrap {
-    color: #ce6712;
+    color: var(--primary-color);
     font-size: 2em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bolder;
-    border-right: 0.08em solid #fff;
+    border-right: 0.08em solid var(--text-white);
   }
+
+/* Light theme: keep typing text white for visibility */
+[data-theme="light"] .typewrite > .wrap {
+    color: var(--text-white);
+    border-right: 0.08em solid var(--text-white);
+}
+
+/* Media query for phones */
+@media (max-width: 600px) {
+  .typewrite > .wrap {
+    color: var(--primary-color);
+    font-size: 2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    border-right: 0.08em solid var(--text-white);
   }
+}

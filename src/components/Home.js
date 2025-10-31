@@ -1,6 +1,5 @@
 import React from 'react';
 import portfolioImage from '../assets/portfolio_image.jpeg'
-import keyboardImage from '../assets/keyboard.jpeg'; 
 import TypingEffect from '../components/TypingEffect';
 import '../style/Home.css'
 import { motion } from 'motion/react';
@@ -18,13 +17,17 @@ const Home = () => {
       };
       
     const textArray = [
-        'Hey there!',
         'Looking for a software engineer?',
-        'You\'ve got it!'
+        'I turn ideas into reliable software solutions.',
+        'I help teams build and launch faster.',
+        'I write code that drives business results.',
+        'Passionate about solving real-world problems.',
+        'Ready to bring value to your team.'
       ];
+    
   return (
     <>
-        <section className="intro-section" style={{ backgroundImage: `url(${keyboardImage})` }}>
+        <section className="intro-section">
         <div className="typing-effect-container">
         <TypingEffect textArray={textArray} typingSpeed={150} deletingSpeed={75} delay={2000} />
         </div>
@@ -41,7 +44,7 @@ const Home = () => {
             animate={inView ? 'visible' : 'hidden'}
             variants={textVariants}
           >
-            <h1 className='intro-section-header'>Hi, I'm Omar</h1>
+            <h1 className='intro-section-header'>Hey there 👋, I'm Omar — a Software Engineer.</h1>
             <p className='intro-section-paragraph'>
             I am a software engineer with a degree in Information and Communication Technology (ICT) from Metropolia University of Applied Sciences. 
             Currently, I work full-time at EKE Electronics Ltd., where I apply my skills and passion for technology to create innovative solutions.
