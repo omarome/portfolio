@@ -28,7 +28,7 @@
   
 .profile-image {
   position: absolute;
-  bottom: 40%;
+  bottom: 38%;
   left: 50%;
   transform: translateX(-50%);
   width: 250px;
@@ -78,14 +78,26 @@
       background-attachment: scroll;
       background-size: cover;
       background-position: center center;
+      min-height: 50vh;
+    }
+
+    .typing-effect-container {
+      padding-top: 4rem;
+      padding-bottom: 2rem;
     }
 
     .profile-image {
-      bottom: 47%;
+      position: absolute;
+      bottom: 40%;
       left: 50%;
       transform: translateX(-50%);
-      width: 160px;
-      height: 180px;
+      width: 150px;
+      height: 160px;
+      z-index: 10;
+    }
+
+    .profile-container {
+      margin-bottom: 100px;
     }
   
     .intro-section-header {
