@@ -1,12 +1,6 @@
 .section-container {
-    display: inline-table;
-    flex-direction: row;
-    justify-content: space-around;
     align-items: center;
-    padding: var(--space-2);
     text-align: center;
-    width: 100%;
-    overflow: hidden;
 }
 
 .skills-container {
