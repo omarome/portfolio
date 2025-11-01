@@ -73,8 +73,9 @@ const handleSubmit = async (e) => {
       ...formData
     });
 
-    // Post to /index.html for Netlify Forms to process
-    const response = await fetch('/index.html', {
+    // Post to root for Netlify Forms to process
+    // Works in both dev and production
+    const response = await fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: formDataToSend.toString()
@@ -85,9 +86,11 @@ const handleSubmit = async (e) => {
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setFormStatus(''), 5000);
     } else {
+      console.error('Form submission error:', response.status, response.statusText);
       setFormStatus('error');
     }
   } catch (error) {
+    console.error('Form submission error:', error);
     setFormStatus('error');
   } finally {
     setIsSubmitting(false);
@@ -130,9 +133,9 @@ const handleSubmit = async (e) => {
           <form 
             name="contact" 
             method="POST" 
-            action="/index.html"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
+            action="/"
+            netlify
+            netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className='contact-form'
           >
