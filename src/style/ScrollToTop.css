@@ -27,15 +27,20 @@
 /* Dark theme: hover changes to text-primary background with black arrow */
 [data-theme="dark"] .scroll-to-top:hover {
   background-color: var(--text-primary);
-  color: #000000;
+  color: var(--color-black);
 }
 
 .scroll-to-top:active {
   transform: scale(0.95);
 }
 
-/* Light theme: ensure arrow is visible */
+/* Light theme: ensure arrow is visible and black hover */
 [data-theme="light"] .scroll-to-top {
+  color: var(--text-white);
+}
+
+[data-theme="light"] .scroll-to-top:hover {
+  background-color: var(--color-black);
   color: var(--text-white);
 }
 

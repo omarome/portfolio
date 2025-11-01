@@ -41,7 +41,7 @@
 
 /* Theme-specific minimal overrides (outside media queries) */
 [data-theme="dark"] .contact-info label {
-  color: var(--text-light);
+  color: var(--text-primary);
 }
 
 [data-theme="light"] .contact-info input {
@@ -151,6 +151,169 @@
   transform: translateY(-1px);
 }
 
+/* Contact Form Styles */
+.contact-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 50%;
+  width: 100%;
+  margin: var(--space-16) auto;
+  padding: var(--space-10);
+  background: var(--background-secondary);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--primary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.form-title {
+  color: var(--primary-color);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2);
+  text-align: center;
+}
+
+.form-description {
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-8);
+  text-align: center;
+}
+
+[data-theme="dark"] .form-description {
+  color: var(--text-light);
+}
+
+.contact-form {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-6);
+}
+
+.form-group label {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-2);
+}
+
+[data-theme="dark"] .form-group label {
+  color: var(--text-light);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: var(--space-3);
+  border: 2px solid var(--background-tertiary);
+  border-radius: var(--radius-sm);
+  background: var(--background-tertiary);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  transition: var(--transition-normal);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+  color: var(--text-light);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: var(--background-primary);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: var(--space-4) var(--space-8);
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-hover);
+}
+
+/* Light theme: hover changes to black background with white text (matching scroll-to-top button) */
+[data-theme="light"] .submit-button:hover:not(:disabled) {
+  background-color: var(--color-black);
+  color: var(--text-white);
+}
+
+/* Dark theme: hover changes to silver background with black text (matching scroll-to-top button) */
+[data-theme="dark"] .submit-button:hover:not(:disabled) {
+  background-color: var(--text-primary);
+  color: var(--color-black);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-message {
+  margin-top: var(--space-6);
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-weight: var(--font-weight-semibold);
+  animation: slideDown 0.3s ease-out;
+}
+
+.form-message.success {
+  background: rgba(121, 149, 79, 0.2);
+  border: 2px solid rgba(121, 149, 79, 0.5);
+  color: #79954f;
+}
+
+.form-message.error {
+  background: rgba(220, 53, 69, 0.2);
+  border: 2px solid rgba(220, 53, 69, 0.5);
+  color: #dc3545;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 600px) {
   .title {
     padding: var(--space-2) var(--space-4);
@@ -168,8 +331,8 @@
     display: inline-flex;
     justify-content: center;
     flex-direction: row;
-    margin: var(--space-8) 0 var(--space-8) 0;
-    padding-bottom: var(--space-8);
+    margin: 0;
+    padding-bottom: 0;
   }
   .contact-icon-style {
     padding: var(--space-6);
@@ -213,5 +376,33 @@
   .resume-download-button {
     padding: var(--space-3) var(--space-6);
     font-size: var(--font-size-base);
+  }
+
+  /* Contact Form Mobile Styles */
+  .contact-form-container {
+    padding: var(--space-2);
+    max-width: 80%;
+  }
+
+  .form-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .form-description {
+    font-size: var(--font-size-sm);
+  }
+
+  .form-group input {
+    font-size: var(--font-size-sm);
+    padding: 0 0 var(--space-3) 0;
+  }
+
+  .form-group textarea {
+    font-size: var(--font-size-sm);
+  }
+
+  .submit-button {
+    font-size: var(--font-size-base);
+    padding: var(--space-3) var(--space-6);
   }
 }
