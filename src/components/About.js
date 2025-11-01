@@ -5,8 +5,8 @@ import '../style/About.css';
 
 const About = () => {
   const [ref, inView] = useInView({
-    threshold: 0.1, // Adjust the threshold value to trigger the animation earlier
-    triggerOnce: false, // Ensure the animation triggers every time the element comes into view
+    threshold: 0.1,
+    triggerOnce: false,
   });
 
   const textVariants = {

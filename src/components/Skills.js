@@ -7,7 +7,7 @@ import '../style/Skills.css';
 const SkillCard = ({ skill, index, delay }) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true,
+    triggerOnce: false,
   });
 
   return (
@@ -37,7 +37,7 @@ const SkillCard = ({ skill, index, delay }) => {
 const SkillSection = ({ title, skills }) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true,
+    triggerOnce: false,
   });
 
   return (

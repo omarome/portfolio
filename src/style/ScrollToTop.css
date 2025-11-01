@@ -41,8 +41,8 @@
 
 @media (max-width: 600px) {
   .scroll-to-top {
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 4rem;
+    right: 6rem;
     width: 45px;
     height: 45px;
     font-size: 1rem;
