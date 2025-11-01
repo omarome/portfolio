@@ -29,7 +29,6 @@ const ThemeToggle = () => {
       startIcon={theme === 'dark' ? <WbSunnyOutlinedIcon fontSize="small" /> : <DarkModeOutlinedIcon fontSize="small" />}
       sx={{
         ml: 2,
-        mr: { xs: 10, sm: 0 },
         textTransform: 'capitalize',
         backgroundColor: theme === 'dark' ? 'var(--secondary-color)' : '#000000',
         color: theme === 'dark' ? 'var(--text-primary)' : 'var(--text-white)',
