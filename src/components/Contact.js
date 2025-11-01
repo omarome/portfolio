@@ -70,8 +70,8 @@ const handleCopy = (text) => {
       <div className='contact-info'>
         <label htmlFor='email'>Email:</label>
         <div className='copy-container'>
-          <input type='text' id='email' value='almashhadaniomar9@gmail.com' readOnly onClick={(e) => e.target.select()} />
-          <FaCopy className='copy-icon' onClick={() => handleCopy('almashhadaniomar9@gmail.com')} />
+          <input type='text' id='email' value='contact@omar-almashhadani.com' readOnly onClick={(e) => e.target.select()} />
+          <FaCopy className='copy-icon' onClick={() => handleCopy('contact@omar-almashhadani.com')} />
         </div>
         </div>
         {copySuccess && <div className='copy-notification'>{copySuccess}</div>}
