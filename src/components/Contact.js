@@ -67,13 +67,16 @@ const handleSubmit = async (e) => {
   setFormStatus('');
 
   try {
+    const formDataToSend = new URLSearchParams({
+      'form-name': 'contact',
+      'bot-field': '', // Honeypot field (should be empty)
+      ...formData
+    });
+
     const response = await fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        'form-name': 'contact',
-        ...formData
-      }).toString()
+      body: formDataToSend.toString()
     });
 
     if (response.ok) {
@@ -126,6 +129,7 @@ const handleSubmit = async (e) => {
           <form 
             name="contact" 
             method="POST" 
+            action="/"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
