@@ -172,10 +172,9 @@
     padding-bottom: var(--space-8);
   }
   .contact-icon-style {
-    padding: var(--space-3);
+    padding: var(--space-6);
     color: var(--primary-color);
-    font-size: var(--font-size-3xl); 
-    padding-left: var(--space-10);
+    font-size: var(--font-size-3xl);
     text-decoration: none;
     transition: var(--transition-normal);
   }

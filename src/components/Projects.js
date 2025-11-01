@@ -16,7 +16,7 @@ const projects = [
     description: 'A micro-frontends monorepo from old legacy code built with AngularJS to React.js, TypeScript, and Tailwind CSS architecture.',
     githubUrl: 'https://github.com/omarome/micro-frontends-monorepo/blob/master/README.md',
     demoUrl: null,
-    technologies: ['React.js', 'TypeScript', 'Tailwind CSS', 'AngularJS', 'Monorepo']
+    technologies: ['React.tsx', 'AngularJS', 'Monorepo + MFEs']
   },
   {
     image: MovieAppImage,
@@ -45,12 +45,12 @@ const projects = [
 
 ];
 
-const Projects = () => {
+const ProjectCard = ({ project, index }) => {
   const [ref, inView] = useInView({
-    threshold: 0.0,
-    triggerOnce: true,
+    threshold: 0.1,
+    triggerOnce: false,
   });
- 
+
   const handleGitHubClick = (e, url) => {
     e.stopPropagation();
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -64,22 +64,26 @@ const Projects = () => {
   };
 
   const projectVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    hidden: { 
+      opacity: 0, 
+      x: index % 2 === 0 ? 100 : -100,
+      y: 20
+    },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      y: 0,
+      transition: { duration: 0.6, delay: index * 0.1 } 
+    },
   };
 
   return (
-    <div className="projects-container">
-    <h2 className="title">Projects</h2>
-    <div className="projects-section">
-      {projects.map((project, index) => (
-        <motion.div
-          key={index}
-          ref={ref}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          variants={projectVariants}
-        >
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      variants={projectVariants}
+    >
           <Card className="project-card">
             <CardMedia
               component="img"
@@ -125,20 +129,30 @@ const Projects = () => {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
-      ))}
+    </motion.div>
+  );
+};
+
+const Projects = () => {
+  return (
+    <div className="projects-container">
+      <h2 className="title">Projects</h2>
+      <div className="projects-section">
+        {projects.map((project, index) => (
+          <ProjectCard key={index} project={project} index={index} />
+        ))}
+      </div>
+      <div className='more-projects'>
+        <a 
+          className='more-projects-text icon-style'
+          href="https://github.com/omarome" 
+          target="_blank" 
+          rel="noopener noreferrer">
+            For more checkout my GitHub
+            <FaGithub />
+        </a>  
+      </div>
     </div>
-        <div className='more-projects'>
-            <a 
-            className='more-projects-text icon-style'
-            href="https://github.com/omarome" 
-            target="_blank" 
-            rel="noopener noreferrer">
-                For more checkout my GitHub
-                <FaGithub />
-            </a>  
-        </div>
-     </div>
   );
 };
 
