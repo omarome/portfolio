@@ -73,7 +73,8 @@ const handleSubmit = async (e) => {
       ...formData
     });
 
-    const response = await fetch('/', {
+    // Post to /index.html for Netlify Forms to process
+    const response = await fetch('/index.html', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: formDataToSend.toString()
@@ -129,7 +130,7 @@ const handleSubmit = async (e) => {
           <form 
             name="contact" 
             method="POST" 
-            action="/"
+            action="/index.html"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
