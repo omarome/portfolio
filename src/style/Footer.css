@@ -19,6 +19,18 @@ footer {
     color: var(--text-primary);
   }
 
+  .footer-link {
+    color: inherit;
+    text-decoration: underline;
+    margin-left: 8px;
+    transition: color 0.3s ease;
+  }
+
+  .footer-link:hover {
+    color: var(--text-primary);
+    opacity: 0.8;
+  }
+
   /* Light theme: purple background with white text */
   [data-theme="light"] footer {
     background: var(--primary-color);
@@ -30,6 +42,15 @@ footer {
     color: var(--text-light);
   }
 
+  [data-theme="light"] .footer-link {
+    color: var(--text-white);
+  }
+
+  [data-theme="light"] .footer-link:hover {
+    color: var(--text-light);
+    opacity: 0.9;
+  }
+
   /* Media query for phones */
 @media (max-width: 600px) {
   footer {
@@ -39,5 +60,9 @@ footer {
   }
   .footer-text {
     font-size: 12px;
+  }
+
+  .footer-link {
+    margin-left: 4px;
   }
 }
