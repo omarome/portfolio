@@ -1,0 +1,147 @@
+OPEN SOURCE ATTRIBUTIONS
+========================
+
+This portfolio website uses the following open source libraries and frameworks:
+
+FRONTEND FRAMEWORK & CORE LIBRARIES
+-----------------------------------
+React - MIT License
+Copyright (c) Facebook, Inc. and its affiliates
+https://github.com/facebook/react
+
+React DOM - MIT License
+Copyright (c) Facebook, Inc. and its affiliates
+https://github.com/facebook/react
+
+UI COMPONENT LIBRARIES
+----------------------
+Material-UI (MUI) - MIT License
+Copyright (c) 2014 Call-Em-All
+https://github.com/mui/material-ui
+
+@mui/material - MIT License
+@mui/icons-material - MIT License
+@emotion/react - MIT License
+@emotion/styled - MIT License
+
+ANIMATION LIBRARIES
+-------------------
+Motion (Framer Motion) - MIT License
+Copyright (c) Framer B.V.
+https://github.com/framer/motion
+
+react-intersection-observer - MIT License
+Copyright (c) 2018-2021 React Intersection Observer authors
+https://github.com/thebuilder/react-intersection-observer
+
+ROUTING & NAVIGATION
+--------------------
+react-router-dom - MIT License
+Copyright (c) React Training 2016-2018
+https://github.com/remix-run/react-router
+
+react-scroll - MIT License
+Copyright (c) 2015 react-scroll authors
+https://github.com/fisshy/react-scroll
+
+ICONS
+-----
+react-icons - MIT License
+Copyright (c) 2020 React Icons
+https://github.com/react-icons/react-icons
+
+BUILD TOOLS & TESTING
+---------------------
+react-scripts - MIT License
+Copyright (c) 2013-present, Facebook, Inc.
+https://github.com/facebook/create-react-app
+
+@testing-library/react - MIT License
+Copyright (c) 2019 Kent C. Dodds
+https://github.com/testing-library/react-testing-library
+
+@testing-library/jest-dom - MIT License
+Copyright (c) 2017-2020 Kent C. Dodds
+https://github.com/testing-library/jest-dom
+
+@testing-library/user-event - MIT License
+Copyright (c) 2018-2020 Giorgio Mele
+https://github.com/testing-library/user-event
+
+@rollup/plugin-terser - MIT License
+Copyright (c) Rollup Contributors
+https://github.com/rollup/plugins
+
+@eslint/config-array - MIT License
+Copyright (c) OpenJS Foundation
+https://github.com/eslint/eslint
+
+UTILITIES
+---------
+web-vitals - Apache-2.0 License
+Copyright 2020 Google LLC
+https://github.com/GoogleChrome/web-vitals
+
+workbox-background-sync - MIT License
+Copyright (c) 2018 Google LLC
+https://github.com/GoogleChrome/workbox
+
+LICENSE INFORMATION
+===================
+
+Most of these libraries are licensed under the MIT License. However, one library
+uses Apache-2.0 License:
+
+web-vitals - Apache-2.0 License
+
+The MIT License applies to the majority of libraries listed above:
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+APACHE-2.0 LICENSE (web-vitals)
+================================
+
+Copyright 2020 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+SUMMARY
+=======
+
+Total Dependencies: 18
+MIT License: 17
+Apache-2.0 License: 1 (web-vitals)
+
+For more information about specific licenses, please visit the respective
+GitHub repositories or npm package pages listed above.
+
+Generated: 2024
+
