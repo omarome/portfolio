@@ -21,7 +21,18 @@ const Router = ({ menuList }) => {
 
   return (
     <Box>
-      <AppBar sx={{ backgroundColor: 'var(--background-color)', color: 'var(--primary-color)', borderBottom: '1px solid var(--primary-color)'}}>
+      <AppBar 
+        position="sticky"
+        sx={{ 
+          backgroundColor: 'var(--background-color)', 
+          color: 'var(--primary-color)', 
+          borderBottom: '1px solid var(--primary-color)',
+          top: 0,
+          zIndex: 1100,
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden'
+        }}
+      >
         <Toolbar>
           <IconButton
             edge="start"

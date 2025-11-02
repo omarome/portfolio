@@ -9,7 +9,8 @@
     background-attachment: fixed;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     text-align: center;
     width: 100vw;
@@ -18,8 +19,10 @@
 }
 
 .typing-effect-container {
-  display: flex;
-  padding-top: 6rem;
+    padding-top: 5rem;
+    align-items: center;
+    justify-content: center;
+    height: 13vh;
 }
 
 .profile-container {
@@ -27,10 +30,6 @@
   }
   
 .profile-image {
-  position: absolute;
-  bottom: 38%;
-  left: 50%;
-  transform: translateX(-50%);
   width: 250px;
   height: 250px;
   border-radius: 50%;
@@ -82,22 +81,18 @@
     }
 
     .typing-effect-container {
-      padding-top: 4rem;
-      padding-bottom: 2rem;
+      padding: 1rem;
+      height: 15vh;
     }
 
     .profile-image {
-      position: absolute;
-      bottom: 40%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 150px;
-      height: 160px;
+      width: 140px;
+      height: 150px;
       z-index: 10;
     }
 
     .profile-container {
-      margin-bottom: 100px;
+      margin-bottom: 5px;
     }
   
     .intro-section-header {
@@ -113,5 +108,85 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-size: 2.5em;
       line-height: 50px;
+    }
+  }
+
+/* Media query for iPhone Pro Max landscape (932x430) and similar large landscape phones */
+@media screen and (max-height: 450px) and (orientation: landscape) {
+    .intro-section {
+      height: 100vh;
+      min-height: 100vh;
+      background-attachment: scroll;
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .typing-effect-container {
+      padding-top: 2rem;
+      height: 8vh;
+      min-height: 60px;
+    }
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border: 3px solid var(--primary-color);
+      z-index: 10;
+      margin: 0.5rem 0;
+    }
+
+    .profile-container {
+      margin-bottom: 0.5rem;
+    }
+  
+    .intro-section-header {
+      margin: 1rem 2rem;
+      padding: 0.5rem;
+      font-size: 1.2em;
+      line-height: 1.4;
+    }
+  
+    .intro-section-paragraph {
+      margin: 1rem 2rem;
+      padding: 0.5rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 1em;
+      line-height: 1.5;
+    }
+
+    /* Light theme border adjustment */
+    [data-theme="light"] .profile-image {
+      border: 3px solid var(--accent-purple);
+    }
+  }
+
+/* Additional media query for wider landscape screens (932px+ width) */
+@media screen and (min-width: 900px) and (max-height: 500px) and (orientation: landscape) {
+    .profile-image {
+      width: 140px;
+      height: 150px;
+      border: 3px solid var(--primary-color);
+    }
+
+    [data-theme="light"] .profile-image {
+      border: 3px solid var(--accent-purple);
+    }
+
+    .intro-section-header {
+      font-size: 1.5em;
+      margin: 1rem 3rem;
+      padding: 0.5rem;
+    }
+
+    .intro-section-paragraph {
+      font-size: 1.1em;
+      margin: 1rem 3rem;
+      padding: 0.5rem;
+    }
+
+    .typing-effect-container {
+      padding-top: 1.5rem;
+      height: 10vh;
+      min-height: 70px;
     }
   }

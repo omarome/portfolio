@@ -8,22 +8,53 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      // Use multiple methods for better cross-browser compatibility
+      const scrollTop = window.pageYOffset || 
+                        document.documentElement.scrollTop || 
+                        document.body.scrollTop || 
+                        0;
+      
+      if (scrollTop > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    // Initial check
+    toggleVisibility();
+
+    // Add scroll listeners with multiple options for Android browsers
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    window.addEventListener('touchmove', toggleVisibility, { passive: true });
+    document.addEventListener('scroll', toggleVisibility, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+      window.removeEventListener('touchmove', toggleVisibility);
+      document.removeEventListener('scroll', toggleVisibility);
+    };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    // Use multiple methods for better cross-browser compatibility
+    if ('scrollBehavior' in document.documentElement.style) {
+      // Modern browsers with smooth scroll support
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      // Fallback for older browsers (including some Android browsers)
+      const scrollStep = -window.scrollY / (500 / 15);
+      const scrollInterval = setInterval(() => {
+        if (window.scrollY !== 0) {
+          window.scrollBy(0, scrollStep);
+        } else {
+          clearInterval(scrollInterval);
+        }
+      }, 15);
+    }
   };
 
   return (
