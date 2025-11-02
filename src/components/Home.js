@@ -28,13 +28,12 @@ const Home = () => {
   return (
     <>
         <section className="intro-section">
-        <div className="typing-effect-container">
-        <TypingEffect textArray={textArray} typingSpeed={150} deletingSpeed={75} delay={2000} />
-        </div>
-       
-        </section>
-        <section className="profile-container">
+          <section className="typing-effect-container">
+            <TypingEffect textArray={textArray} typingSpeed={150} deletingSpeed={75} delay={2000} />
+          </section>
+          <section className="profile-container">
             <img src={portfolioImage} alt="Omar" className="profile-image" />
+          </section>
         </section>
         <section className='intro-section-text'>
         <motion.div
