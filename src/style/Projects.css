@@ -167,6 +167,11 @@
   transform: scale(1.2);
 }
 
+
+[data-theme="light"] .icon-style:hover {
+  color: var(--color-black);
+}
+
 .project-card p {
   margin: 0.5rem 0 0;
   color: var(--text-color);

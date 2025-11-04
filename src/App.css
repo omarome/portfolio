@@ -142,6 +142,11 @@ body, #root, .app {
   appearance: none;
 }
 
+.MuiToolbar-root .MuiButton-root.MuiButton-root:hover {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+}
+
 /* Mobile-specific fixes for AppBar */
 @media (max-width: 700px) {
   .MuiToolbar-root.MuiToolbar-root {
