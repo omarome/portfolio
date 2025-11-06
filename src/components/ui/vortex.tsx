@@ -66,16 +66,6 @@ export const Vortex = (props: VortexProps) => {
   let particleProps = new Float32Array(particlePropsLength);
   let center: [number, number] = [0, 0];
 
-  const lightModeParticles = useRef<Array<{
-    x: number;
-    y: number;
-    vx: number;
-    vy: number;
-    radius: number;
-    hue: number;
-    alpha: number;
-  }>>([]);
-
   const TAU: number = 2 * Math.PI;
   const rand = (n: number): number => n * Math.random();
   const randRange = (n: number): number => n - rand(2 * n);
@@ -87,23 +77,6 @@ export const Vortex = (props: VortexProps) => {
 
   const lerp = (n1: number, n2: number, speed: number): number =>
     (1 - speed) * n1 + speed * n2;
-
-  const setup = () => {
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (canvas && container) {
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        resize(canvas, ctx);
-        if (theme === 'light') {
-          initLightModeParticles(canvas);
-        } else {
-          initParticles();
-        }
-        draw(canvas, ctx);
-      }
-    }
-  };
 
   const initParticles = () => {
     tick = 0;
@@ -133,85 +106,7 @@ export const Vortex = (props: VortexProps) => {
     particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
   };
 
-  // Light mode animation - floating gradient particles
-  const initLightModeParticles = (canvas: HTMLCanvasElement) => {
-    const count = 150;
-    lightModeParticles.current = [];
-    for (let i = 0; i < count; i++) {
-      lightModeParticles.current.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 3 + 1,
-        hue: 260 + Math.random() * 40, // Purple to blue range
-        alpha: Math.random() * 0.3 + 0.1,
-      });
-    }
-  };
-
-  const drawLightMode = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
-    tick++;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Update and draw particles
-    lightModeParticles.current.forEach((particle, i) => {
-      // Update position
-      particle.x += particle.vx;
-      particle.y += particle.vy;
-
-      // Bounce off edges
-      if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-      if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-      // Keep in bounds
-      particle.x = Math.max(0, Math.min(canvas.width, particle.x));
-      particle.y = Math.max(0, Math.min(canvas.height, particle.y));
-
-      // Draw particle with gradient
-      const gradient = ctx.createRadialGradient(
-        particle.x, particle.y, 0,
-        particle.x, particle.y, particle.radius * 3
-      );
-      gradient.addColorStop(0, `hsla(${particle.hue}, 70%, 60%, ${particle.alpha})`);
-      gradient.addColorStop(1, `hsla(${particle.hue}, 70%, 60%, 0)`);
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.radius * 3, 0, TAU);
-      ctx.fill();
-
-      // Draw connections between nearby particles
-      lightModeParticles.current.slice(i + 1).forEach(other => {
-        const dx = particle.x - other.x;
-        const dy = particle.y - other.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 120) {
-          ctx.strokeStyle = `hsla(${particle.hue}, 50%, 50%, ${(1 - distance / 120) * 0.2})`;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(other.x, other.y);
-          ctx.stroke();
-        }
-      });
-    });
-
-    animationFrameId.current = window.requestAnimationFrame(() =>
-      drawLightMode(canvas, ctx),
-    );
-  };
-
   const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
-    if (theme === 'light') {
-      drawLightMode(canvas, ctx);
-      return;
-    }
-
     // Dark mode - original vortex animation
     tick++;
 
@@ -350,14 +245,6 @@ export const Vortex = (props: VortexProps) => {
     ctx.restore();
   };
 
-  const handleResize = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (canvas && ctx) {
-      resize(canvas, ctx);
-    }
-  };
-
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -377,15 +264,47 @@ export const Vortex = (props: VortexProps) => {
   }, []);
 
   useEffect(() => {
-    setup();
+    if (theme === "light") {
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+        animationFrameId.current = undefined;
+      }
+      return;
+    }
+
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+
+    if (!canvas || !container) {
+      return;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      return;
+    }
+
+    const handleResize = () => {
+      const canvasEl = canvasRef.current;
+      const ctxEl = canvasEl?.getContext("2d");
+      if (canvasEl && ctxEl) {
+        resize(canvasEl, ctxEl);
+      }
+    };
+
+    resize(canvas, ctx);
+
+    initParticles();
+    draw(canvas, ctx);
     window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize);
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [backgroundColor, theme, handleResize, setup]);
+  }, [backgroundColor, theme]);
 
   if (theme === 'light') {
     return (

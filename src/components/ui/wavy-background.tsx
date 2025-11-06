@@ -47,43 +47,7 @@ export const WavyBackground = ({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const resizeHandlerRef = useRef<(() => void) | null>(null);
-  
-  const init = () => {
-    // Use setTimeout to ensure container is rendered
-    setTimeout(() => {
-      canvas = canvasRef.current;
-      const container = containerRef.current;
-      if (!canvas || !container) return;
-      
-      ctx = canvas.getContext("2d");
-      if (!ctx) return;
-      
-      const rect = container.getBoundingClientRect();
-      w = ctx.canvas.width = rect.width || window.innerWidth;
-      h = ctx.canvas.height = rect.height || window.innerHeight;
-      
-      // Only apply blur if it's greater than 0
-      if (blur > 0) {
-        ctx.filter = `blur(${blur}px)`;
-      }
-      nt = 0;
-      
-      const handleResize = () => {
-        if (container && canvas && ctx) {
-          const rect = container.getBoundingClientRect();
-          w = ctx.canvas.width = rect.width || window.innerWidth;
-          h = ctx.canvas.height = rect.height || window.innerHeight;
-          if (blur > 0) {
-            ctx.filter = `blur(${blur}px)`;
-          }
-        }
-      };
-      
-      resizeHandlerRef.current = handleResize;
-      window.addEventListener("resize", handleResize);
-      render();
-    }, 100);
-  };
+  const animationIdRef = useRef<number | null>(null);
 
   const waveColors = colors ?? [
     "#38bdf8",
@@ -117,10 +81,9 @@ export const WavyBackground = ({
     }
   };
 
-  let animationId: number;
   const render = () => {
     if (!ctx || !w || !h) {
-      animationId = requestAnimationFrame(render);
+      animationIdRef.current = requestAnimationFrame(render);
       return;
     }
     // Clear and fill background
@@ -128,23 +91,56 @@ export const WavyBackground = ({
     ctx.fillStyle = backgroundFill || "black";
     ctx.fillRect(0, 0, w, h);
     
-    // Draw waves - draw fewer waves for better visibility
+    // Draw waves
     ctx.globalAlpha = 1;
-    drawWave(9); // Reduced from 5 to 3 to show distinct colors
-    animationId = requestAnimationFrame(render);
+    drawWave(9);
+    animationIdRef.current = requestAnimationFrame(render);
   };
 
   useEffect(() => {
-    init();
+    const timeoutId = window.setTimeout(() => {
+      canvas = canvasRef.current;
+      const container = containerRef.current;
+      if (!canvas || !container) return;
+
+      ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      const applyDimensions = () => {
+        const rect = container.getBoundingClientRect();
+        w = ctx!.canvas.width = rect.width || window.innerWidth;
+        h = ctx!.canvas.height = rect.height || window.innerHeight;
+        if (blur > 0 && ctx) {
+          ctx.filter = `blur(${blur}px)`;
+        } else if (ctx) {
+          ctx.filter = "none";
+        }
+      };
+
+      applyDimensions();
+      nt = 0;
+
+      const handleResize = () => {
+        applyDimensions();
+      };
+
+      resizeHandlerRef.current = handleResize;
+      window.addEventListener("resize", handleResize);
+      render();
+    }, 100);
+
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
+      clearTimeout(timeoutId);
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+        animationIdRef.current = null;
       }
       if (resizeHandlerRef.current) {
         window.removeEventListener("resize", resizeHandlerRef.current);
+        resizeHandlerRef.current = null;
       }
     };
-  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity, animationId, init]);
+  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
