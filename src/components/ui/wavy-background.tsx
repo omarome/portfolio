@@ -144,7 +144,7 @@ export const WavyBackground = ({
         window.removeEventListener("resize", resizeHandlerRef.current);
       }
     };
-  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity]);
+  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity, animationId]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
