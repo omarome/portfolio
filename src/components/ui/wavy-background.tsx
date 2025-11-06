@@ -144,11 +144,10 @@ export const WavyBackground = ({
         window.removeEventListener("resize", resizeHandlerRef.current);
       }
     };
-  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity, animationId]);
+  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity, animationId, init]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-    // I'm sorry but i have got to support it on safari.
     setIsSafari(
       typeof window !== "undefined" &&
         navigator.userAgent.includes("Safari") &&

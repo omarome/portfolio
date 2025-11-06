@@ -385,7 +385,7 @@ export const Vortex = (props: VortexProps) => {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [backgroundColor, theme, handleResize]);
+  }, [backgroundColor, theme, handleResize, setup]);
 
   if (theme === 'light') {
     return (
