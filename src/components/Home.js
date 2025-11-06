@@ -4,6 +4,7 @@ import TypingEffect from '../components/TypingEffect';
 import '../style/Home.css'
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import { Vortex } from '../components/ui/vortex';
 
 const Home = () => {
     const [ref, inView] = useInView({
@@ -28,12 +29,17 @@ const Home = () => {
   return (
     <>
         <section className="intro-section">
-          <section className="typing-effect-container">
-            <TypingEffect textArray={textArray} typingSpeed={150} deletingSpeed={75} delay={2000} />
-          </section>
-          <section className="profile-container">
-            <img src={portfolioImage} alt="Omar" className="profile-image" />
-          </section>
+          <Vortex
+            backgroundColor="var(--background-color)"
+            className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
+          >
+            <div className="typing-effect-container">
+              <TypingEffect textArray={textArray} typingSpeed={150} deletingSpeed={75} delay={2000} />
+            </div>
+            <div className="profile-container">
+              <img src={portfolioImage} alt="Omar" className="profile-image" />
+            </div>
+          </Vortex>
         </section>
         <section className='intro-section-text'>
         <motion.div
