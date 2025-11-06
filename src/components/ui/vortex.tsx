@@ -29,10 +29,8 @@ export const Vortex = (props: VortexProps) => {
     return 'dark';
   });
 
-  // Get background color based on theme - reactive to theme changes
   const backgroundColor = React.useMemo(() => {
     if (props.backgroundColor) {
-      // If it's a CSS variable, try to resolve it
       if (props.backgroundColor.startsWith('var(--')) {
         const varName = props.backgroundColor.match(/var\(--([^)]+)\)/)?.[1];
         if (varName && typeof window !== 'undefined') {
@@ -42,7 +40,6 @@ export const Vortex = (props: VortexProps) => {
       }
       return props.backgroundColor;
     }
-    // Default: black for dark theme, dark blue-gray for light theme (better contrast for particles)
     return theme === 'dark' ? '#000000' : '#1a1a2e';
   }, [props.backgroundColor, theme]);
 
@@ -56,11 +53,9 @@ export const Vortex = (props: VortexProps) => {
   const rangeSpeed = props.rangeSpeed || 1.5;
   const baseRadius = props.baseRadius || 1;
   const rangeRadius = props.rangeRadius || 2;
-  // Adjust baseHue and lightness based on theme for better visibility
-  const baseHue = props.baseHue || (theme === 'dark' ? 220 : 200); // Blue for dark, cyan-blue for light
+  const baseHue = props.baseHue || (theme === 'dark' ? 220 : 200); 
   const rangeHue = 100;
-  // Adjust lightness based on theme (brighter for dark mode, very bright for light mode)
-  const particleLightness = theme === 'dark' ? 60 : 80; // Very bright particles in light mode for contrast
+  const particleLightness = theme === 'dark' ? 60 : 80; 
   const noiseSteps = 3;
   const xOff = 0.00125;
   const yOff = 0.00125;
@@ -71,7 +66,6 @@ export const Vortex = (props: VortexProps) => {
   let particleProps = new Float32Array(particlePropsLength);
   let center: [number, number] = [0, 0];
 
-  // Light mode animation variables
   const lightModeParticles = useRef<Array<{
     x: number;
     y: number;
@@ -82,9 +76,7 @@ export const Vortex = (props: VortexProps) => {
     alpha: number;
   }>>([]);
 
-  const HALF_PI: number = 0.5 * Math.PI;
   const TAU: number = 2 * Math.PI;
-  const TO_RAD: number = Math.PI / 180;
   const rand = (n: number): number => n * Math.random();
   const randRange = (n: number): number => n - rand(2 * n);
 
@@ -296,10 +288,8 @@ export const Vortex = (props: VortexProps) => {
     ctx.save();
     ctx.lineCap = "round";
     ctx.lineWidth = radius;
-    // Use theme-aware lightness and saturation for better visibility
     const saturation = theme === 'dark' ? 100 : 100;
     const alpha = fadeInOut(life, ttl);
-    // Increase opacity in light mode for better visibility on dark background
     const adjustedAlpha = theme === 'dark' ? alpha : Math.min(alpha * 1.5, 1);
     ctx.strokeStyle = `hsla(${hue},${saturation}%,${particleLightness}%,${adjustedAlpha})`;
     ctx.beginPath();
@@ -368,7 +358,6 @@ export const Vortex = (props: VortexProps) => {
     }
   };
 
-  // Listen for theme changes
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -398,7 +387,6 @@ export const Vortex = (props: VortexProps) => {
     };
   }, [backgroundColor, theme]);
 
-  // For light mode, use WavyBackground instead of canvas
   if (theme === 'light') {
     return (
       <WavyBackground
@@ -415,10 +403,8 @@ export const Vortex = (props: VortexProps) => {
     );
   }
 
-  // Dark mode - original vortex animation
   return (
     <div className={cn("relative h-full w-full", props.containerClassName)}>
-      {/* Canvas background layer - rendered first, behind everything */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
