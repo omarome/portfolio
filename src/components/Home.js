@@ -30,7 +30,6 @@ const Home = () => {
     <>
         <section className="intro-section">
           <Vortex
-            backgroundColor="var(--background-color)"
             className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
           >
             <div className="typing-effect-container">

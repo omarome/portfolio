@@ -1,7 +1,8 @@
 import { cn } from "../../lib/utils";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
 import { motion } from "motion/react";
+import { WavyBackground } from "./wavy-background";
 
 interface VortexProps {
   children?: any;
@@ -21,6 +22,29 @@ export const Vortex = (props: VortexProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const animationFrameId = useRef<number | undefined>(undefined);
+  const [theme, setTheme] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.getAttribute('data-theme') || 'dark';
+    }
+    return 'dark';
+  });
+
+  // Get background color based on theme - reactive to theme changes
+  const backgroundColor = React.useMemo(() => {
+    if (props.backgroundColor) {
+      // If it's a CSS variable, try to resolve it
+      if (props.backgroundColor.startsWith('var(--')) {
+        const varName = props.backgroundColor.match(/var\(--([^)]+)\)/)?.[1];
+        if (varName && typeof window !== 'undefined') {
+          const value = getComputedStyle(document.documentElement).getPropertyValue(`--${varName}`).trim();
+          return value || (theme === 'dark' ? '#000000' : '#1a1a2e');
+        }
+      }
+      return props.backgroundColor;
+    }
+    // Default: black for dark theme, dark blue-gray for light theme (better contrast for particles)
+    return theme === 'dark' ? '#000000' : '#1a1a2e';
+  }, [props.backgroundColor, theme]);
 
   const particleCount = props.particleCount || 700;
   const particlePropCount = 9;
@@ -32,18 +56,31 @@ export const Vortex = (props: VortexProps) => {
   const rangeSpeed = props.rangeSpeed || 1.5;
   const baseRadius = props.baseRadius || 1;
   const rangeRadius = props.rangeRadius || 2;
-  const baseHue = props.baseHue || 220;
+  // Adjust baseHue and lightness based on theme for better visibility
+  const baseHue = props.baseHue || (theme === 'dark' ? 220 : 200); // Blue for dark, cyan-blue for light
   const rangeHue = 100;
+  // Adjust lightness based on theme (brighter for dark mode, very bright for light mode)
+  const particleLightness = theme === 'dark' ? 60 : 80; // Very bright particles in light mode for contrast
   const noiseSteps = 3;
   const xOff = 0.00125;
   const yOff = 0.00125;
   const zOff = 0.0005;
-  const backgroundColor = props.backgroundColor || "#000000";
 
   let tick = 0;
   const noise3D = createNoise3D();
   let particleProps = new Float32Array(particlePropsLength);
   let center: [number, number] = [0, 0];
+
+  // Light mode animation variables
+  const lightModeParticles = useRef<Array<{
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    radius: number;
+    hue: number;
+    alpha: number;
+  }>>([]);
 
   const HALF_PI: number = 0.5 * Math.PI;
   const TAU: number = 2 * Math.PI;
@@ -66,7 +103,11 @@ export const Vortex = (props: VortexProps) => {
       const ctx = canvas.getContext("2d");
       if (ctx) {
         resize(canvas, ctx);
-        initParticles();
+        if (theme === 'light') {
+          initLightModeParticles(canvas);
+        } else {
+          initParticles();
+        }
         draw(canvas, ctx);
       }
     }
@@ -100,7 +141,86 @@ export const Vortex = (props: VortexProps) => {
     particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
   };
 
+  // Light mode animation - floating gradient particles
+  const initLightModeParticles = (canvas: HTMLCanvasElement) => {
+    const count = 150;
+    lightModeParticles.current = [];
+    for (let i = 0; i < count; i++) {
+      lightModeParticles.current.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 3 + 1,
+        hue: 260 + Math.random() * 40, // Purple to blue range
+        alpha: Math.random() * 0.3 + 0.1,
+      });
+    }
+  };
+
+  const drawLightMode = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+    tick++;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Update and draw particles
+    lightModeParticles.current.forEach((particle, i) => {
+      // Update position
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+
+      // Bounce off edges
+      if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+      if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+      // Keep in bounds
+      particle.x = Math.max(0, Math.min(canvas.width, particle.x));
+      particle.y = Math.max(0, Math.min(canvas.height, particle.y));
+
+      // Draw particle with gradient
+      const gradient = ctx.createRadialGradient(
+        particle.x, particle.y, 0,
+        particle.x, particle.y, particle.radius * 3
+      );
+      gradient.addColorStop(0, `hsla(${particle.hue}, 70%, 60%, ${particle.alpha})`);
+      gradient.addColorStop(1, `hsla(${particle.hue}, 70%, 60%, 0)`);
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.radius * 3, 0, TAU);
+      ctx.fill();
+
+      // Draw connections between nearby particles
+      lightModeParticles.current.slice(i + 1).forEach(other => {
+        const dx = particle.x - other.x;
+        const dy = particle.y - other.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 120) {
+          ctx.strokeStyle = `hsla(${particle.hue}, 50%, 50%, ${(1 - distance / 120) * 0.2})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particle.x, particle.y);
+          ctx.lineTo(other.x, other.y);
+          ctx.stroke();
+        }
+      });
+    });
+
+    animationFrameId.current = window.requestAnimationFrame(() =>
+      drawLightMode(canvas, ctx),
+    );
+  };
+
   const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+    if (theme === 'light') {
+      drawLightMode(canvas, ctx);
+      return;
+    }
+
+    // Dark mode - original vortex animation
     tick++;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -176,7 +296,12 @@ export const Vortex = (props: VortexProps) => {
     ctx.save();
     ctx.lineCap = "round";
     ctx.lineWidth = radius;
-    ctx.strokeStyle = `hsla(${hue},100%,60%,${fadeInOut(life, ttl)})`;
+    // Use theme-aware lightness and saturation for better visibility
+    const saturation = theme === 'dark' ? 100 : 100;
+    const alpha = fadeInOut(life, ttl);
+    // Increase opacity in light mode for better visibility on dark background
+    const adjustedAlpha = theme === 'dark' ? alpha : Math.min(alpha * 1.5, 1);
+    ctx.strokeStyle = `hsla(${hue},${saturation}%,${particleLightness}%,${adjustedAlpha})`;
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x2, y2);
@@ -243,6 +368,25 @@ export const Vortex = (props: VortexProps) => {
     }
   };
 
+  // Listen for theme changes
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+          const newTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+          setTheme(newTheme);
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     setup();
     window.addEventListener("resize", handleResize);
@@ -252,8 +396,26 @@ export const Vortex = (props: VortexProps) => {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, []);
+  }, [backgroundColor, theme]);
 
+  // For light mode, use WavyBackground instead of canvas
+  if (theme === 'light') {
+    return (
+      <WavyBackground
+        className={props.className}
+        containerClassName={props.containerClassName}
+        colors={["#5e0097", "#7d00c7", "#a200ff"]}
+        backgroundFill="#ffffff"
+        waveWidth={80}
+        waveOpacity={0.8}
+        blur={0}
+      >
+        {props.children}
+      </WavyBackground>
+    );
+  }
+
+  // Dark mode - original vortex animation
   return (
     <div className={cn("relative h-full w-full", props.containerClassName)}>
       {/* Canvas background layer - rendered first, behind everything */}
