@@ -261,7 +261,7 @@ export const Vortex = (props: VortexProps) => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [setTheme]);
 
   useEffect(() => {
     if (theme === "light") {
@@ -304,7 +304,7 @@ export const Vortex = (props: VortexProps) => {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [backgroundColor, theme]);
+  }, [backgroundColor, theme, draw, initParticles, resize, cancelAnimationFrame, animationFrameId]);
 
   if (theme === 'light') {
     return (
