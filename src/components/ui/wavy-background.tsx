@@ -1,5 +1,5 @@
 import { cn } from "../../lib/utils";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { createNoise3D } from "simplex-noise";
 
 export const WavyBackground = ({
@@ -25,7 +25,6 @@ export const WavyBackground = ({
   waveOpacity?: number;
   [key: string]: any;
 }) => {
-  const noise = createNoise3D();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const resizeHandlerRef = useRef<(() => void) | null>(null);
@@ -36,7 +35,10 @@ export const WavyBackground = ({
   const dimensionsRef = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const timeRef = useRef<number>(0);
 
-  const getSpeed = () => {
+  // Memoize stable values
+  const noise = useMemo(() => createNoise3D(), []);
+  
+  const getSpeed = useCallback(() => {
     switch (speed) {
       case "slow":
         return 0.001;
@@ -45,15 +47,15 @@ export const WavyBackground = ({
       default:
         return 0.001;
     }
-  };
+  }, [speed]);
 
-  const waveColors = colors ?? [
+  const waveColors = useMemo(() => colors ?? [
     "#38bdf8",
     "#818cf8",
     "#c084fc",
     "#e879f9",
     "#22d3ee",
-  ];
+  ], [colors]);
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
@@ -150,7 +152,7 @@ export const WavyBackground = ({
         resizeHandlerRef.current = null;
       }
     };
-  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity]);
+  }, [colors, waveWidth, backgroundFill, blur, speed, waveOpacity, noise, getSpeed, waveColors]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {

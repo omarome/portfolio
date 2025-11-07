@@ -284,18 +284,186 @@ export const Vortex = (props: VortexProps) => {
       return;
     }
 
+    // Define functions inside useEffect to avoid dependency issues
+    const resizeFunc = (
+      canvasEl: HTMLCanvasElement,
+      ctxEl?: CanvasRenderingContext2D,
+    ) => {
+      const containerEl = containerRef.current as HTMLElement;
+      if (containerEl) {
+        const rect = containerEl.getBoundingClientRect();
+        canvasEl.width = rect.width;
+        canvasEl.height = rect.height;
+      } else {
+        const { innerWidth, innerHeight } = window;
+        canvasEl.width = innerWidth;
+        canvasEl.height = innerHeight;
+      }
+
+      center[0] = 0.5 * canvasEl.width;
+      center[1] = 0.5 * canvasEl.height;
+    };
+
+    const initParticleFunc = (i: number) => {
+      const canvasEl = canvasRef.current;
+      if (!canvasEl) return;
+
+      let x, y, vx, vy, life, ttl, speedVal, radius, hue;
+
+      x = rand(canvasEl.width);
+      y = center[1] + randRange(rangeY);
+      vx = 0;
+      vy = 0;
+      life = 0;
+      ttl = baseTTL + rand(rangeTTL);
+      speedVal = baseSpeed + rand(rangeSpeed);
+      radius = baseRadius + rand(rangeRadius);
+      hue = baseHue + rand(rangeHue);
+
+      particleProps.set([x, y, vx, vy, life, ttl, speedVal, radius, hue], i);
+    };
+
+    const initParticlesFunc = () => {
+      tick = 0;
+      particleProps = new Float32Array(particlePropsLength);
+
+      for (let i = 0; i < particlePropsLength; i += particlePropCount) {
+        initParticleFunc(i);
+      }
+    };
+
+    const checkBoundsFunc = (x: number, y: number, canvasEl: HTMLCanvasElement) => {
+      return x > canvasEl.width || x < 0 || y > canvasEl.height || y < 0;
+    };
+
+    const drawParticleFunc = (
+      x: number,
+      y: number,
+      x2: number,
+      y2: number,
+      life: number,
+      ttl: number,
+      radius: number,
+      hue: number,
+      ctxEl: CanvasRenderingContext2D,
+    ) => {
+      ctxEl.save();
+      ctxEl.lineCap = "round";
+      ctxEl.lineWidth = radius;
+      const saturation = theme === 'dark' ? 100 : 100;
+      const alpha = fadeInOut(life, ttl);
+      const adjustedAlpha = theme === 'dark' ? alpha : Math.min(alpha * 1.5, 1);
+      ctxEl.strokeStyle = `hsla(${hue},${saturation}%,${particleLightness}%,${adjustedAlpha})`;
+      ctxEl.beginPath();
+      ctxEl.moveTo(x, y);
+      ctxEl.lineTo(x2, y2);
+      ctxEl.stroke();
+      ctxEl.closePath();
+      ctxEl.restore();
+    };
+
+    const updateParticleFunc = (i: number, ctxEl: CanvasRenderingContext2D) => {
+      const canvasEl = canvasRef.current;
+      if (!canvasEl) return;
+
+      let i2 = 1 + i,
+        i3 = 2 + i,
+        i4 = 3 + i,
+        i5 = 4 + i,
+        i6 = 5 + i,
+        i7 = 6 + i,
+        i8 = 7 + i,
+        i9 = 8 + i;
+      let n, x, y, vx, vy, life, ttl, speedVal, x2, y2, radius, hue;
+
+      x = particleProps[i];
+      y = particleProps[i2];
+      n = noise3D(x * xOff, y * yOff, tick * zOff) * noiseSteps * TAU;
+      vx = lerp(particleProps[i3], Math.cos(n), 0.5);
+      vy = lerp(particleProps[i4], Math.sin(n), 0.5);
+      life = particleProps[i5];
+      ttl = particleProps[i6];
+      speedVal = particleProps[i7];
+      x2 = x + vx * speedVal;
+      y2 = y + vy * speedVal;
+      radius = particleProps[i8];
+      hue = particleProps[i9];
+
+      drawParticleFunc(x, y, x2, y2, life, ttl, radius, hue, ctxEl);
+
+      life++;
+
+      particleProps[i] = x2;
+      particleProps[i2] = y2;
+      particleProps[i3] = vx;
+      particleProps[i4] = vy;
+      particleProps[i5] = life;
+
+      (checkBoundsFunc(x, y, canvasEl) || life > ttl) && initParticleFunc(i);
+    };
+
+    const drawParticlesFunc = (ctxEl: CanvasRenderingContext2D) => {
+      for (let i = 0; i < particlePropsLength; i += particlePropCount) {
+        updateParticleFunc(i, ctxEl);
+      }
+    };
+
+    const renderGlowFunc = (
+      canvasEl: HTMLCanvasElement,
+      ctxEl: CanvasRenderingContext2D,
+    ) => {
+      ctxEl.save();
+      ctxEl.filter = "blur(8px) brightness(200%)";
+      ctxEl.globalCompositeOperation = "lighter";
+      ctxEl.drawImage(canvasEl, 0, 0);
+      ctxEl.restore();
+
+      ctxEl.save();
+      ctxEl.filter = "blur(4px) brightness(200%)";
+      ctxEl.globalCompositeOperation = "lighter";
+      ctxEl.drawImage(canvasEl, 0, 0);
+      ctxEl.restore();
+    };
+
+    const renderToScreenFunc = (
+      canvasEl: HTMLCanvasElement,
+      ctxEl: CanvasRenderingContext2D,
+    ) => {
+      ctxEl.save();
+      ctxEl.globalCompositeOperation = "lighter";
+      ctxEl.drawImage(canvasEl, 0, 0);
+      ctxEl.restore();
+    };
+
+    const drawFunc = (canvasEl: HTMLCanvasElement, ctxEl: CanvasRenderingContext2D) => {
+      // Dark mode - original vortex animation
+      tick++;
+
+      ctxEl.clearRect(0, 0, canvasEl.width, canvasEl.height);
+      ctxEl.fillStyle = backgroundColor;
+      ctxEl.fillRect(0, 0, canvasEl.width, canvasEl.height);
+
+      drawParticlesFunc(ctxEl);
+      renderGlowFunc(canvasEl, ctxEl);
+      renderToScreenFunc(canvasEl, ctxEl);
+
+      animationFrameId.current = window.requestAnimationFrame(() =>
+        drawFunc(canvasEl, ctxEl),
+      );
+    };
+
     const handleResize = () => {
       const canvasEl = canvasRef.current;
       const ctxEl = canvasEl?.getContext("2d");
       if (canvasEl && ctxEl) {
-        resize(canvasEl, ctxEl);
+        resizeFunc(canvasEl, ctxEl);
       }
     };
 
-    resize(canvas, ctx);
+    resizeFunc(canvas, ctx);
 
-    initParticles();
-    draw(canvas, ctx);
+    initParticlesFunc();
+    drawFunc(canvas, ctx);
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -304,7 +472,7 @@ export const Vortex = (props: VortexProps) => {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [backgroundColor, theme, draw, initParticles, resize, animationFrameId]);
+  }, [backgroundColor, theme]);
 
   if (theme === 'light') {
     return (
