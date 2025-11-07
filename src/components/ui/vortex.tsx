@@ -80,34 +80,6 @@ export const Vortex = (props: VortexProps) => {
   const lerp = (n1: number, n2: number, speed: number): number =>
     (1 - speed) * n1 + speed * n2;
 
-
-  const renderGlow = (
-    canvas: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D,
-  ) => {
-    ctx.save();
-    ctx.filter = "blur(8px) brightness(200%)";
-    ctx.globalCompositeOperation = "lighter";
-    ctx.drawImage(canvas, 0, 0);
-    ctx.restore();
-
-    ctx.save();
-    ctx.filter = "blur(4px) brightness(200%)";
-    ctx.globalCompositeOperation = "lighter";
-    ctx.drawImage(canvas, 0, 0);
-    ctx.restore();
-  };
-
-  const renderToScreen = (
-    canvas: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D,
-  ) => {
-    ctx.save();
-    ctx.globalCompositeOperation = "lighter";
-    ctx.drawImage(canvas, 0, 0);
-    ctx.restore();
-  };
-
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -335,7 +307,30 @@ export const Vortex = (props: VortexProps) => {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [backgroundColor, theme]);
+  }, [
+    backgroundColor,
+    theme,
+    TAU,
+    baseHue,
+    baseRadius,
+    baseSpeed,
+    noise3D,
+    particleLightness,
+    particlePropsLength,
+    randRange,
+    rangeRadius,
+    rangeSpeed,
+    rangeY,
+    particlePropCount,
+    baseTTL,
+    rangeTTL,
+    noiseSteps,
+    xOff,
+    yOff,
+    zOff,
+    fadeInOut,
+    lerp,
+  ]);
 
   if (theme === 'light') {
     return (
