@@ -69,16 +69,6 @@ export const Vortex = (props: VortexProps) => {
   const centerRef = useRef<[number, number]>([0, 0]);
 
   const TAU: number = 2 * Math.PI;
-  const rand = (n: number): number => n * Math.random();
-  const randRange = (n: number): number => n - rand(2 * n);
-
-  const fadeInOut = (t: number, m: number): number => {
-    let hm = 0.5 * m;
-    return Math.abs(((t + hm) % m) - hm) / hm;
-  };
-
-  const lerp = (n1: number, n2: number, speed: number): number =>
-    (1 - speed) * n1 + speed * n2;
 
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
@@ -118,6 +108,18 @@ export const Vortex = (props: VortexProps) => {
     if (!ctx) {
       return;
     }
+
+    // Define utility functions inside useEffect to avoid dependency issues
+    const rand = (n: number): number => n * Math.random();
+    const randRange = (n: number): number => n - rand(2 * n);
+
+    const fadeInOut = (t: number, m: number): number => {
+      let hm = 0.5 * m;
+      return Math.abs(((t + hm) % m) - hm) / hm;
+    };
+
+    const lerp = (n1: number, n2: number, speed: number): number =>
+      (1 - speed) * n1 + speed * n2;
 
     // Define functions inside useEffect to avoid dependency issues
     const resizeFunc = (
@@ -317,7 +319,6 @@ export const Vortex = (props: VortexProps) => {
     noise3D,
     particleLightness,
     particlePropsLength,
-    randRange,
     rangeRadius,
     rangeSpeed,
     rangeY,
@@ -328,8 +329,6 @@ export const Vortex = (props: VortexProps) => {
     xOff,
     yOff,
     zOff,
-    fadeInOut,
-    lerp,
   ]);
 
   if (theme === 'light') {
