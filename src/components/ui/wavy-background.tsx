@@ -26,14 +26,16 @@ export const WavyBackground = ({
   [key: string]: any;
 }) => {
   const noise = createNoise3D();
-  let w: number,
-    h: number,
-    nt: number,
-    i: number,
-    x: number,
-    ctx: any,
-    canvas: any;
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const resizeHandlerRef = useRef<(() => void) | null>(null);
+  const animationIdRef = useRef<number | null>(null);
+  
+  // Store mutable values in refs to persist across renders
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const dimensionsRef = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
+  const timeRef = useRef<number>(0);
+
   const getSpeed = () => {
     switch (speed) {
       case "slow":
@@ -45,10 +47,6 @@ export const WavyBackground = ({
     }
   };
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const resizeHandlerRef = useRef<(() => void) | null>(null);
-  const animationIdRef = useRef<number | null>(null);
-
   const waveColors = colors ?? [
     "#38bdf8",
     "#818cf8",
@@ -56,69 +54,81 @@ export const WavyBackground = ({
     "#e879f9",
     "#22d3ee",
   ];
-  const drawWave = (n: number) => {
-    if (!ctx || !w || !h) return;
-    nt += getSpeed();
-    for (i = 0; i < n; i++) {
-      ctx.beginPath();
-      ctx.lineWidth = waveWidth || 50;
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      const color = waveColors[i % waveColors.length];
-      // Use rgba format for better opacity control
-      const alpha = waveOpacity || 0.8;
-      // Convert hex to rgb
-      const r = parseInt(color.slice(1, 3), 16);
-      const g = parseInt(color.slice(3, 5), 16);
-      const b = parseInt(color.slice(5, 7), 16);
-      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
-      for (x = 0; x < w; x += 5) {
-        var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // Center the wave vertically
-      }
-      ctx.stroke();
-      ctx.closePath();
-    }
-  };
-
-  const render = () => {
-    if (!ctx || !w || !h) {
-      animationIdRef.current = requestAnimationFrame(render);
-      return;
-    }
-    // Clear and fill background
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = backgroundFill || "black";
-    ctx.fillRect(0, 0, w, h);
-    
-    // Draw waves
-    ctx.globalAlpha = 1;
-    drawWave(9);
-    animationIdRef.current = requestAnimationFrame(render);
-  };
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
-      canvas = canvasRef.current;
+      const canvas = canvasRef.current;
       const container = containerRef.current;
       if (!canvas || !container) return;
 
-      ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d");
       if (!ctx) return;
+      
+      ctxRef.current = ctx;
 
       const applyDimensions = () => {
+        if (!container || !ctxRef.current) return;
         const rect = container.getBoundingClientRect();
-        w = ctx!.canvas.width = rect.width || window.innerWidth;
-        h = ctx!.canvas.height = rect.height || window.innerHeight;
-        if (blur > 0 && ctx) {
-          ctx.filter = `blur(${blur}px)`;
-        } else if (ctx) {
-          ctx.filter = "none";
+        const w = rect.width || window.innerWidth;
+        const h = rect.height || window.innerHeight;
+        ctxRef.current.canvas.width = w;
+        ctxRef.current.canvas.height = h;
+        dimensionsRef.current = { w, h };
+        if (blur > 0) {
+          ctxRef.current.filter = `blur(${blur}px)`;
+        } else {
+          ctxRef.current.filter = "none";
         }
       };
 
+      const drawWave = (n: number) => {
+        const ctx = ctxRef.current;
+        const { w, h } = dimensionsRef.current;
+        if (!ctx || !w || !h) return;
+        
+        timeRef.current += getSpeed();
+        for (let i = 0; i < n; i++) {
+          ctx.beginPath();
+          ctx.lineWidth = waveWidth || 50;
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          const color = waveColors[i % waveColors.length];
+          // Use rgba format for better opacity control
+          const alpha = waveOpacity || 0.8;
+          // Convert hex to rgb
+          const r = parseInt(color.slice(1, 3), 16);
+          const g = parseInt(color.slice(3, 5), 16);
+          const b = parseInt(color.slice(5, 7), 16);
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+          for (let x = 0; x < w; x += 5) {
+            const y = noise(x / 800, 0.3 * i, timeRef.current) * 100;
+            ctx.lineTo(x, y + h * 0.5); // Center the wave vertically
+          }
+          ctx.stroke();
+          ctx.closePath();
+        }
+      };
+
+      const render = () => {
+        const ctx = ctxRef.current;
+        const { w, h } = dimensionsRef.current;
+        if (!ctx || !w || !h) {
+          animationIdRef.current = requestAnimationFrame(render);
+          return;
+        }
+        // Clear and fill background
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = backgroundFill || "black";
+        ctx.fillRect(0, 0, w, h);
+        
+        // Draw waves
+        ctx.globalAlpha = 1;
+        drawWave(9);
+        animationIdRef.current = requestAnimationFrame(render);
+      };
+
       applyDimensions();
-      nt = 0;
+      timeRef.current = 0;
 
       const handleResize = () => {
         applyDimensions();
@@ -149,7 +159,7 @@ export const WavyBackground = ({
         navigator.userAgent.includes("Safari") &&
         !navigator.userAgent.includes("Chrome")
     );
-  }, []);
+  }, [setIsSafari]);
 
   return (
     <div
