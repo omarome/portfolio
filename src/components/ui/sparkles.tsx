@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import type { Container, SingleOrMultiple } from "@tsparticles/engine";
+import type { SingleOrMultiple } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { cn } from "../../lib/utils";
 
