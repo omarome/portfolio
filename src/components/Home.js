@@ -33,7 +33,7 @@ const Home = () => {
             className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
           >
             <div className="typing-effect-container">
-              <TypingEffect textArray={textArray} typingSpeed={150} deletingSpeed={75} delay={2000} />
+              <TypingEffect textArray={textArray} typingSpeed={3} deletingSpeed={20} delay={3000} />
             </div>
             <div className="profile-container">
               <img src={portfolioImage} alt="Omar" className="profile-image" />
@@ -51,7 +51,7 @@ const Home = () => {
             <h1 className='intro-section-header'>Hey there 👋, I'm Omar — a Software Engineer.</h1>
             <p className='intro-section-paragraph'>
             I am a software engineer with a degree in Information and Communication Technology (ICT) from Metropolia University of Applied Sciences. 
-            Currently, I work full-time at EKE Electronics Ltd., where I apply my skills and passion for technology to create innovative solutions.
+            Currently, I work full-time at EKE Electronics Ltd, leveraging my skills and passion for technology to develop innovative solutions.
             </p>
             </motion.div>
         </section>

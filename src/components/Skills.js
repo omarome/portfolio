@@ -2,6 +2,7 @@ import React from 'react';
 import { frontendSkills, backendSkills, designSkills, otherSkills } from '../directories/SkillsUtilis';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import { SparklesCore } from './ui/sparkles';
 import '../style/Skills.css';
 
 const SkillCard = ({ skill, index, delay }) => {
@@ -34,7 +35,7 @@ const SkillCard = ({ skill, index, delay }) => {
   );
 };
 
-const SkillSection = ({ title, skills }) => {
+const SkillSection = ({ title, skills, index }) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: false,
@@ -51,11 +52,25 @@ const SkillSection = ({ title, skills }) => {
       }}
       className="skill-category"
     >
-      <h2 className="skill-category-title">{title}</h2>
-      <div className="skills-grid">
-        {skills.map((skill, index) => (
-          <SkillCard key={index} skill={skill} index={index} delay={index * 0.1} />
-        ))}
+      <div className="skill-category-bg">
+        <SparklesCore
+          id={`skill-category-${index}`}
+          className="skill-category-sparkles"
+          background="black"
+          particleColor="var(--primary-light)"
+          particleDensity={120}
+          minSize={0.6}
+          maxSize={1.8}
+          speed={3}
+        />
+      </div>
+      <div className="skill-category-content">
+        <h2 className="skill-category-title">{title}</h2>
+        <div className="skills-grid">
+          {skills.map((skill, index) => (
+            <SkillCard key={index} skill={skill} index={index} delay={index * 0.1} />
+          ))}
+        </div>
       </div>
     </motion.div>
   );
@@ -64,14 +79,24 @@ const SkillSection = ({ title, skills }) => {
 const Skills = () => {
   // Combine Design and Others into one section
   const combinedSkills = [...designSkills, ...otherSkills];
-  
+  const sectionsList = [
+    { title: "Frontend", skillsList: frontendSkills },
+    {  title: "Backend", skillsList: backendSkills },
+    {  title: "Tools & Design", skillsList: combinedSkills },
+  ];
   return (
     <section className="section-container">
       <h2 className="title">Skills</h2>
-      <div className="skills-container">
-        <SkillSection title="Frontend" skills={frontendSkills} />
-        <SkillSection title="Backend" skills={backendSkills} />
-        <SkillSection title="Tools & Design" skills={combinedSkills} />
+      <div className="skills-container">{
+          sectionsList.map((section, index)=> (
+            <SkillSection
+              key={index}
+              title={section.title}
+              skills={section.skillsList}
+              index={index}
+            />
+          ))
+        }
       </div>
     </section>
   );
