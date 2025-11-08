@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography } from '@mui/material';
+import { CardMedia, CardContent, Typography, Card } from '@mui/material';
 import { FaGithub } from 'react-icons/fa'; // Import icons from react-icons
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
@@ -8,6 +8,7 @@ import PaymentHubImage from '../assets/project-images/payment-hub.jpeg';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/Projects.css';
+import { SparklesCore } from './ui/sparkles';
 
 const projects = [
   {
@@ -84,51 +85,61 @@ const ProjectCard = ({ project, index }) => {
       animate={inView ? 'visible' : 'hidden'}
       variants={projectVariants}
     >
-          <Card className="project-card">
-            <CardMedia
-              component="img"
-              image={project.image}
-              alt={project.name}
-              className="project-image"
-            />
-            <CardContent className="project-content">
-              <Typography gutterBottom variant="h5" component="h3" className="project-title">
-                {project.name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary" className="project-description">
-                {project.description}
-              </Typography>
-              
-              {/* Tech Stack Tags */}
-              <div className="tech-stack">
-                {project.technologies.map((tech, techIndex) => (
-                  <span key={techIndex} className="tech-tag">
-                    {tech}
-                  </span>
-                ))}
-              </div>
+      <Card className="project-card">
+          <SparklesCore
+            id={`project-sparkles-${index}`}
+            className="project-card-sparkles"
+            background="white"
+            particleColor="var(--primary-light)"
+            particleDensity={120}
+            minSize={0.6}
+            maxSize={1.8}
+            speed={3}
+          />
+          <CardMedia
+            component="img"
+            image={project.image}
+            alt={project.name}
+            className="project-image"
+          />
+          <CardContent className="project-content">
+            <Typography gutterBottom variant="h5" component="h3" className="project-title">
+              {project.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" className="project-description">
+              {project.description}
+            </Typography>
+            
+            {/* Tech Stack Tags */}
+            <div className="tech-stack">
+              {project.technologies.map((tech, techIndex) => (
+                <span key={techIndex} className="tech-tag">
+                  {tech}
+                </span>
+              ))}
+            </div>
 
-              {/* Action Buttons */}
-              <div className="project-actions">
-                {project.demoUrl && (
-                  <button 
-                    className="demo-button"
-                    onClick={(e) => handleDemoClick(e, project.demoUrl)}
-                    aria-label={`View live demo of ${project.name}`}
-                  >
-                    Live Demo
-                  </button>
-                )}
+            {/* Action Buttons */}
+            <div className="project-actions">
+              {project.demoUrl && (
                 <button 
-                  className="github-button"
-                  onClick={(e) => handleGitHubClick(e, project.githubUrl)}
-                  aria-label={`View ${project.name} on GitHub`}
+                  className="demo-button"
+                  onClick={(e) => handleDemoClick(e, project.demoUrl)}
+                  aria-label={`View live demo of ${project.name}`}
                 >
-                  <FaGithub /> View Code
+                  Live Demo
                 </button>
-              </div>
-            </CardContent>
-          </Card>
+              )}
+              <button 
+                className="github-button"
+                onClick={(e) => handleGitHubClick(e, project.githubUrl)}
+                aria-label={`View ${project.name} on GitHub`}
+              >
+                <FaGithub /> View Code
+              </button>
+            </div>
+          </CardContent>
+      </Card>
     </motion.div>
   );
 };

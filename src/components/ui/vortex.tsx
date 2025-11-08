@@ -338,9 +338,9 @@ export const Vortex = (props: VortexProps) => {
         containerClassName={props.containerClassName}
         colors={["#5e0097", "#7d00c7", "#a200ff"]}
         backgroundFill="#ffffff"
-        waveWidth={80}
-        waveOpacity={0.8}
-        blur={0}
+        waveWidth={370}
+        waveOpacity={0.5}
+        blur={5}
       >
         {props.children}
       </WavyBackground>
