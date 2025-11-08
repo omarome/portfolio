@@ -104,7 +104,7 @@ export const WavyBackground = ({
           ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
           for (let x = 0; x < w; x += 5) {
             const y = noise(x / 800, 0.3 * i, timeRef.current) * 100;
-            ctx.lineTo(x, y + h * 0.5); // Center the wave vertically
+            ctx.lineTo(x, y + h * 0.75); // Shift wave vertically lower (approx. 25% from bottom)
           }
           ctx.stroke();
           ctx.closePath();
