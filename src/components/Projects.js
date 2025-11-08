@@ -89,7 +89,7 @@ const ProjectCard = ({ project, index }) => {
           <SparklesCore
             id={`project-sparkles-${index}`}
             className="project-card-sparkles"
-            background="white"
+            background="var(--background-card)"
             particleColor="var(--primary-light)"
             particleDensity={120}
             minSize={0.6}

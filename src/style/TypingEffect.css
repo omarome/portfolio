@@ -3,14 +3,7 @@
     font-size: 2em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bolder;
-    border-right: 0.08em solid var(--text-white);
   }
-
-/* Light theme: use purple text for visibility on light background */
-[data-theme="light"] .typewrite > .wrap {
-    color: var(--primary-color);
-    border-right: 0.08em solid var(--primary-color);
-}
 
 /* Media query for phones */
 @media (max-width: 600px) {
@@ -19,6 +12,10 @@
     font-size: 2em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bolder;
-    border-right: 0.08em solid var(--text-white);
   }
+}
+
+.typewrite .word-block {
+  display: inline-flex;
+  white-space: nowrap;
 }

@@ -12,9 +12,10 @@
 
 .skill-category {
     margin: 10px;
-    padding: 2rem;
-    background-color: var(--background-card);
     border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
 }
 
 .skill-category:hover {
@@ -27,8 +28,52 @@
     margin-bottom: 2rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
 }
 
+.skill-category-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.skill-category-sparkles {
+    position: absolute;
+    display: flex;
+    color: blueviolet;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.45;
+    mix-blend-mode: screen;
+}
+.skill-category-sparkles > div {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .skill-category-sparkles canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex;
+  }
+  
+.skill-category-content {
+    border: 0.1px solid var(--primary-color);
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    transition: var(--transition-normal);
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+}
+.skill-category-content:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+}
 .skills-grid {
     display: flex;
     justify-content: center;
