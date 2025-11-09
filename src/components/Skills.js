@@ -1,8 +1,13 @@
-import React from 'react';
-import { frontendSkills, backendSkills, designSkills, otherSkills } from '../directories/SkillsUtilis';
+import {
+  frontendSkills,
+  backendSkills,
+  designSkills,
+  otherSkills,
+} from '../directories/SkillsUtilis';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
-import { SparklesCore } from './ui/sparkles';
+import { SparklesCore } from './ui-animation/sparkles';
+import { CardContainer, CardBody, CardItem } from './ui-animation/3d-card';
 import '../style/Skills.css';
 
 const SkillCard = ({ skill, index, delay }) => {
@@ -20,17 +25,36 @@ const SkillCard = ({ skill, index, delay }) => {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay } },
       }}
-      className="skill-card"
+      className="skill-card-wrapper"
       whileHover={{ scale: 1.05, y: -5 }}
       transition={{ duration: 0.3 }}
     >
-      <img
-        alt={`${skill.name} logo`}
-        className="skill-logo"
-        src={skill.logo}
-        loading="lazy"
-      />
-      <div className="skill-name">{skill.name}</div>
+      <CardContainer
+        containerClassName="skill-card-container"
+        className="skill-card-inner"
+        tiltIntensity={12}
+      >
+        <CardBody className="skill-card">
+          <CardItem
+            translateZ={120}
+            className="skill-logo-wrapper"
+          >
+            <img
+              alt={`${skill.name} logo`}
+              className="skill-logo"
+              src={skill.logo}
+              loading="lazy"
+            />
+          </CardItem>
+          <CardItem
+            as="span"
+            translateZ={70}
+            className="skill-name"
+          >
+            {skill.name}
+          </CardItem>
+        </CardBody>
+      </CardContainer>
     </motion.div>
   );
 };

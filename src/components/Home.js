@@ -1,10 +1,10 @@
-import React from 'react';
-import portfolioImage from '../assets/portfolio_image.jpeg'
+import portfolioImage from '../assets/portfolio_image.jpeg';
 import TypingEffect from '../components/TypingEffect';
-import '../style/Home.css'
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
-import { Vortex } from '../components/ui/vortex';
+import { Vortex } from './ui-animation/vortex';
+import { CardContainer, CardBody, CardItem } from './ui-animation/3d-card';
+import '../style/Home.css';
 
 const Home = () => {
     const [ref, inView] = useInView({
@@ -36,7 +36,16 @@ const Home = () => {
               <TypingEffect textArray={textArray} typingSpeed={3} deletingSpeed={20} delay={3000} />
             </div>
             <div className="profile-container">
-              <img src={portfolioImage} alt="Omar" className="profile-image" />
+              <CardContainer
+                containerClassName="profile-card-container"
+                className="profile-card"
+              >
+                <CardBody className="profile-card-body">
+                  <CardItem translateZ={200} className="profile-card-item">
+                    <img src={portfolioImage} alt="Omar" className="profile-image" />
+                  </CardItem>
+                </CardBody>
+              </CardContainer>
             </div>
           </Vortex>
         </section>

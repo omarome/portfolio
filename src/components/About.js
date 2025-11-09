@@ -1,8 +1,7 @@
-import React from 'react';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/About.css';
-import { SparklesCore } from './ui/sparkles';
+import { SparklesCore } from './ui-animation/sparkles';
 
 const About = () => {
   const [ref, inView] = useInView({
