@@ -1,14 +1,13 @@
-import React from 'react';
 import { CardMedia, CardContent, Typography, Card } from '@mui/material';
-import { FaGithub } from 'react-icons/fa'; // Import icons from react-icons
+import { FaGithub } from 'react-icons/fa';
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
 import PaymentHubImage from '../assets/project-images/payment-hub.jpeg';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import { SparklesCore } from './ui-animation/sparkles';
 import '../style/Projects.css';
-import { SparklesCore } from './ui/sparkles';
 
 const projects = [
   {
