@@ -1,4 +1,3 @@
-import { CardMedia, CardContent, Typography, Card } from '@mui/material';
 import { FaGithub } from 'react-icons/fa';
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
@@ -6,7 +5,7 @@ import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpe
 import PaymentHubImage from '../assets/project-images/payment-hub.jpeg';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
-import { SparklesCore } from './ui-animation/sparkles';
+import { CardContainer, CardBody, CardItem } from './ui-animation/3d-card';
 import '../style/Projects.css';
 
 const projects = [
@@ -56,12 +55,6 @@ const ProjectCard = ({ project, index }) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const handleDemoClick = (e, url) => {
-    e.stopPropagation();
-    if (url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   const projectVariants = {
     hidden: { 
@@ -84,32 +77,28 @@ const ProjectCard = ({ project, index }) => {
       animate={inView ? 'visible' : 'hidden'}
       variants={projectVariants}
     >
-      <Card className="project-card">
-          <SparklesCore
-            id={`project-sparkles-${index}`}
-            className="project-card-sparkles"
-            background="var(--background-card)"
-            particleColor="var(--primary-light)"
-            particleDensity={120}
-            minSize={0.6}
-            maxSize={1.8}
-            speed={3}
-          />
-          <CardMedia
-            component="img"
-            image={project.image}
-            alt={project.name}
-            className="project-image"
-          />
-          <CardContent className="project-content">
-            <Typography gutterBottom variant="h5" component="h3" className="project-title">
+      <CardContainer
+        containerClassName="project-card-container"
+        tiltIntensity={30}
+      >
+        <CardBody className="project-card group/card">
+          <CardItem translateZ="260" className="w-full mt-4">
+            <img
+              src={project.image}
+              alt={project.name}
+              className="project-image"
+              loading="lazy"
+            />
+          </CardItem>
+          <CardItem translateZ="160" className="project-content" as="a" >
+            <h3 className="project-title">
               {project.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" className="project-description">
+            </h3>
+            <p className="project-description">
               {project.description}
-            </Typography>
-            
-            {/* Tech Stack Tags */}
+            </p>
+          </CardItem>
+          <CardItem translateZ="160" className="tech-stack" as="a" >
             <div className="tech-stack">
               {project.technologies.map((tech, techIndex) => (
                 <span key={techIndex} className="tech-tag">
@@ -117,28 +106,18 @@ const ProjectCard = ({ project, index }) => {
                 </span>
               ))}
             </div>
-
-            {/* Action Buttons */}
-            <div className="project-actions">
-              {project.demoUrl && (
-                <button 
-                  className="demo-button"
-                  onClick={(e) => handleDemoClick(e, project.demoUrl)}
-                  aria-label={`View live demo of ${project.name}`}
-                >
-                  Live Demo
-                </button>
-              )}
-              <button 
-                className="github-button"
-                onClick={(e) => handleGitHubClick(e, project.githubUrl)}
-                aria-label={`View ${project.name} on GitHub`}
-              >
-                <FaGithub /> View Code
-              </button>
-            </div>
-          </CardContent>
-      </Card>
+          </CardItem>
+          <CardItem translateZ="160" className="project-actions" as="a" >
+            <button
+              className="github-button"
+              onClick={(e) => handleGitHubClick(e, project.githubUrl)}
+              aria-label={`View ${project.name} on GitHub`}
+            >
+              <FaGithub /> View Code
+            </button>
+          </CardItem>
+        </CardBody>
+      </CardContainer>
     </motion.div>
   );
 };
@@ -154,12 +133,11 @@ const Projects = () => {
       </div>
       <div className='more-projects'>
         <a 
-          className='more-projects-text icon-style'
           href="https://github.com/omarome" 
           target="_blank" 
           rel="noopener noreferrer">
-            For more checkout my GitHub
-            <FaGithub />
+            <p className='more-projects-text'>For more checkout my GitHub <FaGithub className='more-projects-icon' /></p>
+           
         </a>  
       </div>
     </div>
