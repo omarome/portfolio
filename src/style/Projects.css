@@ -1,255 +1,696 @@
+@import './design-system.css';
+
+
+/* ============================================
+   Projects Container & Section
+   ============================================ */
 .projects-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  justify-items: center;
+  width: 100%;
+  padding: var(--space-8) var(--space-4);
+  min-height: 100vh;
 }
 
 .projects-section {
+  margin-bottom: var(--space-16);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: var(--space-6);
   width: 100%;
+  padding: 0 var(--space-4);
 }
 
+/* ============================================
+   Project Card Container (3D Tilt Wrapper)
+   ============================================ */
+.project-card-container {
+  padding: var(--space-4);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  min-width: 280px;
+  perspective: 1000px;
+  /* Optimize for 3D transforms */
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Prevent layout shifts */
+  contain: layout style paint;
+}
+
+/* Override transition on CardContainer's inner div to prevent jitter */
+/* The 3D card component applies transition-all which conflicts with inline transform updates */
+/* We remove transform from transition but keep other properties smooth */
+.project-card-container > div {
+  transition: opacity 0.2s ease-linear, filter 0.2s ease-linear !important;
+  /* Transform is handled by inline styles from the 3D component - no CSS transition needed */
+  /* This prevents jitter when mouse moves rapidly */
+}
+
+/* Disable 3D effects on mobile for better performance */
+@media (max-width: 768px) {
+  .project-card-container {
+    perspective: none;
+    transform-style: flat;
+    -webkit-transform-style: flat;
+  }
+  .project-card {
+    min-height: 490px;
+  }
+}
+
+/* ============================================
+   Project Card (Main Card Element)
+   ============================================ */
 .project-card {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  border-radius: var(--border-radius);
-  border: 2px solid var(--secondary-color);
+  max-width: 400px;
+  min-height: 550px;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
   box-shadow: var(--shadow-md);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  margin: 10px;
   background-color: var(--background-card);
   color: var(--text-primary);
   overflow: hidden;
   isolation: isolate;
-}
-
-.project-card:hover {
-  transition: transform 0.3s ease-in-out;
-  transform: translateY(-10px);
-  border-color: var(--primary-color); /* Match About card hover border */
-  box-shadow: var(--shadow-glow);
-  background-color: var(--background-card-hover);
-}
-
-.project-card-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.project-card-sparkles {
-  position: absolute;
   display: flex;
-  color: blueviolet;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.45;
-  mix-blend-mode: screen;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  /* Remove transform from transition to avoid conflict with 3D tilt inline styles */
+  transition: box-shadow var(--transition-normal),
+              border-color var(--transition-normal),
+              background-color var(--transition-normal);
+  /* Hardware acceleration - but don't set will-change: transform as it conflicts with inline styles */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
-.project-card-sparkles > div {
-  position: absolute !important;
-  inset: 0 !important;
+/* Card hover effects - Desktop only */
+/* Note: transform is handled by 3D card component, so we only change visual properties */
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover {
+    /* Remove transform to avoid conflict with 3D tilt animation */
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+    background-color: var(--background-card-hover);
+  }
+}
+
+/* Active/touch state for mobile */
+.project-card:active {
+  transform: translateY(-4px) scale(0.98);
+  transition: transform var(--transition-fast);
+}
+
+/* ============================================
+   Project Image
+   ============================================ */
+.project-image-wrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: var(--background-tertiary);
+}
+
+/* Ensure CardItem containing image has fixed dimensions */
+/* Target the div that contains the image (CardItem with w-full class) */
+.project-card > div[class*="w-full"] {
   width: 100% !important;
-  height: 100% !important;
+  height: 220px !important;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  position: relative;
+  background: var(--background-tertiary);
+  display: block;
+  flex-shrink: 0;
 }
 
-.project-card-sparkles canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: flex;
+.project-image {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  max-height: 220px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-slow),
+              box-shadow var(--transition-slow);
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  display: block;
+  /* Ensure image fills container completely */
+  flex-shrink: 0;
 }
 
+/* Image hover effect - Desktop only */
+@media (hover: hover) and (pointer: fine) {
+  .group\/card:hover .project-image {
+    transform: scale(1.05) translateZ(0);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ============================================
+   Project Content
+   ============================================ */
 .project-card-content {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--padding-small);
-}
-
-.project-image {
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px 8px 0 0;
+  padding: var(--space-2);
+  gap: var(--space-4);
 }
 
 .project-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-4);
   flex-grow: 1;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
+/* ============================================
+   Typography
+   ============================================ */
 .project-title {
-  color: var(--primary-color) !important;
-  font-weight: bold !important;
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xl);
+  margin: 0;
+  line-height: var(--line-height-tight);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: color var(--transition-normal);
 }
 
 .project-description {
-  color: #A9B7C6 !important;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  margin: 0;
   min-height: 60px;
+  flex-grow: 1;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
+/* Light theme adjustments */
+[data-theme="light"] .project-description {
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   Tech Stack Tags
+   ============================================ */
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
 .tech-tag {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #A9B7C6;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
+  color: var(--text-primary);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-2xl);
+  font-size: var(--font-size-xs);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
+  display: inline-block;
+  white-space: nowrap;
+  cursor: default;
+  /* Smooth transitions */
+  will-change: background-color, color, transform;
 }
 
-.tech-tag:hover {
-  background-color: var(--highlight-color);
-  color: white;
+/* Tech tag hover - Desktop only */
+@media (hover: hover) and (pointer: fine) {
+  .tech-tag:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: var(--text-white);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-sm);
+  }
 }
 
-/* Light theme: ensure text reads black-ish on light backgrounds */
-[data-theme="light"] .project-description {
-  color: var(--text-primary) !important;
-}
-
+/* Light theme tech tags */
 [data-theme="light"] .tech-tag {
   color: var(--text-primary);
   background-color: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.project-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: auto;
-  padding-top: 1rem;
+[data-theme="light"] .tech-tag:hover {
+  background-color: var(--primary-color);
+  color: var(--text-white);
 }
 
-.demo-button, .github-button {
+/* ============================================
+   Project Actions (Buttons)
+   ============================================ */
+.project-actions {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-4);
+  width: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Ensure single button takes full width */
+.project-actions > :only-child {
+  width: 100%;
+}
+
+.demo-button,
+.github-button {
   flex: 1;
-  padding: 0.75rem 1.5rem;
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
+  min-height: 44px; /* Touch-friendly minimum */
+  /* Smooth button animations */
+  will-change: transform, box-shadow, background-color;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .demo-button {
-  background-color: var(--highlight-color);
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-white);
 }
 
-.demo-button:hover {
-  background-color: #B8693D;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(204, 120, 50, 0.3);
+.demo-button:hover,
+.demo-button:focus {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: var(--shadow-glow);
+  outline: none;
+}
+
+.demo-button:active {
+  transform: translateY(0) scale(0.98);
+  transition: transform var(--transition-fast);
 }
 
 .github-button {
-  background-color: #333333;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.github-button:hover {
-  background-color: #555555;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+.github-button:hover,
+.github-button:focus {
+  background-color: var(--primary-hover);
+  color: var(--text-white);
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: var(--shadow-md);
+  outline: none;
 }
 
-.more-projects {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-
-.more-projects-text {
-  font-size: 22px;
-}
-
-.icon-style {
-  margin-left: 5px;
-  color: var(--primary-color);
-  font-size: 24px;
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.icon-style:hover {
-  color: var(--secondary-color);
-  transform: scale(1.2);
-}
-
-
-[data-theme="light"] .icon-style:hover {
+/* Dark mode: silver color on hover (like scroll-to-top) */
+[data-theme="dark"] .github-button:hover,
+[data-theme="dark"] .github-button:focus {
+  background-color: var(--text-primary);
   color: var(--color-black);
 }
 
-.project-card p {
-  margin: 0.5rem 0 0;
-  color: var(--text-color);
-} 
+/* Light mode: black color on hover */
+[data-theme="light"] .github-button:hover,
+[data-theme="light"] .github-button:focus {
+  background-color: var(--color-black);
+  color: var(--text-white);
+}
 
-@media (max-width: 600px) {
-  .projects-container {
-    align-items: center;
-    gap: 2px;
+.github-button:active {
+  transform: translateY(0) scale(0.98);
+  transition: transform var(--transition-fast);
+}
+
+/* ============================================
+   More Projects Link
+   ============================================ */
+.more-projects {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: var(--font-size-2xl);
+  text-decoration: none;
+  transition: color var(--transition-normal),
+              transform var(--transition-normal);
+  margin-top: var(--space-8);
+  padding: var(--space-4);
+}
+
+.more-projects a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: inherit;
+  transition: inherit;
+}
+
+.more-projects-text {
+  font-size: var(--font-size-xl);
+  display: inline;
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+.more-projects-icon {
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform var(--transition-normal);
+}
+
+/* More projects hover - Desktop only */
+@media (hover: hover) and (pointer: fine) {
+  .more-projects:hover {
+    color: var(--primary-hover);
+    transform: scale(1.05);
   }
 
+  .more-projects:hover .more-projects-icon {
+    transform: translateX(4px);
+  }
+}
+
+.more-projects:active {
+  transform: scale(0.98);
+  transition: transform var(--transition-fast);
+}
+
+[data-theme="light"] .more-projects:hover {
+  color: var(--primary-color);
+}
+
+/* ============================================
+   Accessibility: Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-image,
+  .tech-tag,
+  .demo-button,
+  .github-button,
+  .more-projects {
+    transition: none;
+    animation: none;
+  }
+
+  .project-card:hover {
+    transform: none;
+  }
+
+  .group\/card:hover .project-image {
+    transform: none;
+  }
+
+  .tech-tag:hover {
+    transform: none;
+  }
+
+  .demo-button:hover,
+  .github-button:hover {
+    transform: none;
+  }
+
+  .more-projects:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   Responsive Design: Tablet
+   ============================================ */
+@media (max-width: 1024px) {
   .projects-section {
-    justify-content: center;
-    flex-direction: column;
+    gap: var(--space-5);
+    padding: 0 var(--space-3);
+  }
+
+  .project-card-container {
+    max-width: 350px;
+    min-width: 300px;
   }
 
   .project-card {
-    background-color: var(--background-card);
-    margin: 20px auto;
-    width: 90%;
-    max-width: 360px;
-    transition: transform 0.1s ease-in-out;
+    max-width: 350px;
+    min-height: 480px;
+    padding: var(--space-5);
+  }
+
+  .project-image-wrapper {
+    height: 200px;
+  }
+
+  /* Ensure image container maintains fixed height on tablet */
+  .project-card > div[class*="w-full"] {
+    height: 200px !important;
   }
 
   .project-image {
+    min-height: 200px;
+    max-height: 200px;
+  }
+}
+
+/* ============================================
+   Responsive Design: Mobile
+   ============================================ */
+@media (max-width: 768px) {
+  .projects-container {
+    padding: var(--space-6) var(--space-2);
+  }
+
+  .projects-section {
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+    padding: 0 var(--space-2);
+  }
+
+  .project-card-container {
+    max-width: 100%;
+    min-width: 100%;
+    padding: var(--space-2);
+  }
+
+  .project-card {
+    max-width: 100%;
+    min-height: auto;
+    margin: 0 auto;
+    padding: var(--space-4);
+    /* Reduce hover effects on mobile */
+    transform: none;
+    transform-style: flat;
+    -webkit-transform-style: flat;
+    /* Disable will-change on mobile for better battery life */
+    will-change: auto;
+  }
+
+  .project-image-wrapper {
     height: 180px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
+  }
+
+  /* Ensure image container maintains fixed height on mobile */
+  .project-card > div[class*="w-full"] {
+    height: 180px !important;
+  }
+
+  .project-image {
+    min-height: 180px;
+    max-height: 180px;
+    border-radius: var(--radius-sm);
+    /* Disable will-change on mobile */
+    will-change: auto;
+  }
+
+  .project-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .project-description {
+    font-size: var(--font-size-sm);
+    min-height: 50px;
   }
 
   .project-actions {
     flex-direction: column;
+    gap: var(--space-3);
   }
 
-  .demo-button, .github-button {
+  .demo-button,
+  .github-button {
     width: 100%;
+    padding: var(--space-3) var(--space-4);
+    /* Disable will-change on mobile */
+    will-change: auto;
   }
 
-  .icon-style {
-    font-size: 20px;
+  .more-projects {
+    font-size: var(--font-size-lg);
+    margin-top: var(--space-6);
   }
 
   .more-projects-text {
-    margin-top: 20px;
-    font-size: 18px;
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ============================================
+   Responsive Design: Small Mobile
+   ============================================ */
+@media (max-width: 480px) {
+  .projects-container {
+    padding: var(--space-4) var(--space-2);
+  }
+
+  .projects-section {
+    gap: var(--space-4);
+  }
+
+  .project-card {
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    min-height: 490px;
+  }
+
+  .project-image-wrapper {
+    height: 160px;
+  }
+
+  /* Ensure image container maintains fixed height on small mobile */
+  .project-card > div[class*="w-full"] {
+    height: 160px !important;
+  }
+
+  .project-image {
+    min-height: 160px;
+    max-height: 160px;
+  }
+
+  .project-title {
+    font-size: var(--font-size-base);
+  }
+
+  .project-description {
+    font-size: var(--font-size-xs);
+  }
+
+  .tech-tag {
+    font-size: 0.65rem;
+    padding: var(--space-1) var(--space-2);
+  }
+
+  .demo-button,
+  .github-button {
+    font-size: var(--font-size-sm);
+    padding: var(--space-2) var(--space-3);
+    min-height: 40px;
+  }
+
+  .more-projects {
+    font-size: var(--font-size-base);
+    padding: var(--space-2);
+  }
+
+  .more-projects-text {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* ============================================
+   Landscape Mobile Optimization
+   ============================================ */
+@media (max-width: 768px) and (orientation: landscape) {
+  .project-card {
+    min-height: 490px;
+  }
+
+  .project-image-wrapper {
+    height: 150px;
+  }
+
+  /* Ensure image container maintains fixed height in landscape */
+  .project-card > div[class*="w-full"] {
+    height: 150px !important;
+  }
+
+  .project-image {
+    min-height: 150px;
+    max-height: 150px;
+  }
+
+  .project-description {
+    min-height: 40px;
+  }
+}
+
+/* ============================================
+   High DPI / Retina Display Optimization
+   ============================================ */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  .project-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+  .project-card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .project-actions {
+    display: none;
+  }
+
+  .more-projects {
+    display: none;
   }
 }
