@@ -12,11 +12,11 @@ import '../style/Projects.css';
 const projects = [
   {
     image: HumintFlowImage,
-    name: 'HumintFlow',
+    name: 'Humint Flow',
     description: 'A full-stack CRM workspace centralizing customer data, deal tracking, and team activity into a single cohesive platform.',
     githubUrl: 'https://github.com/omarome/humint-flow-frontend/blob/master/README.md',
     demoUrl: 'https://humint-flow.web.app/',
-    technologies: ['React.js', 'Java + Springboot', 'PostgressSQL', 'Restful APIs', 'Full-Stack', 'AI']
+    technologies: ['React.js', 'Java + Springboot', 'PostgreSQL', 'Restful APIs', 'Full-Stack', 'AI']
   },
   {
     image: PaymentHubImage,
