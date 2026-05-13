@@ -4,6 +4,13 @@
 /* ============================================
    Projects Container & Section
    ============================================ */
+.project-card-wrapper {
+    max-width: 30rem;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
 .projects-container {
   display: flex;
   flex-direction: column;
@@ -46,6 +53,17 @@
   contain: layout style paint;
 }
 
+.project-card-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.project-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 /* Override transition on CardContainer's inner div to prevent jitter */
 /* The 3D card component applies transition-all which conflicts with inline transform updates */
 /* We remove transform from transition but keep other properties smooth */
