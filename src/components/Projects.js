@@ -1,4 +1,4 @@
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
@@ -12,11 +12,11 @@ import '../style/Projects.css';
 const projects = [
   {
     image: HumintFlowImage,
-    name: 'HumintFlow',
+    name: 'Humint Flow',
     description: 'A full-stack CRM workspace centralizing customer data, deal tracking, and team activity into a single cohesive platform.',
     githubUrl: 'https://github.com/omarome/humint-flow-frontend/blob/master/README.md',
     demoUrl: 'https://humint-flow.web.app/',
-    technologies: ['React.js', 'Java + Springboot', 'PostgressSQL', 'Restful APIs', 'Full-Stack', 'AI']
+    technologies: ['React.js', 'Java + Springboot', 'PostgreSQL', 'Restful APIs', 'Full-Stack', 'AI']
   },
   {
     image: PaymentHubImage,
@@ -59,7 +59,7 @@ const ProjectCard = ({ project, index }) => {
     triggerOnce: false,
   });
 
-  const handleGitHubClick = (e, url) => {
+  const handleLinkClick = (e, url) => {
     e.stopPropagation();
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -119,13 +119,24 @@ const ProjectCard = ({ project, index }) => {
             </div>
           </CardItem>
           <CardItem translateZ="160" className="project-actions" as="a" >
-            <button
-              className="github-button"
-              onClick={(e) => handleGitHubClick(e, project.githubUrl)}
-              aria-label={`View ${project.name} on GitHub`}
-            >
-              <FaGithub /> View Code
-            </button>
+            {project.demoUrl && (
+              <button
+                className="demo-button"
+                onClick={(e) => handleLinkClick(e, project.demoUrl)}
+                aria-label={`View ${project.name} live demo`}
+              >
+                <FaExternalLinkAlt /> Live Demo
+              </button>
+            )}
+            {project.githubUrl && (
+              <button
+                className="github-button"
+                onClick={(e) => handleLinkClick(e, project.githubUrl)}
+                aria-label={`View ${project.name} on GitHub`}
+              >
+                <FaGithub /> View Code
+              </button>
+            )}
           </CardItem>
         </CardBody>
       </CardContainer>
