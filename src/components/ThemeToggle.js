@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
@@ -21,24 +22,23 @@ const ThemeToggle = () => {
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
 
   return (
-    <Button
-      size="small"
-      variant="contained"
-      onClick={toggleTheme}
-      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-      startIcon={theme === 'dark' ? <WbSunnyOutlinedIcon fontSize="small" /> : <DarkModeOutlinedIcon fontSize="small" />}
-      sx={{
-        ml: 2,
-        textTransform: 'capitalize',
-        backgroundColor: theme === 'dark' ? 'var(--secondary-color)' : '#000000',
-        color: theme === 'dark' ? 'var(--text-primary)' : 'var(--text-white)',
-        '&:hover': {
-          backgroundColor: theme === 'dark' ? 'var(--background-tertiary)' : '#111111'
-        }
-      }}
-    >
-      {theme === 'dark' ? 'light' : 'dark'}
-    </Button>
+    <Tooltip title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+      <IconButton
+        size="medium"
+        onClick={toggleTheme}
+        className="login-theme-toggle"
+        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        sx={{
+          ml: 2,
+          color: theme === 'dark' ? 'var(--text-primary)' : '#000000',
+          '&:hover': {
+            backgroundColor: theme === 'dark' ? 'var(--background-tertiary)' : 'rgba(0, 0, 0, 0.04)'
+          }
+        }}
+      >
+        {theme === 'dark' ? <WbSunnyOutlinedIcon /> : <DarkModeOutlinedIcon />}
+      </IconButton>
+    </Tooltip>
   );
 };
 

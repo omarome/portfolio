@@ -111,8 +111,8 @@ const Skills = () => {
   return (
     <section className="section-container">
       <h2 className="title">Skills</h2>
-      <div className="skills-container">{
-          sectionsList.map((section, index)=> (
+      <div className="skills-container">
+        {sectionsList.map((section, index)=> (
             <SkillSection
               key={index}
               title={section.title}

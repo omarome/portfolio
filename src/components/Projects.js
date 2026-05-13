@@ -3,12 +3,21 @@ import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
 import PaymentHubImage from '../assets/project-images/payment-hub.jpeg';
+import HumintFlowImage from '../assets/project-images/humint-flow.jpeg';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { CardContainer, CardBody, CardItem } from './ui-animation/3d-card';
 import '../style/Projects.css';
 
 const projects = [
+  {
+    image: HumintFlowImage,
+    name: 'HumintFlow',
+    description: 'A full-stack CRM workspace centralizing customer data, deal tracking, and team activity into a single cohesive platform.',
+    githubUrl: 'https://github.com/omarome/humint-flow-frontend/blob/master/README.md',
+    demoUrl: 'https://humint-flow.web.app/',
+    technologies: ['React.js', 'Java + Springboot', 'PostgressSQL', 'Restful APIs', 'Full-Stack', 'AI']
+  },
   {
     image: PaymentHubImage,
     name: 'Payment Hub',
@@ -40,7 +49,7 @@ const projects = [
     githubUrl: 'https://github.com/omarome/FoodSpotlightApp',
     demoUrl: null,
     technologies: ['Swift', 'iOS', 'Mobile']
-  }, 
+  },
 
 ];
 
@@ -57,16 +66,14 @@ const ProjectCard = ({ project, index }) => {
 
 
   const projectVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: index % 2 === 0 ? 100 : -100,
+    hidden: {
+      opacity: 0,
       y: 20
     },
-    visible: { 
-      opacity: 1, 
-      x: 0,
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.6, delay: index * 0.1 } 
+      transition: { duration: 0.5, delay: index * 0.1 }
     },
   };
 
@@ -76,13 +83,17 @@ const ProjectCard = ({ project, index }) => {
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
       variants={projectVariants}
+      className="project-card-wrapper"
+      whileHover={{ scale: 1.05, y: -5 }}
+      transition={{ duration: 0.3 }}
     >
       <CardContainer
         containerClassName="project-card-container"
-        tiltIntensity={30}
+        className="project-card-inner"
+        tiltIntensity={40}
       >
-        <CardBody className="project-card group/card">
-          <CardItem translateZ="260" className="w-full mt-4">
+        <CardBody className="project-card">
+          <CardItem translateZ={120} className="project-image-wrapper">
             <img
               src={project.image}
               alt={project.name}
@@ -126,19 +137,19 @@ const Projects = () => {
   return (
     <div className="projects-container">
       <h2 className="title">Projects</h2>
-      <div className="projects-section">
+      <section className="projects-section">
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} index={index} />
         ))}
-      </div>
+      </section>
       <div className='more-projects'>
-        <a 
-          href="https://github.com/omarome" 
-          target="_blank" 
+        <a
+          href="https://github.com/omarome"
+          target="_blank"
           rel="noopener noreferrer">
-            <p className='more-projects-text'>For more checkout my GitHub <FaGithub className='more-projects-icon' /></p>
-           
-        </a>  
+          <p className='more-projects-text'>For more checkout my GitHub <FaGithub className='more-projects-icon' /></p>
+
+        </a>
       </div>
     </div>
   );

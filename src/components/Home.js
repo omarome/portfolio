@@ -59,8 +59,7 @@ const Home = () => {
           >
             <h1 className='intro-section-header'>Hey there 👋, I'm Omar — a Software Engineer.</h1>
             <p className='intro-section-paragraph'>
-            I am a software engineer with a degree in Information and Communication Technology (ICT) from Metropolia University of Applied Sciences. 
-            Currently, I work full-time at EKE Electronics Ltd, leveraging my skills and passion for technology to develop innovative solutions.
+            With a degree in ICT from Metropolia University of Applied Sciences, I currently work full-time at EKE Electronics Ltd, where I leverage my skills and passion for technology to build innovative solutions.
             </p>
             </motion.div>
         </section>
