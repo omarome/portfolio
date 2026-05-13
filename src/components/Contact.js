@@ -104,7 +104,6 @@ const handleSubmit = async (e) => {
         {contactItems.map((contact, index) => (
           <motion.div
             key={index}
-            className="contact-icon-style"
             ref={ref}
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}

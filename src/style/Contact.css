@@ -10,10 +10,11 @@
 .contact-icon-container-style {
   display: inline-flex;
   justify-content: center;
+  gap: var(--space-6);
 }
 
 .contact-icon-style {
-  padding: var(--space-8);
+  padding: var(--space-4);
   color: var(--primary-color);
   font-size: var(--font-size-5xl); 
   text-decoration: none;
@@ -331,9 +332,10 @@
     justify-content: center;
     flex-direction: row;
     padding-bottom: 0;
+    gap: var(--space-4);
   }
   .contact-icon-style {
-    padding: var(--space-6);
+    padding: var(--space-3);
     color: var(--primary-color);
     font-size: var(--font-size-3xl);
     text-decoration: none;
