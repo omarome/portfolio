@@ -47,6 +47,16 @@ body, #root, .app {
   position: relative;
 }
 
+.title-icon {
+  display: inline-block;
+  color: var(--primary-color);
+  font-size: 0.8em;
+  vertical-align: middle;
+  margin-right: var(--space-3);
+  position: relative;
+  top: -0.05em;
+}
+
 .title::after {
   content: '';
   display: block;
@@ -193,7 +203,8 @@ body, #root, .app {
 
   /* Reduce nav-button width for landscape */
   .nav-links .nav-button {
-    width: 100px;
+    min-width: 80px;
+    padding: var(--space-2);
   }
 }
 
@@ -219,7 +230,8 @@ body, #root, .app {
 
   /* Reduce nav-button width for landscape */
   .nav-links .nav-button {
-    width: 100px;
+    min-width: 80px;
+    padding: var(--space-2);
   }
 }
 
@@ -260,14 +272,24 @@ body, #root, .app {
 }
 
 .nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
   color: var(--text-secondary);
   border: none;
   padding: var(--space-3);
-  width: 150px;
+  min-width: 100px;
+  white-space: nowrap;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: var(--transition-normal);
   font-weight: bold;
+}
+
+.nav-button-icon {
+  font-size: 0.95em;
+  flex-shrink: 0;
 }
 
 .nav-button:active {
@@ -306,6 +328,15 @@ body, #root, .app {
   background-color: var(--primary-color);
 }
 
+/* Keep focused/active nav buttons (e.g. Resume after returning via back button) readable in both themes */
+[data-theme="dark"] .nav-button:focus,
+[data-theme="dark"] .nav-button:active,
+[data-theme="light"] .nav-button:focus,
+[data-theme="light"] .nav-button:active {
+  color: var(--text-white);
+  background-color: var(--primary-color);
+}
+
 /* Default: hide menu text and hamburger on desktop */
 /* Using class repetition for higher specificity */
 .menu-text.menu-text {
@@ -318,6 +349,7 @@ body, #root, .app {
 
 .nav-links {
   display: flex;
+  gap: var(--space-2);
 }
 
 /* Mobile: show menu text and hamburger, hide nav links */

@@ -1,3 +1,4 @@
+import { FaUser } from 'react-icons/fa';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/About.css';
@@ -39,7 +40,7 @@ const About = () => {
   
   return (
     <section className='about-section'>
-      <h2 className='title'>About Me</h2>
+      <h2 className='title'><FaUser className='title-icon' aria-hidden="true" /> About Me</h2>
       <motion.div
             className="about-section"
             ref={ref}
