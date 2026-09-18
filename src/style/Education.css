@@ -1,0 +1,98 @@
+.education-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--space-4) var(--space-16);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.education-card {
+  background-color: var(--background-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+  text-align: center;
+  overflow: hidden;
+}
+
+.education-card:hover {
+  background-color: var(--background-card-hover);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.education-card-top {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  padding: var(--space-8) 0 var(--space-6);
+  display: flex;
+  justify-content: center;
+}
+
+.education-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-white);
+  border: 3px solid var(--color-white);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+  padding: 6px;
+}
+
+.education-card-body {
+  padding: var(--space-6);
+}
+
+.education-institution {
+  font-size: var(--font-size-lg);
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--space-1);
+  line-height: var(--line-height-tight);
+}
+
+.education-location {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-3);
+}
+
+[data-theme="light"] .education-location {
+  color: var(--text-secondary);
+}
+
+.education-program {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-1);
+}
+
+.education-period {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+[data-theme="light"] .education-period {
+  color: var(--text-secondary);
+}
+
+.education-blurb {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+}

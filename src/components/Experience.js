@@ -1,11 +1,15 @@
 import { FaBriefcase } from 'react-icons/fa';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
+import ekeLogo from '../assets/experience-logos/eke.png';
+import plat4mationLogo from '../assets/experience-logos/plat4mation.png';
+import omniaLogo from '../assets/experience-logos/omnia.png';
 import '../style/Experience.css';
 
 const experience = [
   {
     company: 'EKE-Electronics',
+    logo: ekeLogo,
     roles: [
       {
         title: 'Software Engineer',
@@ -23,6 +27,7 @@ const experience = [
   },
   {
     company: 'Plat4mation',
+    logo: plat4mationLogo,
     roles: [
       {
         title: 'Frontend Developer — Academic Exchange Project',
@@ -37,6 +42,7 @@ const experience = [
   },
   {
     company: 'Omnia Vocational School',
+    logo: omniaLogo,
     roles: [
       {
         title: 'Team Leader — Student Project',
@@ -51,7 +57,7 @@ const experience = [
   },
 ];
 
-const ExperienceEntry = ({ company, roles, index }) => {
+const ExperienceEntry = ({ company, logo, roles, index }) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: false,
@@ -80,6 +86,9 @@ const ExperienceEntry = ({ company, roles, index }) => {
       </div>
       <div className="experience-card">
         <div className="experience-card-header">
+          {logo && (
+            <img src={logo} alt={`${company} logo`} className="experience-logo" loading="lazy" />
+          )}
           <h3 className="experience-company">{company}</h3>
         </div>
         <div className="experience-roles">
@@ -114,12 +123,13 @@ const ExperienceEntry = ({ company, roles, index }) => {
 const Experience = () => {
   return (
     <section className="section-container">
-      <h2 className="title">Experience</h2>
+      <h2 className="title"><FaBriefcase className="title-icon" aria-hidden="true" /> Experience</h2>
       <div className="experience-timeline">
         {experience.map((entry, index) => (
           <ExperienceEntry
             key={entry.company}
             company={entry.company}
+            logo={entry.logo}
             roles={entry.roles}
             index={index}
           />

@@ -58,9 +58,24 @@
 }
 
 .experience-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
   margin-bottom: var(--space-4);
   padding-bottom: var(--space-3);
   border-bottom: 1px solid var(--background-tertiary);
+}
+
+.experience-logo {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-white);
+  border: 1px solid var(--background-tertiary);
+  box-shadow: var(--shadow-sm);
+  object-fit: cover;
+  padding: 4px;
 }
 
 .experience-company {

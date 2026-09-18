@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
-import { FaLinkedin, FaTwitter, FaGithub, FaCopy, FaArrowCircleDown } from 'react-icons/fa';
+import { FaLinkedin, FaTwitter, FaGithub, FaCopy, FaArrowCircleDown, FaEnvelope, FaAddressCard } from 'react-icons/fa';
+import Tooltip from '@mui/material/Tooltip';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import '../style/Contact.css';
 
 const contactItems = [
-    {  
+    {
+      href:"mailto:almashhadaniomar9@gmail.com?subject=Portfolio%20Inquiry",
+      className:'contact-icon-style',
+      ariaLabel: "Email Omar directly",
+      tooltip: "Send a direct email",
+      icon: <FaEnvelope />
+    },
+    {
       href:"https://www.linkedin.com/in/omar-al-mashhadani-4a9404199/",
       target:"_blank",
-      rel:"noopener noreferrer", 
+      rel:"noopener noreferrer",
       className:'contact-icon-style',
       icon: <FaLinkedin />
     },
@@ -99,24 +107,36 @@ const handleSubmit = async (e) => {
 
   return (
     <section className='contact-section'>
-      <h2 className='title'>Contact</h2>
+      <h2 className='title'><FaAddressCard className='title-icon' aria-hidden="true" /> Contact</h2>
       <div className='contact-icon-container-style'>
-        {contactItems.map((contact, index) => (
-          <motion.div
-            key={index}
-            ref={ref}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            variants={contactVariants}>
-            <a 
-              href={contact.href} 
-              target={contact.target} 
-              rel={contact.rel} 
-              className={contact.className}>
+        {contactItems.map((contact, index) => {
+          const link = (
+            <a
+              href={contact.href}
+              target={contact.target}
+              rel={contact.rel}
+              className={contact.className}
+              aria-label={contact.ariaLabel}>
             {contact.icon}
             </a>
-          </motion.div>
-        ))}
+          );
+          return (
+            <motion.div
+              key={index}
+              ref={ref}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              variants={contactVariants}>
+              {contact.tooltip ? (
+                <Tooltip title={contact.tooltip} arrow>
+                  {link}
+                </Tooltip>
+              ) : (
+                link
+              )}
+            </motion.div>
+          );
+        })}
       </div>
        {/* Contact Form Section */}
        <motion.div 
@@ -213,8 +233,8 @@ const handleSubmit = async (e) => {
       <label htmlFor='email'>Or Copy My Email  <FaArrowCircleDown className='down-arrow-icon'></FaArrowCircleDown></label> 
         <div className='copy-container'>
        
-        <input type='text' id='email' value='contact@omar-almashhadani.com' readOnly onClick={(e) => e.target.select()} />
-          <FaCopy className='copy-icon' onClick={() => handleCopy('contact@omar-almashhadani.com')} />
+        <input type='text' id='email' value='almashhadaniomar9@gmail.com' readOnly onClick={(e) => e.target.select()} />
+          <FaCopy className='copy-icon' onClick={() => handleCopy('almashhadaniomar9@gmail.com')} />
         </div>
         </div>
         {copySuccess && <div className='copy-notification'>{copySuccess}</div>}

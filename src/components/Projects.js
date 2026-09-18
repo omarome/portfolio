@@ -1,4 +1,4 @@
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaLaptopCode } from 'react-icons/fa';
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
@@ -147,7 +147,7 @@ const ProjectCard = ({ project, index }) => {
 const Projects = () => {
   return (
     <div className="projects-container">
-      <h2 className="title">Projects</h2>
+      <h2 className="title"><FaLaptopCode className="title-icon" aria-hidden="true" /> Projects</h2>
       <section className="projects-section">
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} index={index} />

@@ -1,3 +1,4 @@
+import { FaTools } from 'react-icons/fa';
 import {
   frontendSkills,
   backendSkills,
@@ -110,7 +111,7 @@ const Skills = () => {
   ];
   return (
     <section className="section-container">
-      <h2 className="title">Skills</h2>
+      <h2 className="title"><FaTools className="title-icon" aria-hidden="true" /> Skills</h2>
       <div className="skills-container">
         {sectionsList.map((section, index)=> (
             <SkillSection
