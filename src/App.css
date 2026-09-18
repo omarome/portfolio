@@ -306,6 +306,15 @@ body, #root, .app {
   background-color: var(--primary-color);
 }
 
+/* Keep focused/active nav buttons (e.g. Resume after returning via back button) readable in both themes */
+[data-theme="dark"] .nav-button:focus,
+[data-theme="dark"] .nav-button:active,
+[data-theme="light"] .nav-button:focus,
+[data-theme="light"] .nav-button:active {
+  color: var(--text-white);
+  background-color: var(--primary-color);
+}
+
 /* Default: hide menu text and hamburger on desktop */
 /* Using class repetition for higher specificity */
 .menu-text.menu-text {

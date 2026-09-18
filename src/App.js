@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
-import SplashScreen from './components/SplashScreen';
 import Footer from  './components/Footer';
 import Router from './components/Router';
 import './App.css';
 
-const menuList = ['Home', 'About', 'Skills', 'Projects', 'Contact'];
+const menuList = [
+  { label: 'Home', type: 'scroll' },
+  { label: 'About', type: 'scroll' },
+  { label: 'Experience', type: 'scroll' },
+  { label: 'Skills', type: 'scroll' },
+  { label: 'Projects', type: 'scroll' },
+  {
+    label: 'Resume',
+    type: 'external',
+    href: '/cv.pdf',
+    newTab: false,
+  },
+  { label: 'Contact', type: 'scroll' },
+];
 
 const App = () => {
-  const [isSplashVisible, setIsSplashVisible] = useState(true);
-
-  const handleAnimationComplete = () => {
-    setIsSplashVisible(false);
-  };
-
   return (
     <div className="app">
-    {isSplashVisible ? (
-        <SplashScreen onAnimationComplete={handleAnimationComplete} />
-      ) : (
-        <>
-          <Router menuList={menuList} />
-          <Footer />
-        </>
-      )}
+      <Router menuList={menuList} />
+      <Footer />
     </div>
   );
 }

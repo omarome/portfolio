@@ -5,6 +5,7 @@ import { Link } from 'react-scroll';
 import Box from '@mui/material/Box';
 import Home from './Home';
 import About from './About';
+import Experience from './Experience';
 import Skills from './Skills';
 import Projects from './Projects';
 import Contact from './Contact';
@@ -17,6 +18,10 @@ const Router = ({ menuList }) => {
   const handleLinkClick = (event) => {
     setIsDrawerOpen(false);
     event.preventDefault();
+  };
+
+  const handleExternalLinkClick = () => {
+    setIsDrawerOpen(false);
   };
 
   return (
@@ -49,15 +54,27 @@ const Router = ({ menuList }) => {
           </Typography>
           <div className="nav-links">
             {menuList.map((item, index) => (
-              <Link
-                key={index}
-                to={item.toLowerCase()}
-                smooth={true}
-                duration={500}
-                className="nav-button"
-              >
-                {item}
-              </Link>
+              item.type === 'external' ? (
+                <a
+                  key={index}
+                  href={item.href}
+                  target={item.newTab === false ? undefined : '_blank'}
+                  rel={item.newTab === false ? undefined : 'noopener noreferrer'}
+                  className="nav-button"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={index}
+                  to={item.label.toLowerCase()}
+                  smooth={true}
+                  duration={500}
+                  className="nav-button"
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </div>
           <Box sx={{ marginLeft: 'auto' }}>
@@ -71,19 +88,35 @@ const Router = ({ menuList }) => {
               <List className="drawer-list">
                 {menuList.map((item, index) => (
                   <ListItem button key={index}>
-                    <Link
-                      to={item.toLowerCase()}
-                      smooth={true}
-                      duration={500}
-                      onClick={(event) => handleLinkClick(event)}
-                    >
-                      <Button
-                        className="nav-button"
-                        variant="outlined"
+                    {item.type === 'external' ? (
+                      <a
+                        href={item.href}
+                        target={item.newTab === false ? undefined : '_blank'}
+                        rel={item.newTab === false ? undefined : 'noopener noreferrer'}
+                        onClick={handleExternalLinkClick}
                       >
-                        <ListItemText primary={item} />
-                      </Button>
-                    </Link>
+                        <Button
+                          className="nav-button"
+                          variant="outlined"
+                        >
+                          <ListItemText primary={item.label} />
+                        </Button>
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.label.toLowerCase()}
+                        smooth={true}
+                        duration={500}
+                        onClick={(event) => handleLinkClick(event)}
+                      >
+                        <Button
+                          className="nav-button"
+                          variant="outlined"
+                        >
+                          <ListItemText primary={item.label} />
+                        </Button>
+                      </Link>
+                    )}
                   </ListItem>
                 ))}
               </List>
@@ -95,6 +128,9 @@ const Router = ({ menuList }) => {
       </section>
       <section id="about">
         <About />
+      </section>
+      <section id="experience">
+        <Experience />
       </section>
       <section id="skills">
         <Skills />
