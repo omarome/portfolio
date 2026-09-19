@@ -330,6 +330,12 @@ body, #root, .app {
   background-color: var(--primary-color);
 }
 
+/* Resume is an action, not a section: outline it and set it apart from the section links */
+.nav-links .nav-button.nav-button-resume {
+  margin-left: var(--space-24);
+  border: 2px solid var(--primary-color);
+}
+
 /* Highlight the nav button of the section currently in view */
 .nav-links .nav-button.nav-button-active {
   background-color: var(--background-tertiary);
@@ -360,8 +366,8 @@ body, #root, .app {
   gap: var(--space-2);
 }
 
-/* Mobile: show menu text and hamburger, hide nav links */
-@media (max-width: 700px) {
+/* Collapse to the hamburger menu before the full nav row runs out of room (~1060px) */
+@media (max-width: 1100px) {
   .menu-text.menu-text {
     display: block;
   }

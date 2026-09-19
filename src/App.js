@@ -20,6 +20,7 @@ const menuList = [
   { label: 'Education', type: 'scroll', icon: FaGraduationCap },
   { label: 'Skills', type: 'scroll', icon: FaTools },
   { label: 'Projects', type: 'scroll', icon: FaLaptopCode },
+  { label: 'Contact', type: 'scroll', icon: FaAddressCard },
   {
     label: 'Resume',
     type: 'external',
@@ -27,7 +28,6 @@ const menuList = [
     newTab: false,
     icon: FaFileAlt,
   },
-  { label: 'Contact', type: 'scroll', icon: FaAddressCard },
 ];
 
 const App = () => {
