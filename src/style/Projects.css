@@ -31,6 +31,14 @@
   padding: 0 var(--space-4);
 }
 
+/* Featured card is first in the DOM (first on mobile). On wider screens the
+   card right after it moves ahead, so the featured card shows second. */
+@media (min-width: 769px) {
+  .project-card-wrapper-featured + .project-card-wrapper {
+    order: -1;
+  }
+}
+
 /* ============================================
    Project Card Container (3D Tilt Wrapper)
    ============================================ */
@@ -321,6 +329,35 @@
   width: 100%;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
+}
+
+/* Hint shown above the buttons (e.g. "Continue as Demo" for Humint Flow) */
+.project-actions:has(.demo-hint) {
+  flex-wrap: wrap;
+  row-gap: var(--space-3);
+}
+
+.demo-hint {
+  order: -1;
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-left: 3px solid var(--primary-color);
+  border-radius: var(--radius-sm);
+  background-color: rgba(128, 128, 128, 0.12);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  text-align: left;
+}
+
+.demo-hint-icon {
+  flex-shrink: 0;
+  margin-top: 0.2em;
+  color: var(--primary-color);
 }
 
 /* Ensure single button takes full width */

@@ -1,4 +1,4 @@
-import { FaGithub, FaExternalLinkAlt, FaLaptopCode, FaStar } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaLaptopCode, FaStar, FaInfoCircle } from 'react-icons/fa';
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
@@ -17,6 +17,7 @@ const projects = [
     description: 'A full-stack CRM workspace centralizing customer data, deal tracking, and team activity into a single cohesive platform.',
     githubUrl: 'https://github.com/omarome/humint-flow-frontend/blob/master/README.md',
     demoUrl: 'https://humint-flow.web.app/',
+    demoHint: 'No sign-up needed. On the login page, click "Continue as Demo".',
     technologies: ['React.js', 'Java + Springboot', 'PostgreSQL', 'Restful APIs', 'Full-Stack', 'AI']
   },
   {
@@ -60,6 +61,8 @@ const ProjectCard = ({ project, index }) => {
     triggerOnce: false,
   });
 
+  const hintId = `demo-hint-${index}`;
+
   const handleLinkClick = (e, url) => {
     e.stopPropagation();
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -84,7 +87,7 @@ const ProjectCard = ({ project, index }) => {
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
       variants={projectVariants}
-      className="project-card-wrapper"
+      className={`project-card-wrapper${project.featured ? ' project-card-wrapper-featured' : ''}`}
       whileHover={{ scale: 1.05, y: -5 }}
       transition={{ duration: 0.3 }}
     >
@@ -125,11 +128,18 @@ const ProjectCard = ({ project, index }) => {
             </div>
           </CardItem>
           <CardItem translateZ="160" className="project-actions" as="a" >
+            {project.demoUrl && project.demoHint && (
+              <div className="demo-hint" id={hintId} role="note">
+                <FaInfoCircle className="demo-hint-icon" aria-hidden="true" />
+                <span>{project.demoHint}</span>
+              </div>
+            )}
             {project.demoUrl && (
               <button
                 className="demo-button"
                 onClick={(e) => handleLinkClick(e, project.demoUrl)}
                 aria-label={`View ${project.name} live demo`}
+                aria-describedby={project.demoHint ? hintId : undefined}
               >
                 <FaExternalLinkAlt /> Live Demo
               </button>
