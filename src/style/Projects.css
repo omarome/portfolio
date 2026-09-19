@@ -31,6 +31,14 @@
   padding: 0 var(--space-4);
 }
 
+/* Featured card is first in the DOM (first on mobile). On wider screens the
+   card right after it moves ahead, so the featured card shows second. */
+@media (min-width: 769px) {
+  .project-card-wrapper-featured + .project-card-wrapper {
+    order: -1;
+  }
+}
+
 /* ============================================
    Project Card Container (3D Tilt Wrapper)
    ============================================ */

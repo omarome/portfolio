@@ -87,7 +87,7 @@ const ProjectCard = ({ project, index }) => {
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
       variants={projectVariants}
-      className="project-card-wrapper"
+      className={`project-card-wrapper${project.featured ? ' project-card-wrapper-featured' : ''}`}
       whileHover={{ scale: 1.05, y: -5 }}
       transition={{ duration: 0.3 }}
     >
