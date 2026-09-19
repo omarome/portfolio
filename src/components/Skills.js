@@ -7,7 +7,6 @@ import {
 } from '../directories/SkillsUtilis';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
-import { SparklesCore } from './ui-animation/sparkles';
 import { CardContainer, CardBody, CardItem } from './ui-animation/3d-card';
 import '../style/Skills.css';
 
@@ -60,7 +59,7 @@ const SkillCard = ({ skill, index, delay }) => {
   );
 };
 
-const SkillSection = ({ title, skills, index }) => {
+const SkillSection = ({ title, skills }) => {
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: false,
@@ -77,18 +76,6 @@ const SkillSection = ({ title, skills, index }) => {
       }}
       className="skill-category"
     >
-      <div className="skill-category-bg">
-        <SparklesCore
-          id={`skill-category-${index}`}
-          className="skill-category-sparkles"
-          background="black"
-          particleColor="var(--primary-light)"
-          particleDensity={120}
-          minSize={0.6}
-          maxSize={1.8}
-          speed={3}
-        />
-      </div>
       <div className="skill-category-content">
         <h2 className="skill-category-title">{title}</h2>
         <div className="skills-grid">
@@ -118,7 +105,6 @@ const Skills = () => {
               key={index}
               title={section.title}
               skills={section.skillsList}
-              index={index}
             />
           ))
         }

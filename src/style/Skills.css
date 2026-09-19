@@ -31,35 +31,6 @@
     position: relative;
     z-index: 1;
 }
-
-.skill-category-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.skill-category-sparkles {
-    position: absolute;
-    display: flex;
-    color: blueviolet;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.45;
-    mix-blend-mode: screen;
-}
-.skill-category-sparkles > div {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-  
-  .skill-category-sparkles canvas {
-    width: 100% !important;
-    height: 100% !important;
-    display: flex;
-  }
   
 .skill-category-content {
     border: 0.1px solid var(--primary-color);
@@ -180,12 +151,12 @@
 
 @media (max-width: 600px) {
     .section-container {
-        padding: 1rem;
+        padding: 0 1rem;
     }
     
     .skills-container {
-        padding: 1rem;
-        gap: 2rem;
+        padding: 0;
+        gap: 1.5rem;
     }
     
     .skill-category {

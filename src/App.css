@@ -31,6 +31,8 @@ body, #root, .app {
   position: relative;
   width: 100%;
   overflow-x: hidden;
+  /* clip (unlike hidden) doesn't create a scroll container, so the sticky navbar keeps sticking */
+  overflow-x: clip;
 }
 
 /* Shared section title styling */
@@ -40,7 +42,7 @@ body, #root, .app {
   font-size: var(--font-size-4xl);
   background-color: var(--background-color);
   text-align: center;
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-8);
   margin-top: var(--space-12);
   letter-spacing: 2px;
   line-height: var(--line-height-tight);
@@ -328,6 +330,18 @@ body, #root, .app {
   background-color: var(--primary-color);
 }
 
+/* Resume is an action, not a section: outline it and set it apart from the section links */
+.nav-links .nav-button.nav-button-resume {
+  margin-left: var(--space-24);
+  border: 2px solid var(--primary-color);
+}
+
+/* Highlight the nav button of the section currently in view */
+.nav-links .nav-button.nav-button-active {
+  background-color: var(--background-tertiary);
+  box-shadow: inset 0 -3px 0 var(--primary-color);
+}
+
 /* Keep focused/active nav buttons (e.g. Resume after returning via back button) readable in both themes */
 [data-theme="dark"] .nav-button:focus,
 [data-theme="dark"] .nav-button:active,
@@ -352,8 +366,8 @@ body, #root, .app {
   gap: var(--space-2);
 }
 
-/* Mobile: show menu text and hamburger, hide nav links */
-@media (max-width: 700px) {
+/* Collapse to the hamburger menu before the full nav row runs out of room (~1060px) */
+@media (max-width: 1100px) {
   .menu-text.menu-text {
     display: block;
   }
@@ -371,9 +385,9 @@ body, #root, .app {
 @media (max-width: 768px) {
   .title {
     font-size: var(--font-size-3xl);
-    margin-top: var(--space-10);
-    margin-bottom: var(--space-12);
-    padding: var(--space-5) var(--space-3);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-6);
+    padding: var(--space-3);
     letter-spacing: 1.5px;
   }
 
@@ -387,9 +401,9 @@ body, #root, .app {
 @media (max-width: 600px) {
   .title {
     font-size: var(--font-size-2xl);
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-10);
-    padding: var(--space-4) var(--space-2);
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-5);
+    padding: var(--space-2);
     letter-spacing: 1px;
   }
 
@@ -397,5 +411,16 @@ body, #root, .app {
     border-left: 24px solid transparent;
     border-right: 24px solid transparent;
     border-top: 8px solid var(--primary-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

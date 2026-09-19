@@ -34,14 +34,6 @@
     isolation: isolate;
 }
 
-.about-section-item-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
 
 .about-section-item:hover {
     border-color: var(--primary-color);
@@ -69,30 +61,37 @@
     text-align: left;
 }
 
-.about-section-sparkles {
-    position: absolute;
-    color: blueviolet;
-    display: flex;
-    inset: 0;
+
+
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: var(--space-6);
     width: 100%;
-    height: 100%;
-    pointer-events: none;
-    opacity: 0.45;
-    mix-blend-mode: screen;
-    filter: blur(0.2px);
+    max-width: 800px;
+    margin: 0 auto var(--space-4);
+    padding: 0 var(--space-4);
 }
 
-.about-section-item-bg > div {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+.about-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    text-align: center;
 }
 
-.about-section-item-bg canvas {
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
+.about-stat-value {
+    color: var(--primary-color);
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.about-stat-label {
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
 }
 
 @media (max-width: 600px) {

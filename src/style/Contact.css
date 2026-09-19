@@ -3,20 +3,23 @@
 .contact-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
+  padding: 0 var(--space-4) var(--space-8);
 }
 
-
 .contact-icon-container-style {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
-  gap: var(--space-6);
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
 }
 
 .contact-icon-style {
-  padding: var(--space-4);
+  display: inline-flex;
+  padding: var(--space-3);
   color: var(--primary-color);
-  font-size: var(--font-size-5xl); 
+  font-size: var(--font-size-3xl);
   text-decoration: none;
   transition: var(--transition-normal);
 }
@@ -29,14 +32,18 @@
 .contact-info {
   display: flex;
   flex-direction: column;
-  padding-left: var(--space-12);
-  gap: var(--space-5);
+  align-items: center;
+  width: 100%;
+  gap: var(--space-2);
 }
 
 .contact-info label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   color: var(--text-primary);
   font-weight: var(--font-weight-bold);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
 }
 
 /* Theme-specific minimal overrides (outside media queries) */
@@ -52,7 +59,9 @@
 .copy-container {
   display: flex;
   align-items: center;
-  padding-bottom: var(--space-20);
+  justify-content: center;
+  width: 100%;
+  max-width: 30rem;
 }
 
 .contact-info input {
@@ -61,8 +70,9 @@
   color: var(--text-light);
   font-size: var(--font-size-lg);
   cursor: pointer;
-  width: 25rem;
-  padding: var(--space-3);
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
 }
 
@@ -156,10 +166,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 50%;
+  max-width: 34rem;
   width: 100%;
-  margin: var(--space-16) auto;
-  padding: var(--space-10);
+  margin: 0 auto var(--space-6);
+  padding: var(--space-6);
   background: var(--background-secondary);
   border-radius: var(--radius-lg);
   border: 2px solid var(--primary-color);
@@ -170,14 +180,14 @@
   color: var(--primary-color);
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
   text-align: center;
 }
 
 .form-description {
   color: var(--text-primary);
   font-size: var(--font-size-base);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-5);
   text-align: center;
 }
 
@@ -192,14 +202,14 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
 }
 
 .form-group label {
   color: var(--text-primary);
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-base);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
 }
 
 [data-theme="dark"] .form-group label {
@@ -208,7 +218,7 @@
 
 .form-group input,
 .form-group textarea {
-  padding: var(--space-3);
+  padding: var(--space-1) var(--space-2);
   border: 2px solid var(--background-tertiary);
   border-radius: var(--radius-sm);
   background: var(--background-tertiary);
@@ -238,15 +248,15 @@
 
 .form-group textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 96px;
 }
 
 .submit-button {
   width: 100%;
-  padding: var(--space-4) var(--space-8);
+  padding: var(--space-3) var(--space-6);
   background-color: var(--primary-color);
   color: var(--text-white);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-bold);
   border: none;
   border-radius: var(--radius-md);
@@ -283,8 +293,8 @@
 }
 
 .form-message {
-  margin-top: var(--space-6);
-  padding: var(--space-4);
+  margin-top: var(--space-4);
+  padding: var(--space-3);
   border-radius: var(--radius-sm);
   text-align: center;
   font-weight: var(--font-weight-semibold);
@@ -315,53 +325,21 @@
 }
 
 @media (max-width: 600px) {
-  .title {
-    padding: var(--space-2) var(--space-4);
-    margin: var(--space-4) 0 var(--space-6) 0;
+  .contact-icon-container-style {
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-icon-style {
+    padding: var(--space-2);
     font-size: var(--font-size-2xl);
   }
 
-/* Light/Dark theme overrides moved outside media queries for best practices */
-
-  .contact-section {
-    margin-bottom: var(--space-3);
-  }
-
-  .contact-icon-container-style {
-    display: inline-flex;
-    justify-content: center;
-    flex-direction: row;
-    padding-bottom: 0;
-    gap: var(--space-4);
-  }
-  .contact-icon-style {
-    padding: var(--space-3);
-    color: var(--primary-color);
-    font-size: var(--font-size-3xl);
-    text-decoration: none;
-    transition: var(--transition-normal);
-  }
-  
   .contact-icon-style:hover {
-    color: var(--text-primary);
     transform: scale(1.05);
   }
 
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    padding-left: 0;
-    gap: var(--space-5);
-    margin: var(--space-8);
-  }
-  .contact-info input {
-    width: 100%;
-  }
   .copy-icon {
-    margin-left: var(--space-3);
-    cursor: pointer;
     font-size: var(--font-size-lg);
-    color: var(--primary-color);
   }
 
   .resume-section {
@@ -380,8 +358,8 @@
 
   /* Contact Form Mobile Styles */
   .contact-form-container {
-    padding: var(--space-2);
-    max-width: 80%;
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
   }
 
   .form-title {
@@ -390,15 +368,13 @@
 
   .form-description {
     font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
   }
 
-  .form-group input {
-    font-size: var(--font-size-sm);
-    padding: 0 0 var(--space-3) 0;
-  }
-
+  /* 1rem keeps iOS from zooming into the field on focus */
+  .form-group input,
   .form-group textarea {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
   }
 
   .submit-button {

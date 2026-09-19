@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-scroll';
+import { useReducedMotion } from 'motion/react';
 import Box from '@mui/material/Box';
 import Home from './Home';
 import About from './About';
@@ -13,8 +14,47 @@ import Contact from './Contact';
 import ScrollToTop from './ScrollToTop';
 import ThemeToggle from './ThemeToggle';
 
+const NAV_HEIGHT = 57;
+// Scroll targets stop this far below the top so the sticky navbar doesn't cover section titles
+const SCROLL_OFFSET = -(NAV_HEIGHT + 24);
+
 const Router = ({ menuList }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const ids = menuList.filter((item) => item.type !== 'external').map((item) => item.label.toLowerCase());
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      // A section is "current" once its top passes a line just under the middle of the visible area
+      const probe = NAV_HEIGHT + window.innerHeight * 0.45;
+      let current = ids[0];
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= probe) current = id;
+      });
+      // The last section is often too short to ever reach the probe line, so pin it at the page bottom
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        current = ids[ids.length - 1];
+      }
+      setActiveSection(current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [menuList]);
 
   const handleLinkClick = (event) => {
     setIsDrawerOpen(false);
@@ -62,7 +102,7 @@ const Router = ({ menuList }) => {
                   href={item.href}
                   target={item.newTab === false ? undefined : '_blank'}
                   rel={item.newTab === false ? undefined : 'noopener noreferrer'}
-                  className="nav-button"
+                  className="nav-button nav-button-resume"
                 >
                   {Icon && <Icon className="nav-button-icon" aria-hidden="true" />}
                   {item.label}
@@ -71,9 +111,10 @@ const Router = ({ menuList }) => {
                 <Link
                   key={index}
                   to={item.label.toLowerCase()}
-                  smooth={true}
+                  smooth={!prefersReducedMotion}
                   duration={500}
-                  className="nav-button"
+                  offset={SCROLL_OFFSET}
+                  className={`nav-button${activeSection === item.label.toLowerCase() ? ' nav-button-active' : ''}`}
                 >
                   {Icon && <Icon className="nav-button-icon" aria-hidden="true" />}
                   {item.label}
@@ -112,7 +153,8 @@ const Router = ({ menuList }) => {
                       ) : (
                         <Link
                           to={item.label.toLowerCase()}
-                          smooth={true}
+                          offset={SCROLL_OFFSET}
+                          smooth={!prefersReducedMotion}
                           duration={500}
                           onClick={(event) => handleLinkClick(event)}
                         >

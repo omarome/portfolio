@@ -8,6 +8,7 @@ import {
   FaFileAlt,
   FaAddressCard,
 } from 'react-icons/fa';
+import { MotionConfig } from 'motion/react';
 import Footer from  './components/Footer';
 import Router from './components/Router';
 import './App.css';
@@ -19,6 +20,7 @@ const menuList = [
   { label: 'Education', type: 'scroll', icon: FaGraduationCap },
   { label: 'Skills', type: 'scroll', icon: FaTools },
   { label: 'Projects', type: 'scroll', icon: FaLaptopCode },
+  { label: 'Contact', type: 'scroll', icon: FaAddressCard },
   {
     label: 'Resume',
     type: 'external',
@@ -26,15 +28,16 @@ const menuList = [
     newTab: false,
     icon: FaFileAlt,
   },
-  { label: 'Contact', type: 'scroll', icon: FaAddressCard },
 ];
 
 const App = () => {
   return (
-    <div className="app">
-      <Router menuList={menuList} />
-      <Footer />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="app">
+        <Router menuList={menuList} />
+        <Footer />
+      </div>
+    </MotionConfig>
   );
 }
 
