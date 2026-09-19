@@ -1,4 +1,4 @@
-import { FaGithub, FaExternalLinkAlt, FaLaptopCode } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaLaptopCode, FaStar } from 'react-icons/fa';
 import MovieAppImage from '../assets/project-images/vidly.jpeg';
 import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
@@ -13,6 +13,7 @@ const projects = [
   {
     image: HumintFlowImage,
     name: 'Humint Flow',
+    featured: true,
     description: 'A full-stack CRM workspace centralizing customer data, deal tracking, and team activity into a single cohesive platform.',
     githubUrl: 'https://github.com/omarome/humint-flow-frontend/blob/master/README.md',
     demoUrl: 'https://humint-flow.web.app/',
@@ -92,7 +93,12 @@ const ProjectCard = ({ project, index }) => {
         className="project-card-inner"
         tiltIntensity={40}
       >
-        <CardBody className="project-card">
+        <CardBody className={`project-card${project.featured ? ' project-card-featured' : ''}`}>
+          {project.featured && (
+            <CardItem translateZ={200} className="featured-badge">
+              <FaStar aria-hidden="true" /> Featured
+            </CardItem>
+          )}
           <CardItem translateZ={120} className="project-image-wrapper">
             <img
               src={project.image}
