@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-scroll';
+import { useReducedMotion } from 'motion/react';
 import Box from '@mui/material/Box';
 import Home from './Home';
 import About from './About';
@@ -15,6 +16,7 @@ import ThemeToggle from './ThemeToggle';
 
 const Router = ({ menuList }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const handleLinkClick = (event) => {
     setIsDrawerOpen(false);
@@ -71,8 +73,10 @@ const Router = ({ menuList }) => {
                 <Link
                   key={index}
                   to={item.label.toLowerCase()}
-                  smooth={true}
+                  smooth={!prefersReducedMotion}
                   duration={500}
+                  spy={true}
+                  activeClass="nav-button-active"
                   className="nav-button"
                 >
                   {Icon && <Icon className="nav-button-icon" aria-hidden="true" />}
@@ -112,7 +116,7 @@ const Router = ({ menuList }) => {
                       ) : (
                         <Link
                           to={item.label.toLowerCase()}
-                          smooth={true}
+                          smooth={!prefersReducedMotion}
                           duration={500}
                           onClick={(event) => handleLinkClick(event)}
                         >

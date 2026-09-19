@@ -8,6 +8,7 @@ import {
   FaFileAlt,
   FaAddressCard,
 } from 'react-icons/fa';
+import { MotionConfig } from 'motion/react';
 import Footer from  './components/Footer';
 import Router from './components/Router';
 import './App.css';
@@ -31,10 +32,12 @@ const menuList = [
 
 const App = () => {
   return (
-    <div className="app">
-      <Router menuList={menuList} />
-      <Footer />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="app">
+        <Router menuList={menuList} />
+        <Footer />
+      </div>
+    </MotionConfig>
   );
 }
 

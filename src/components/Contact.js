@@ -203,7 +203,7 @@ const handleSubmit = async (e) => {
                 onChange={handleInputChange}
                 required
                 placeholder='Your message here...'
-                rows='5'
+                rows='4'
                 disabled={isSubmitting}
               />
             </div>
