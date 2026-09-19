@@ -151,12 +151,12 @@
 
 @media (max-width: 600px) {
     .section-container {
-        padding: 1rem;
+        padding: 0 1rem;
     }
     
     .skills-container {
-        padding: 1rem;
-        gap: 2rem;
+        padding: 0;
+        gap: 1.5rem;
     }
     
     .skill-category {
