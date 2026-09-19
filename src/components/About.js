@@ -29,7 +29,7 @@ const About = () => {
     {
       title: 'Education',
       description:
-        "I hold a bachelor's degree in Mobile Solutions from Metropolia AMK and a Master's in Information and Communication Technologies, where I deepened my expertise in both frontend and backend development.",
+        "I hold a Bachelor’s degree in Information and Communication Technologies, specializing in Mobile Solutions, from Metropolia University of Applied Sciences, with a strong focus on frontend and backend development.",
     },
     {
       title: 'Global Perspective',
