@@ -59,7 +59,7 @@ const Home = () => {
           >
             <h1 className='intro-section-header'>Hey there 👋, I'm Omar — a Software Engineer.</h1>
             <p className='intro-section-paragraph'>
-            With a degree in ICT from Metropolia University of Applied Sciences, I currently work full-time at EKE Electronics Ltd, where I leverage my skills and passion for technology to build innovative solutions.
+            At EKE Electronics, I work across the stack on a safety-critical condition monitoring system, from the React and TypeScript frontend to the Python and Java services behind it. I studied ICT at Metropolia University of Applied Sciences and have been shipping production software since 2022.
             </p>
             </motion.div>
         </section>

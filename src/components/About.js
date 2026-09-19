@@ -19,17 +19,12 @@ const About = () => {
     {
       title: 'Full-Stack Developer',
       description:
-        "I'm a passionate full-stack developer with four years of experience creating elegant, user-friendly applications. I work across the entire technology stack—from frontend frameworks like React, Angular, and TypeScript to backend technologies including Node.js, Python, and Java.",
-    },
-    {
-      title: 'Cloud & DevOps',
-      description:
-        "I'm proficient in cloud infrastructure with AWS, containerization with Docker, and modern development practices including Git workflows, Agile methodologies, and Scrum.",
+        "I work across the whole stack: React and TypeScript on the frontend, FastAPI and Java microservices on the backend, and Dockerized cloud deployments with CI/CD. I work closely with designers, product owners, and backend engineers, and I care about software that stays reliable, maintainable, and well-tested as a product grows.",
     },
     {
       title: 'Global Perspective',
       description:
-        "As a multilingual developer fluent in English, proficient in Finnish, and a native Arabic speaker, I bring a global perspective to my work. I'm excited to contribute to innovative projects that make a real difference.",
+        "I'm fluent in English, proficient in Finnish, and a native Arabic speaker. Studying and working across Finland and the Netherlands has made me comfortable in multicultural teams.",
     },
   ];
   
