@@ -1,5 +1,6 @@
 import portfolioImage from '../assets/portfolio_image.jpeg';
 import TypingEffect from '../components/TypingEffect';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { Vortex } from './ui-animation/vortex';
@@ -58,8 +59,9 @@ const Home = () => {
             variants={textVariants}
           >
             <h1 className='intro-section-header'>Hey there 👋, I'm Omar — a Software Engineer.</h1>
+            <p className='intro-section-location'><FaMapMarkerAlt className='intro-section-location-icon' aria-hidden="true" /> Espoo, Finland 🇫🇮</p>
             <p className='intro-section-paragraph'>
-            At EKE Electronics, I work across the stack on a safety-critical condition monitoring system, from the React and TypeScript frontend to the Python and Java services behind it. I studied ICT at Metropolia University of Applied Sciences and have been shipping production software since 2022.
+            Full-stack software engineer with a strong background in frontend development, backend services, and cloud deployment, seeking to apply my technical expertise and problem-solving skills to contribute to a dynamic team. ICT graduate from Metropolia University of Applied Sciences, shipping production software since 2022.
             </p>
             </motion.div>
         </section>
