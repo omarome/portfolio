@@ -27,11 +27,6 @@ const About = () => {
         "I'm proficient in cloud infrastructure with AWS, containerization with Docker, and modern development practices including Git workflows, Agile methodologies, and Scrum.",
     },
     {
-      title: 'Education',
-      description:
-        "I hold a Bachelor’s degree in Information and Communication Technologies, specializing in Mobile Solutions, from Metropolia University of Applied Sciences, with a strong focus on frontend and backend development.",
-    },
-    {
       title: 'Global Perspective',
       description:
         "As a multilingual developer fluent in English, proficient in Finnish, and a native Arabic speaker, I bring a global perspective to my work. I'm excited to contribute to innovative projects that make a real difference.",
