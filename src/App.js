@@ -24,8 +24,8 @@ const menuList = [
   {
     label: 'Resume',
     type: 'external',
-    href: '/cv.pdf',
-    newTab: false,
+    href: 'https://drive.google.com/file/d/1CC1bXZJqWtsIQV3YkMPi9EHvcbahP6iO/view?usp=sharing',
+    newTab: true,
     icon: FaFileAlt,
   },
 ];

@@ -244,7 +244,7 @@ const handleSubmit = async (e) => {
           <h3 className='resume-title'>Download Resume</h3>
           <p className='resume-description'>Get a copy of my resume in PDF format</p>
           <a 
-            href="https://drive.google.com/file/d/1GdCJHLq7vGhkH-7JBuXHKQ8R0cHvOOjM/view?usp=sharing" 
+            href="https://drive.google.com/file/d/1CC1bXZJqWtsIQV3YkMPi9EHvcbahP6iO/view?usp=sharing" 
             target="_blank"
             rel="noopener noreferrer"
             className='resume-download-button'

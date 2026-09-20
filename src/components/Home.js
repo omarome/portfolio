@@ -75,7 +75,7 @@ const Home = () => {
             <motion.h1 className='intro-section-header' variants={itemVariants}>Hey there 👋, I'm Omar — a Software Engineer.</motion.h1>
             <motion.p className='intro-section-location' variants={itemVariants}><FaMapMarkerAlt className='intro-section-location-icon' aria-hidden="true" /> Espoo, Finland 🇫🇮</motion.p>
             <motion.p className='intro-section-paragraph' variants={itemVariants}>
-            Full-stack software engineer with a strong background in frontend development, backend services, and cloud deployment, seeking to apply my technical expertise and problem-solving skills to contribute to a dynamic team. ICT graduate from Metropolia University of Applied Sciences, shipping production software since 2022.
+            Full-stack software engineer from Finland with experience across frontend, backend, and DevOps. ICT graduate from Metropolia University of Applied Sciences, shipping production software since 2022.
             </motion.p>
             <motion.div className='hero-cta' variants={itemVariants}>
               <Link
@@ -86,7 +86,12 @@ const Home = () => {
               >
                 <FaLaptopCode aria-hidden="true" /> View Projects
               </Link>
-              <a href="/cv.pdf" download className="hero-button hero-button-secondary">
+              <a
+                href="https://drive.google.com/file/d/1CC1bXZJqWtsIQV3YkMPi9EHvcbahP6iO/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-button hero-button-secondary"
+              >
                 <FaDownload aria-hidden="true" /> Download CV
               </a>
               <Link

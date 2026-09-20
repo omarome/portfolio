@@ -30,12 +30,12 @@ const experience = [
     logo: plat4mationLogo,
     roles: [
       {
-        title: 'Frontend Developer — Academic Exchange Project',
+        title: 'Mobile AR Developer — Academic Exchange Project',
         subtitle: 'One-semester exchange via Amsterdam University of Applied Sciences',
         period: 'Autumn 2022 - 2023',
         bullets: [
-          'Developed frontend features and UI improvements for web automation tools',
-          'Implemented responsive layouts using React and Tailwind CSS in direct collaboration with designers in Figma',
+          "Built, as part of a 4-student team, a proof-of-concept Augmented Reality (AR) feature for Plat4mation's existing Android maintenance application using Google ARCore and Kotlin, for an exchange-program course",
+          'The feature scans a mechanical part or engine through the camera and overlays digital guiding instructions to support maintenance work',
         ],
       },
     ],
