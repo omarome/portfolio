@@ -31,7 +31,7 @@ const education = [
     logo: amsterdamLogo,
     program: 'Academic Exchange Semester',
     period: 'Autumn 2022',
-    blurb: 'One semester abroad focused on frontend engineering, paired with a hands-on role at Plat4mation.',
+    blurb: 'One semester abroad focused on mobile development, building an AR proof of concept for Plat4mation.',
   },
 ];
 
