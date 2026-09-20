@@ -86,7 +86,12 @@ const Home = () => {
               >
                 <FaLaptopCode aria-hidden="true" /> View Projects
               </Link>
-              <a href="/cv.pdf" download className="hero-button hero-button-secondary">
+              <a
+                href="https://drive.google.com/file/d/1CC1bXZJqWtsIQV3YkMPi9EHvcbahP6iO/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-button hero-button-secondary"
+              >
                 <FaDownload aria-hidden="true" /> Download CV
               </a>
               <Link
