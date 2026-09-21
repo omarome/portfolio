@@ -23,9 +23,9 @@
 }
 
 .skill-category-title {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     color: var(--primary-color);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
@@ -33,13 +33,13 @@
 }
   
 .skill-category-content {
-    border: 0.1px solid var(--primary-color);
+    border: none;
     overflow: hidden;
     border-radius: var(--radius-lg);
     transition: var(--transition-normal);
     position: relative;
     z-index: 1;
-    padding: 2rem;
+    padding: 5px;
 }
 .skill-category-content:hover {
     border-color: var(--primary-color);
@@ -84,7 +84,9 @@
     justify-content: center;
     background-color: rgba(69, 69, 69, 0.6);
     border-radius: 12px;
-    height: 180px;
+    padding: 7px;
+    width: stretch;
+    height: 130px;
     cursor: pointer;
     border: 2px solid transparent;
     transition: all 0.3s ease;
@@ -97,8 +99,8 @@
 }
 
 .skill-logo {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     object-fit: contain;
     background-color: white;
     padding: 10px;
@@ -115,7 +117,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-align: center;
     margin-top: 0.5rem;
     white-space: nowrap;
@@ -135,8 +137,8 @@
     }
     
     .skill-card {
-        height: 160px;
-        padding: 1rem;
+        height: 130px;
+        padding: 0.75rem;
     }
     
     .skill-logo {
@@ -145,7 +147,7 @@
     }
     
     .skill-category-title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -173,7 +175,7 @@
     }
     
     .skill-card {
-        height: 140px;
+        height: 130px;
         padding: 0.75rem;
     }
     
