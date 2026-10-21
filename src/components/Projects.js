@@ -4,6 +4,7 @@ import MyPetShopAppImage from '../assets/project-images/petshopImage.jpeg';
 import FoodSpotLightAppImage from '../assets/project-images/foodSpotLightApp.jpeg';
 import PaymentHubImage from '../assets/project-images/payment-hub.jpeg';
 import HumintFlowImage from '../assets/project-images/humint-flow.jpeg';
+import HydrostaticExplorerImage from '../assets/project-images/hydrostatic-explorer.jpeg';
 import { motion } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { CardContainer, CardBody, CardItem } from './ui-animation/3d-card';
@@ -19,6 +20,14 @@ const projects = [
     demoUrl: 'https://humint-flow.web.app/',
     demoHint: 'No sign-up needed. On the login page, click "Continue as Demo".',
     technologies: ['React.js', 'Java + Springboot', 'PostgreSQL', 'Restful APIs', 'Full-Stack', 'AI']
+  },
+  {
+    image: HydrostaticExplorerImage,
+    name: 'Hydrostatic Explorer',
+    description: 'A cross-platform desktop app showing hydrostatic data for ship hulls in three linked views: a paged table, a hydrostatic curve, and an interactive 3D hull view, served by a local REST API.',
+    githubUrl: 'https://github.com/omarome/hydrostatic-explorer/blob/master/README.md',
+    demoUrl: null,
+    technologies: ['C#', '.NET 8', 'ASP.NET Core', 'Avalonia + MVVM', 'Restful APIs', 'Desktop']
   },
   {
     image: PaymentHubImage,
